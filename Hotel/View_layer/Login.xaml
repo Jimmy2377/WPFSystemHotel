@@ -1,0 +1,217 @@
+﻿<Window x:Class="Hotel.View_layer.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.View_layer"
+        mc:Ignorable="d"
+        Title="Login" Height="700" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="true"
+        MouseDown="Window_MouseDown">
+    <Border CornerRadius="30">
+        <Border.Background>
+            <ImageBrush ImageSource="/View_layer/Images/Leonardo_Signature_Image_of_a_fivestar_hotel_lobby_extremely_l_1.jpg"/>
+
+        </Border.Background>
+        <Border CornerRadius="5"
+            BorderThickness="3"
+                Opacity="0.95">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource GoldColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource GoldColor3}" Offset="0.75"/>
+                    <GradientStop Color="{StaticResource GoldColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="{StaticResource BlankColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource BlankColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <!--dividir en 4 la parte superior-->
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Button x:Name="btnMinimize"
+                            
+                            BorderThickness="0"
+                            Content="-"
+                            FontSize="17"
+                            FontFamily="Rubik"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#d8c690"/>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="24" Height="24"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                    <Button x:Name="btnClose"
+                            Background="#d8c690"
+                            BorderThickness="0"
+                            Content="x"
+                            FontSize="17"
+                            FontFamily="Rubik"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#be9e44"/>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="24" Height="24"
+                                        CornerRadius="12"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <StackPanel Width="300"
+                            Grid.Row="2"
+                            Orientation="Vertical"
+                            Margin="0,35,0,0">
+                    <Image Source="/View_layer/Images/vector5degradado.png"
+                           Width="200" Height="200"/>
+                    <TextBlock Text="Bienvenido"
+                               Foreground="#d8c690"
+                               FontSize="25"
+                               FontFamily="Alegreya Sans Thin"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Inicio Sesion"
+                               Foreground="#d8c690"
+                               FontSize="30"
+                               FontFamily="Alegreya"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Usuario"
+                               Foreground="#d8c690"
+                               FontSize="17"
+                               FontFamily="Alegreya"
+                               Margin="0,35,0,0"/>
+                    <TextBox x:Name="txtuser"
+                             FontSize="15"
+                             FontFamily="Alegreya"
+                             Background="Transparent"
+                             Foreground="White"
+                             CaretBrush="#e5d9b6"
+                             BorderThickness="0,0,0,3"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0">
+
+                    </TextBox>
+
+                    <TextBlock Text="Contraseña"
+                               Foreground="#d8c690"
+                               FontSize="17"
+                               FontFamily="Alegreya"
+                               Margin="0,35,0,0"/>
+                    <PasswordBox x:Name="txtpass"
+                             FontSize="15"
+                             FontFamily="Alegreya"
+                             Background="Transparent"
+                             Foreground="White"
+                             CaretBrush="#e5d9b6"
+                             BorderThickness="0,0,0,3"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0">
+
+                    </PasswordBox>
+                    <Label x:Name="lblErrorUser" 
+                           Content="ERROR" 
+                           FontSize="15"
+                           Foreground="#be9e44"
+                           Margin="0,20,0,0"
+                           FontFamily="Alegreya" Background="#00000000"
+                           Visibility="Hidden"/>
+
+                    <Button x:Name="btningresar"
+                            
+                            Content="Ingresar"
+                            FontSize="20"
+                            FontFamily="Alegreya ExtraBold"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnIngresar_Click"
+                            Margin="0,10,0,0">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#1c1c1c"/>
+                                <Setter Property="Foreground" Value="#cbb26a"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#cbb26a"/>
+                                        <Setter Property="Foreground" Value="#1c1c1c"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="160" Height="38"
+                                        CornerRadius="19"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBlock Text="¿Olvidaste tu contraseña?"
+                               Foreground="#d8c690"
+                               FontSize="15"
+                               FontFamily="Alegreya Sans Thin"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+
+                </StackPanel>
+
+
+            </Grid>
+
+        </Border>
+    </Border>
+</Window>

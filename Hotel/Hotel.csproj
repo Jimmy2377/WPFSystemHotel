@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View_layer\Images\iconuser.png" />
+    <None Remove="View_layer\Images\Leonardo_Signature_Image_of_a_fivestar_hotel_lobby_extremely_l_1.jpg" />
+    <None Remove="View_layer\Images\vector5degradado.png" />
+    <None Remove="View_layer\Images\vector6degradado.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entity_layer\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\..\.nuget\packages\mysql.data\8.0.32.1\lib\net6.0\MySql.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View_layer\Images\iconuser.png" />
+    <Resource Include="View_layer\Images\Leonardo_Signature_Image_of_a_fivestar_hotel_lobby_extremely_l_1.jpg" />
+    <Resource Include="View_layer\Images\vector5degradado.png" />
+    <Resource Include="View_layer\Images\vector6degradado.png" />
+  </ItemGroup>
+
+</Project>
