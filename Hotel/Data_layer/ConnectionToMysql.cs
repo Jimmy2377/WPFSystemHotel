@@ -11,11 +11,11 @@ namespace Hotel.Data_layer
 {
     public abstract class ConnectionToMysql
     {
-        private readonly string servidor = "bx03xbcc3anbn4qledgy-mysql.services.clever-cloud.com";
+        private readonly string servidor = "btr3itqyjgkpayqsmsfx-mysql.services.clever-cloud.com";
         private readonly string puerto = "3306"; 
-        private readonly string usuario = "u1mm5br4gmrdryoa"; 
-        private readonly string password = "D33bt4Jje6LVYbpTRzms";
-        private readonly string nombreDB = "bx03xbcc3anbn4qledgy"; 
+        private readonly string usuario = "uurra9sjisnoi7br"; 
+        private readonly string password = "8VviXT9zhB87DtwZSwFZ";
+        private readonly string nombreDB = "btr3itqyjgkpayqsmsfx"; 
         private readonly string connectionString;
         public ConnectionToMysql()
         {
@@ -28,4 +28,4 @@ namespace Hotel.Data_layer
     }
 }
 
-//mysql - h bx03xbcc3anbn4qledgy - mysql.services.clever - cloud.com - P 3306 - u u1mm5br4gmrdryoa - p bx03xbcc3anbn4qledgy
+//mysql -h btr3itqyjgkpayqsmsfx-mysql.services.clever-cloud.com -P 3306 -u uurra9sjisnoi7br -p btr3itqyjgkpayqsmsfx
