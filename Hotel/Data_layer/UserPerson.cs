@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
-
+using Hotel.Entity_layer;
 
 namespace Hotel.Data_layer
 {
@@ -26,6 +26,12 @@ namespace Hotel.Data_layer
                     MySqlDataReader reader = command.ExecuteReader();
                     if (reader.HasRows)
                     {
+                        while (reader.Read())
+                        {
+                            UsuarioSesion.IDuser = reader.GetInt32(0);
+                            UsuarioSesion.Nameuser = reader.GetString(1);
+                            UsuarioSesion.Lastnameuser = reader.GetString(2);
+                        }
                         return true;
                     }
                     else return false; 

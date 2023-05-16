@@ -13,18 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using Hotel.Entity_layer;
 
 namespace Hotel.View_layer
 {
     /// <summary>
     /// Lógica de interacción para MenuPrincipal.xaml
     /// </summary>
+    /// 
+
+    
     public partial class MenuPrincipal : Window
     {
+        
         public MenuPrincipal()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            cargardatosusuario();
         }
 
         [DllImport("user32.dll")]
@@ -52,5 +59,37 @@ namespace Hotel.View_layer
                 this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
         }
+
+        private void btnDevoluciones_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void btncontrolhome_Click(object sender, RoutedEventArgs e)
+        {
+            //contentControl.Content = controlHome;
+            DataContext = new ViewHome();
+        }
+        private void btncontrolquote_Click(object sender, RoutedEventArgs e)
+        {
+            //contentControl.Content = controlQuote;
+            DataContext = new ViewQuote();
+        }
+
+
+        private void btnLogout_click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("¿Estás seguro de que quieres cerrar la sesión?", "Warning",MessageBoxButton.YesNo,MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+      
+        private void cargardatosusuario()
+        {
+            txtNombreUsuario.Text = UsuarioSesion.Nameuser;
+            txtApellidoUsuario.Text = UsuarioSesion.Lastnameuser;
+        }
+
     }
 }

@@ -27,3 +27,5 @@ namespace Hotel.Data_layer
         }
     }
 }
+
+//mysql - h bx03xbcc3anbn4qledgy - mysql.services.clever - cloud.com - P 3306 - u u1mm5br4gmrdryoa - p bx03xbcc3anbn4qledgy

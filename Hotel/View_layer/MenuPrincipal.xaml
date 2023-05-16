@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.View_layer"
+        xmlns:viewmodels="clr-namespace:Hotel.View_layer"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="MenuPrincipal" Height="570" Width="990"
@@ -12,6 +13,14 @@
         Background="Transparent"
         AllowsTransparency="True">
 
+    <Window.Resources>
+        <DataTemplate x:Name="ViewQuote"
+                      DataType="{x:Type viewmodels:ViewQuote}">
+            <viewmodels:ViewQuote DataContext="{Binding}" />
+
+        </DataTemplate>
+    </Window.Resources>
+    
     <Border CornerRadius="10"
             BorderThickness="4">
 
@@ -54,9 +63,34 @@
                                    Margin="5,0,0,0"/>
 
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="45"
+                                HorizontalAlignment="Center">
+
+                        <fa:IconImage Icon="UserCircle"
+                                      Foreground="{StaticResource tittleColor3}"
+                                      Width="25"
+                                      Height="25"
+                                      Margin="10,0,10,0"/>
+                        <TextBlock x:Name="txtNombreUsuario"
+                                       Text="Nombre"
+                                       Foreground="{StaticResource tittleColor3}"
+                                       FontFamily="Alegreya"
+                                       FontSize="15"
+                                       VerticalAlignment="Center"/>
+                        <TextBlock x:Name="txtApellidoUsuario"
+                                       Text="Apellido "
+                                       Foreground="{StaticResource tittleColor3}"
+                                       FontFamily="Alegreya"
+                                       FontSize="15"
+                                       VerticalAlignment="Center"
+                                       Margin="5"/>
+
+                    </StackPanel>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}">
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btncontrolhome_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
@@ -72,7 +106,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}">
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btncontrolquote_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CommentDollar" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Cotizaciones" Style="{StaticResource menuButtonText}"/>
@@ -104,10 +139,20 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}">
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btnDevoluciones_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ThumbsDown" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Devoluciones" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btnLogout_click">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="PowerOff" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Cerrar Sesion" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -128,110 +173,47 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--controlles-->
-                        <RowDefinition Height="25"/>
-                        <!--encabezados-->
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="35"/>
                         <!--vistas-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!--Panel de controlles-->
-                    <StackPanel x:Name="PanelDeControl"
+                  
+                        <StackPanel x:Name="PanelDeControl"
                             Grid.Row="0"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
-                                Margin="0,5,5,0"
+                                Margin="0,0,10,0"
                                 MouseLeftButtonDown="PanelDeControl_MouseLeftButtonDown"
                                 MouseEnter="PanelDeControl_MouseEnter">
 
-                        <Button x:Name="btnClose"
+                            <Button x:Name="btnClose"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource titleColor2}"
                                 Click="btnClose_Click">
-                            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
-                        <Button x:Name="btnmaximize"
+                                <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                            </Button>
+                            <Button x:Name="btnmaximize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource titleColor2}"
                                 Click="btnMaximize_Click">
-                            <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
-                        <Button x:Name="btnMinimize"
+                                <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
+                            </Button>
+                            <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource titleColor2}"
                                 Click="btnMinimize_Click">
-                            <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
-                    </StackPanel>
-                    
-                    
-                    <!--encabezado/capitulos-->
-
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.Column="0"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center">
-                            <fa:IconImage Icon="Home"
-                                          Height="22"
-                                          Width="22"
-                                          Foreground="{StaticResource tittleColor1}"
-                                          Margin="35,0,10,0"/>
-                            <TextBlock Text="Home"
-                                       Foreground="{StaticResource tittleColor1}"
-                                       FontSize="15"
-                                       FontFamily="Alegreya Medium"
-                                       VerticalAlignment="Center"/>
-
-                        </StackPanel>
-                        <!--opciones de usuario-->
-                        <StackPanel Grid.Column="1"
-                                    Orientation="Horizontal"
-                                    FlowDirection="RightToLeft"
-                                    VerticalAlignment="Center"
-                                    Margin="0,0,10,0">
-
-                            <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource tittleColor5}">
-                                <fa:IconImage Icon="AngleDoubleDown" Style="{StaticResource iconButtonIcon}"/>
+                                <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
                             </Button>
-
-                            <!--<TextBlock Text="{Binding currentUserAccount.DisplayName}"
-                                       Foreground="{StaticResource tittleColor5}"
-                                       FontFamily="Alegreya"
-                                       FontSize="12"
-                                       VerticalAlignment="Center"/>-->
-
-                            <Ellipse Height="35" Width="35"
-                                     Stroke="{StaticResource tittleColor3}"
-                                     StrokeThickness="1"
-                                     Margin="10,0,10,0">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/View_layer/Images/iconuser.png"/>
-                                </Ellipse.Fill>
-                                
-                            </Ellipse>
-
-                            <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource tittleColor5}">
-                                <fa:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}"/>
-                            </Button>
-
-
-
                         </StackPanel>
-                    </Grid>
 
                     <!--contenido vistas-->
 
-                    <ContentControl Content=""
-                                    Grid.Row="2"
-                                    Margin="25"/>
+                    <ContentControl Content="{Binding}"
+                                    Grid.Row="1"
+                                    Margin="20"/>
 
                 </Grid>
 
