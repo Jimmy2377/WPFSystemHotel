@@ -32,8 +32,4 @@
     <Resource Include="View_layer\Images\vector6degradado.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="View_layer\model\" />
-  </ItemGroup>
-
 </Project>

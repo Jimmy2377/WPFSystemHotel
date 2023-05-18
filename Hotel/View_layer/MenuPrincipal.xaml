@@ -22,7 +22,7 @@
     </Window.Resources>
     
     <Border CornerRadius="10"
-            BorderThickness="4">
+            BorderThickness="7">
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
@@ -191,19 +191,19 @@
 
                             <Button x:Name="btnClose"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource titleColor2}"
+                                Tag="{StaticResource tittleColor1}"
                                 Click="btnClose_Click">
                                 <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
                             </Button>
                             <Button x:Name="btnmaximize"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource titleColor2}"
+                                Tag="{StaticResource tittleColor1}"
                                 Click="btnMaximize_Click">
                                 <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
                             </Button>
                             <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource titleColor2}"
+                                Tag="{StaticResource tittleColor1}"
                                 Click="btnMinimize_Click">
                                 <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
                             </Button>

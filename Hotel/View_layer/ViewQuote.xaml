@@ -14,38 +14,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="190"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center">
-                    <fa:IconImage Icon="MoneyBill"
-                                          Height="24"
-                                          Width="24"
-                                          Foreground="{StaticResource tittleColor1}"
-                                          Margin="35,0,10,0"/>
-                    <TextBlock Text="Cotizacion"
-                                       Foreground="{StaticResource tittleColor1}"
-                                       FontSize="16"
-                                       FontFamily="Alegreya Medium"
-                                       VerticalAlignment="Center"/>
-
-                </StackPanel>
-
-                <StackPanel Grid.Column="1"
-                                    Orientation="Horizontal"
-                                    FlowDirection="RightToLeft"
-                                    VerticalAlignment="Center"
-                                    Margin="0,0,10,0">
-                    <!--Botones complementarios-->
-
-                </StackPanel>
-            </Grid>
-        
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="190"/>
@@ -96,8 +64,8 @@
                              FontWeight="Medium"
                              FontFamily="Alegreya"                             
                              Foreground="{StaticResource tittleColor2}"
-                             CaretBrush="{StaticResource plainTextColor3}"
-                             BorderBrush="{StaticResource plainTextColor3}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
                              BorderThickness="0,0,0,1"                             
                              VerticalContentAlignment="Center"
                              Margin="5,5,0,0"></TextBox>

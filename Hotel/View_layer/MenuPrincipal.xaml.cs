@@ -32,6 +32,7 @@ namespace Hotel.View_layer
             this.WindowState = WindowState.Maximized;
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             cargardatosusuario();
+            
         }
 
         [DllImport("user32.dll")]

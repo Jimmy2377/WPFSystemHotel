@@ -2,11 +2,63 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Hotel.View_layer"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uc="clr-namespace:Hotel.View_layer.model"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:Hotel.View_layer.model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Image Source="/View_layer/Images/vector6degradado.png"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                <fa:IconImage Icon="Home"
+                                          Height="24"
+                                          Width="24"
+                                          Foreground="{StaticResource tittleColor1}"
+                                          Margin="35,0,10,0"/>
+                <TextBlock Text="Home"
+                                       Foreground="{StaticResource tittleColor1}"
+                                       FontSize="16"
+                                       FontFamily="Alegreya Medium"
+                                       VerticalAlignment="Center"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    FlowDirection="RightToLeft"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0">
+                <!--Botones complementarios-->
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="50 20 15 40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--<uc:infoCard Grid.Column="0" Title="Total Views" Number="6543,943" Icon="Eye" Background1="White" Background2="Black" EllipseBackground1="White" EllipseBackground2="Black"/>-->
+
+            
+        </Grid>
+
     </Grid>
 </UserControl>

@@ -18,14 +18,15 @@
 
         </Border.Background>
         <Border CornerRadius="5"
-            BorderThickness="3"
+            BorderThickness="7"
                 Opacity="0.95">
 
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource GoldColor1}" Offset="0"/>
-                    <GradientStop Color="{StaticResource GoldColor3}" Offset="0.75"/>
-                    <GradientStop Color="{StaticResource GoldColor2}" Offset="1"/>
+                    <GradientStop Color="{StaticResource DegradadoGold1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource DegradadoGold2}" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource DegradadoGold3}" Offset="1"/>
+                    
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
@@ -64,13 +65,13 @@
                             Click="btnMinimize_Click">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#d8c690"/>
+                                <Setter Property="Background" Value="{StaticResource tittleColor2}"/>
                             </Style>
                         </Button.Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Width="24" Height="24"
-                                        CornerRadius="12"
+                                        CornerRadius="6"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
@@ -80,7 +81,7 @@
 
                     </Button>
                     <Button x:Name="btnClose"
-                            Background="#d8c690"
+                            Background="{StaticResource tittleColor2}"
                             BorderThickness="0"
                             Content="x"
                             FontSize="17"
@@ -97,7 +98,7 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Width="24" Height="24"
-                                        CornerRadius="12"
+                                        CornerRadius="6"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
@@ -201,7 +202,7 @@
                     </Button>
 
                     <TextBlock Text="¿Olvidaste tu contraseña?"
-                               Foreground="#d8c690"
+                               Foreground="{StaticResource tittleColor5}"
                                FontSize="15"
                                FontFamily="Alegreya Sans Thin"
                                HorizontalAlignment="Center"
