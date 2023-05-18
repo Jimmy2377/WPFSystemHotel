@@ -31,8 +31,8 @@
             <fa:IconImage Icon="{Binding Path=Icon,ElementName=infoCard}" Margin="0 0 25 25" Width="60" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
             <StackPanel Margin="35 0 0 20" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Path=Title,ElementName=infoCard}" Foreground="#ffffff" FontSize="15"/>
-                <TextBlock Text="{Binding Path=Number,ElementName=infoCard}" Foreground="#ffffff" FontSize="28" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Path=Title,ElementName=infoCard}" Foreground="White" FontSize="15"/>
+                <TextBlock Text="{Binding Path=Number,ElementName=infoCard}" Foreground="White" FontSize="28" FontWeight="SemiBold"/>
             </StackPanel>
             
         </Grid>

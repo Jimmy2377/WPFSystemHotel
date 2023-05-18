@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:uc="clr-namespace:Hotel.View_layer.model"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Hotel.View_layer.model"
              mc:Ignorable="d" 
@@ -48,16 +47,46 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="50 20 15 40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1"
+              Background="{StaticResource tittleColor4}">
+            <StackPanel Orientation="Horizontal"
+                    FlowDirection="LeftToRight"
+                    HorizontalAlignment="Center">
 
-            <!--<uc:infoCard Grid.Column="0" Title="Total Views" Number="6543,943" Icon="Eye" Background1="White" Background2="Black" EllipseBackground1="White" EllipseBackground2="Black"/>-->
+                <Border Style="{StaticResource CustomBorderStyle}">
+                    <Grid>
+                        <Ellipse Style="{StaticResource CustomEllipseStyle}"/>
+                        <fa:IconImage Icon="MoneyBillTransfer" Margin="0 0 20 45" Width="70" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <StackPanel Margin="20 0 0 20" VerticalAlignment="Bottom">
+                            <TextBlock Text="Gasto Mensual" Foreground="White" FontSize="17" FontFamily="Alegreya"/>
+                            <TextBlock Text="8000 Bs" Foreground="White" FontSize="28" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
-            
+                <Border Style="{StaticResource CustomBorderStyle}">
+                    <Grid>
+                        <Ellipse Style="{StaticResource CustomEllipseStyle}"/>
+                        <fa:IconImage Icon="CartFlatbed" Margin="0 0 20 45" Width="70" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <StackPanel Margin="20 0 0 20" VerticalAlignment="Bottom">
+                            <TextBlock Text="Ordenes Pendientes" Foreground="White" FontSize="17" FontFamily="Alegreya"/>
+                            <TextBlock Text="200" Foreground="White" FontSize="28" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource CustomBorderStyle}">
+                    <Grid>
+                        <Ellipse Style="{StaticResource CustomEllipseStyle}"/>
+                        <fa:IconImage Icon="TruckFast" Margin="0 0 20 45" Width="70" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <StackPanel Margin="20 0 0 20" VerticalAlignment="Bottom">
+                            <TextBlock Text="Compras Diarias" Foreground="White" FontSize="17" FontFamily="Alegreya"/>
+                            <TextBlock Text="3" Foreground="White" FontSize="28" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
         </Grid>
 
     </Grid>

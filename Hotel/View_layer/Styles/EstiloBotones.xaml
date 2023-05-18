@@ -131,4 +131,41 @@
         <Setter Property="Width" Value="16"/>
         <Setter Property="Height" Value="16"/>
     </Style>
+
+    <!--Diseño de las tarjetas del menu principal-->
+    <Style x:Key="CustomBorderStyle" TargetType="Border">
+        <Setter Property="Width" Value="290"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="{DynamicResource GoldColor1}" Offset="0"/>
+                    <GradientStop Color="{DynamicResource GoldColor3}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Clip">
+            <Setter.Value>
+                <RectangleGeometry RadiusX="15" RadiusY="15" Rect="0,0,291,140"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomEllipseStyle" TargetType="Ellipse">
+        <Setter Property="Width" Value="230"/>
+        <Setter Property="Height" Value="230"/>
+        <Setter Property="Margin" Value="0 -130 -90 0"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                    <GradientStop Color="#FF4C4C4C" Offset="0"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>
