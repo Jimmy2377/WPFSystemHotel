@@ -10,6 +10,8 @@
   <ItemGroup>
     <None Remove="View_layer\Images\iconuser.png" />
     <None Remove="View_layer\Images\Leonardo_Signature_Image_of_a_fivestar_hotel_lobby_extremely_l_1.jpg" />
+    <None Remove="View_layer\Images\Marca-de-agua.png" />
+    <None Remove="View_layer\Images\MarcaDeAgua2.png" />
     <None Remove="View_layer\Images\vector5degradado.png" />
     <None Remove="View_layer\Images\vector6degradado.png" />
   </ItemGroup>
@@ -28,6 +30,8 @@
   <ItemGroup>
     <Resource Include="View_layer\Images\iconuser.png" />
     <Resource Include="View_layer\Images\Leonardo_Signature_Image_of_a_fivestar_hotel_lobby_extremely_l_1.jpg" />
+    <Resource Include="View_layer\Images\Marca-de-agua.png" />
+    <Resource Include="View_layer\Images\MarcaDeAgua2.png" />
     <Resource Include="View_layer\Images\vector5degradado.png" />
     <Resource Include="View_layer\Images\vector6degradado.png" />
   </ItemGroup>

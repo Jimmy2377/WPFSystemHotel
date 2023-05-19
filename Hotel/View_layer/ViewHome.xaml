@@ -89,5 +89,69 @@
             </StackPanel>
         </Grid>
 
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Image Source="/View_layer/Images/MarcaDeAgua2.png"
+                       Margin="20"/>
+            </Grid>
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Button Content="agregar"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+
+                    <Button Content="Modificar"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}" IsEnabled="False"/>
+
+                    <Button Content="Eliminar"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle2}"/>
+
+                </StackPanel>
+                <StackPanel Grid.Row="1"
+                            Background="{DynamicResource tittleColor3}">
+
+                    <Button Content="agregar"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+                    <Button Content="agregar"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}" IsEnabled="False"/>
+                    <Button Content="agregar"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle2}"/>
+
+                </StackPanel>
+                
+            </Grid>
+            
+            
+        </Grid>
+
     </Grid>
 </UserControl>

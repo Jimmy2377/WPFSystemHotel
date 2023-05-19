@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:Hotel.View_layer"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="MenuPrincipal" Height="570" Width="990"
+        Title="MenuPrincipal" Height="730" Width="1200"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
@@ -44,23 +44,15 @@
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0.9,1">
                         <GradientStop Color="{StaticResource BlankColor2}" Offset="0"/>
                         <GradientStop Color="{StaticResource BlankColor1}" Offset="1"/>
-                        
-                        
                     </LinearGradientBrush>
                 </Border.Background>
 
                 <StackPanel>
                     <StackPanel Orientation="Horizontal"
-                            Height="45"
-                            Margin="15,35,0,40">
-                        <Image Source="/View_layer/Images/vector6degradado.png"/>
-                        <TextBlock Text="Transilvania"
-                                   Foreground="{StaticResource tittleColor2}"
-                                   FontSize="26"
-                                   FontFamily="Alegreya"
-                                   FontWeight="Medium"
-                                   VerticalAlignment="Bottom"
-                                   Margin="5,0,0,0"/>
+                            Height="160"
+                            Margin="0,35,0,20"
+                                HorizontalAlignment="Center">
+                        <Image Source="/View_layer/Images/vector5degradado.png"/>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
@@ -85,7 +77,7 @@
                                        FontSize="15"
                                        VerticalAlignment="Center"
                                        Margin="5"/>
-
+   
                     </StackPanel>
 
                     <RadioButton Style="{StaticResource menuButton}"
@@ -98,7 +90,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}">
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btncontrolbuy_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CartShopping" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Orden Compra" Style="{StaticResource menuButtonText}"/>
@@ -115,7 +108,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}">
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btncontrolproviders_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Dolly" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Proveedores" Style="{StaticResource menuButtonText}"/>
@@ -123,7 +117,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}">
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btncontrolreport_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="FileSignature" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Reporte Gastos" Style="{StaticResource menuButtonText}"/>
@@ -131,7 +126,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}">
+                                 Tag="{StaticResource tittleColor1}"
+                                 Click="btncontrolvouchers_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="MoneyCheck" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Vales de compra" Style="{StaticResource menuButtonText}"/>

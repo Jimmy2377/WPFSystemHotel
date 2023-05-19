@@ -16,7 +16,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
                     <Border Background="{TemplateBinding Background}"
-                            BorderThickness="4,0,0,0"
+                            BorderThickness="5,0,0,0"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Border>
@@ -32,6 +32,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource tittleColor4}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
             </Trigger>
+
+
             <!--Activated button style-->
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Margin" Value="0,0,0,5"/>
@@ -167,5 +169,75 @@
         </Setter>
     </Style>
 
+<!--Diseño Botones Crud-->
+
+    <Style x:Key="CustomButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource tittleColor5}"/>
+        <Setter Property="Background" Value="{DynamicResource tittleColor4}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource tittleColor1}"/>
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="23">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource tittleColor1}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource tittleColor4}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource tittleColor4}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource tittleColor4}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="black"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Diseño Botones Crud 2-->
+
+    <Style x:Key="CustomButtonStyle2" TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource tittleColor4}"/>
+        <Setter Property="Background" Value="{DynamicResource tittleColor1}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource tittleColor4}"/>
+        <Setter Property="FontFamily" Value="Alegreya"/>
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="23">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource tittleColor2}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource tittleColor1}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource tittleColor4}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource tittleColor4}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="black"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

@@ -60,23 +60,42 @@ namespace Hotel.View_layer
                 this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
         }
+        
+        //funciones de los botones del menu
 
+        private void btncontrolbuy_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewBuy();
+        }
         private void btnDevoluciones_Click(object sender, RoutedEventArgs e)
         {
-            
+            DataContext = new ViewReturns();
         }
         private void btncontrolhome_Click(object sender, RoutedEventArgs e)
-        {
-            //contentControl.Content = controlHome;
+        { 
             DataContext = new ViewHome();
         }
         private void btncontrolquote_Click(object sender, RoutedEventArgs e)
         {
-            //contentControl.Content = controlQuote;
             DataContext = new ViewQuote();
         }
 
+        private void btncontrolproviders_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewProviders();
+        }
 
+        private void btncontrolreport_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewReports();
+        }
+
+        private void btncontrolvouchers_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewVouchers();
+        }
+
+        //Boton de cerrar session
         private void btnLogout_click(object sender, RoutedEventArgs e)
         {
             if(MessageBox.Show("¿Estás seguro de que quieres cerrar la sesión?", "Warning",MessageBoxButton.YesNo,MessageBoxImage.Question) == MessageBoxResult.Yes)
