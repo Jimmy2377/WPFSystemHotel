@@ -9,21 +9,23 @@ using MySql.Data.MySqlClient;
 
 namespace Hotel.Data_layer
 {
-    public abstract class ConnectionToMysql
+    public class ConnectionToMysql
     {
         private readonly string servidor = "btr3itqyjgkpayqsmsfx-mysql.services.clever-cloud.com";
-        private readonly string puerto = "3306"; 
-        private readonly string usuario = "uurra9sjisnoi7br"; 
+        private readonly string puerto = "3306";
+        private readonly string usuario = "uurra9sjisnoi7br";
         private readonly string password = "8VviXT9zhB87DtwZSwFZ";
-        private readonly string nombreDB = "btr3itqyjgkpayqsmsfx"; 
+        private readonly string nombreDB = "btr3itqyjgkpayqsmsfx";
         private readonly string connectionString;
+
         public ConnectionToMysql()
         {
             connectionString = ($"server={servidor};port={puerto};user id={usuario};password={password};database={nombreDB};");
         }
-        protected MySqlConnection GetConnection()
+
+        public MySqlConnection GetConnection()
         {
-            return new MySqlConnection( connectionString );
+            return new MySqlConnection(connectionString);
         }
     }
 }

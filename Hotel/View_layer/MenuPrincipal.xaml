@@ -22,13 +22,27 @@
     </Window.Resources>
     
     <Border CornerRadius="10"
-            BorderThickness="7">
+            BorderThickness="12">
 
         <Border.BorderBrush>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                <GradientStop Color="{StaticResource GoldColor1}" Offset="0"/>
-                <GradientStop Color="{StaticResource GoldColor3}" Offset="0.75"/>
-                <GradientStop Color="{StaticResource GoldColor2}" Offset="1"/>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.112"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.221"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.205"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.165"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.627"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.538"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.482"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.378"/>
+                <GradientStop Color="{StaticResource degradadooro3}" Offset="0.763"/>
+                <GradientStop Color="{StaticResource degradadooro4}" Offset="0.803"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.631"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.663"/>
+                <GradientStop Color="{StaticResource degradadooro4}" Offset="0.092"/>
+                <GradientStop Color="{StaticResource degradadooro5}" Offset="0.916"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.863"/>
+                <GradientStop Color="{StaticResource degradadooro6}" Offset="0.948"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
 

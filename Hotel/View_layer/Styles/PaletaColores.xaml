@@ -17,4 +17,12 @@
     <Color x:Key="DegradadoGold2">#fffff7a5</Color>
     <Color x:Key="DegradadoGold3">#ff94771d</Color>
 
+    <Color x:Key="degradadooro1">#FFFDAE30</Color>
+    <Color x:Key="degradadooro2">#FF6F3B05</Color>
+    <Color x:Key="degradadooro3">#FFF5C558</Color>
+    <Color x:Key="degradadooro4">#FFF5EBC9</Color>
+    <Color x:Key="degradadooro5">#FFA0580E</Color>
+    <Color x:Key="degradadooro6">#FFB5813F</Color>
+    
+
 </ResourceDictionary>
