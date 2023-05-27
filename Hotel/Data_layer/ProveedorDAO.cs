@@ -38,8 +38,9 @@ namespace Hotel.Data_layer
                             string nombreProv = reader["NombreProv"].ToString();
                             string nit = reader["NIT"].ToString();
                             string direccion = reader["Direccion"].ToString();
+                            string contactos = reader["Contactos"].ToString();
 
-                            Proveedor proveedor = new Proveedor(idProveedor, nombreProv, nit, direccion);
+                            Proveedor proveedor = new Proveedor(idProveedor, nombreProv, nit, direccion, contactos);
                             proveedores.Add(proveedor);
                         }
                     }
@@ -60,11 +61,12 @@ namespace Hotel.Data_layer
                 using (MySqlConnection con = connection.GetConnection())
                 {
                     con.Open();
-                    string query = "INSERT INTO proveedor (NombreProv, NIT, Direccion) VALUES (@NombreProv, @NIT, @Direccion)";
+                    string query = "INSERT INTO proveedor (NombreProv, NIT, Direccion, Contactos) VALUES (@NombreProv, @NIT, @Direccion, @Contactos)";
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@NombreProv", proveedor.NombreProv);
                     cmd.Parameters.AddWithValue("@NIT", proveedor.NIT);
                     cmd.Parameters.AddWithValue("@Direccion", proveedor.Direccion);
+                    cmd.Parameters.AddWithValue("@Contactos", proveedor.Contactos);
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Proveedor agregado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -103,12 +105,13 @@ namespace Hotel.Data_layer
                 using (MySqlConnection con = connection.GetConnection())
                 {
                     con.Open();
-                    string query = "UPDATE proveedor SET NombreProv = @NombreProv, NIT = @NIT, Direccion = @Direccion WHERE ID_Proveedor = @ID_Proveedor";
+                    string query = "UPDATE proveedor SET NombreProv = @NombreProv, NIT = @NIT, Direccion = @Direccion, Contactos = @Contactos WHERE ID_Proveedor = @ID_Proveedor";
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@NombreProv", proveedor.NombreProv);
                     cmd.Parameters.AddWithValue("@NIT", proveedor.NIT);
                     cmd.Parameters.AddWithValue("@Direccion", proveedor.Direccion);
                     cmd.Parameters.AddWithValue("@ID_Proveedor", proveedor.ID_Proveedor);
+                    cmd.Parameters.AddWithValue("@Contactos", proveedor.Contactos);
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Proveedor Modificado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);

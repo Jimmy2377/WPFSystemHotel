@@ -11,16 +11,17 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Loaded="btncontrolhome_Click">
 
-    <Window.Resources>
+    <!--<Window.Resources>
         <DataTemplate x:Name="ViewQuote"
                       DataType="{x:Type viewmodels:ViewQuote}">
             <viewmodels:ViewQuote DataContext="{Binding}" />
 
         </DataTemplate>
-    </Window.Resources>
-    
+    </Window.Resources>-->
+
     <Border CornerRadius="10"
             BorderThickness="12">
 
@@ -91,7 +92,7 @@
                                        FontSize="15"
                                        VerticalAlignment="Center"
                                        Margin="5"/>
-   
+
                     </StackPanel>
 
                     <RadioButton Style="{StaticResource menuButton}"
@@ -167,9 +168,9 @@
                     </RadioButton>
 
                 </StackPanel>
-                
+
             </Border>
-            
+
             <!--seccion principal-->
             <Border CornerRadius="0,10,10,0"
                     Grid.Column="1">
@@ -185,12 +186,13 @@
                         <!--controlles-->
                         <RowDefinition Height="35"/>
                         <!--vistas-->
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="257*"/>
+                        <RowDefinition Height="414*"/>
                     </Grid.RowDefinitions>
 
                     <!--Panel de controlles-->
-                  
-                        <StackPanel x:Name="PanelDeControl"
+
+                    <StackPanel x:Name="PanelDeControl"
                             Grid.Row="0"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
@@ -199,36 +201,36 @@
                                 MouseLeftButtonDown="PanelDeControl_MouseLeftButtonDown"
                                 MouseEnter="PanelDeControl_MouseEnter">
 
-                            <Button x:Name="btnClose"
+                        <Button x:Name="btnClose"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource tittleColor1}"
                                 Click="btnClose_Click">
-                                <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
-                            </Button>
-                            <Button x:Name="btnmaximize"
+                            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+                        <Button x:Name="btnmaximize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource tittleColor1}"
                                 Click="btnMaximize_Click">
-                                <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
-                            </Button>
-                            <Button x:Name="btnMinimize"
+                            <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+                        <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource tittleColor1}"
                                 Click="btnMinimize_Click">
-                                <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
-                            </Button>
-                        </StackPanel>
+                            <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+                    </StackPanel>
 
                     <!--contenido vistas-->
 
                     <ContentControl Content="{Binding}"
                                     Grid.Row="1"
-                                    Margin="20"/>
+                                    Margin="0,10,0,10" Grid.RowSpan="2"/>
 
                 </Grid>
 
             </Border>
         </Grid>
-        
+
     </Border>
 </Window>

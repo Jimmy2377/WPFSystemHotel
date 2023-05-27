@@ -29,5 +29,5 @@ namespace Hotel.Data_layer
         }
     }
 }
-
+//C:\xampp\mysql\bin
 //mysql -h btr3itqyjgkpayqsmsfx-mysql.services.clever-cloud.com -P 3306 -u uurra9sjisnoi7br -p btr3itqyjgkpayqsmsfx

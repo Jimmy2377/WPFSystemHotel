@@ -10,7 +10,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -21,115 +20,91 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center">
+                                    Orientation="Horizontal">
+                <StackPanel.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource degradadooro1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource degradadooro5}" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
                 <fa:IconImage Icon="CommentDollar"
                                           Height="24"
                                           Width="24"
-                                          Foreground="{StaticResource tittleColor1}"
+                                          Foreground="{StaticResource tittleColor4}"
                                           Margin="35,0,10,0"/>
                 <TextBlock Text="Cotización"
-                                       Foreground="{StaticResource tittleColor1}"
-                                       FontSize="16"
-                                       FontFamily="Alegreya Medium"
+                                       Foreground="{StaticResource tittleColor4}"
+                                       FontSize="17"
+                                       FontFamily="Alegreya Bold"
                                        VerticalAlignment="Center"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
-                                    FlowDirection="RightToLeft"
+                                    FlowDirection="LeftToRight"
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
                 <!--Botones complementarios-->
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolproduct_Click">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="RadioButton">
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <fa:IconImage Icon="CheckToSlot" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
+                                                <TextBlock Text="Gestinar Cotizaciones" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
+                                            </StackPanel>
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="0,0,0,3">
+                                                <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource tittleColor1}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
+               
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolcategory_Click">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="RadioButton">
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <fa:IconImage Icon="Tags" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
+                                                <TextBlock Text="Nueva Categoria" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
+                                            </StackPanel>
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="0,0,0,3">
+                                                <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource tittleColor1}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
+
 
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1"
-              Margin="0,10,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="120"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Grid.Column="0">
-                <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource tittleColor2}"/>
-                <TextBox Text="Search..."   
-                    FontSize="14"
-                         Height="24"
-                           Width="300"
-                           Background="Transparent"
-                             FontWeight="Medium"
-                             FontFamily="Alegreya"                             
-                             Foreground="{StaticResource tittleColor2}"
-                             CaretBrush="{StaticResource tittleColor1}"
-                             BorderBrush="{StaticResource tittleColor1}"
-                             BorderThickness="0,0,0,1"                             
-                             VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"></TextBox>
-            </StackPanel>
-            <Button Grid.Column="1"
-                            Command="{Binding LoginCommand}"                            
-                            Content="Search"                            
-                            FontSize="14"
-                            FontFamily="Alegreya Medium"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="Black"
-                    VerticalAlignment="Top">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="{StaticResource tittleColor1}"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Height="30"
-                                                    CornerRadius="15"
-                                                    Background="{TemplateBinding Background}">
-                                        <ContentPresenter VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource tittleColor4}"/>
-                                <Setter Property="Foreground" Value="{StaticResource tittleColor2}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-        </Grid>
-        
-        <Border Grid.Row="2"
-                Background="{StaticResource tittleColor2}"
-                CornerRadius="10" 
-                Padding="10">
-            <DataGrid ColumnWidth="*"
-                  Background="{StaticResource tittleColor3}"
-                  BorderThickness="0">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="Padding" Value="10,0,0,10"/>
-                        <Setter Property="FontFamily" Value="Alegreya medium"/>
-                        <Setter Property="FontSize" Value="15"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Number"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Address"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
+        <ContentControl x:Name="contentControl" Grid.Row="1" Margin="0 10 0 10"/>
+
     </Grid>
 </UserControl>

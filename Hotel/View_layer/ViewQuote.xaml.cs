@@ -24,5 +24,16 @@ namespace Hotel.View_layer
         {
             InitializeComponent();
         }
+        private void btncontrolproduct_Click(object sender, RoutedEventArgs e)
+        {
+            ViewProduct viewProduct = new ViewProduct();
+            contentControl.Content = viewProduct;
+        }
+
+        private void btncontrolcategory_Click(object sender, RoutedEventArgs e)
+        {
+            ViewCategory viewCategory = new ViewCategory();
+            contentControl.Content = viewCategory;
+        }
     }
 }
