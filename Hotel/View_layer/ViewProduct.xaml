@@ -15,11 +15,166 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            
+        <Grid Grid.Row="0" Margin="10 0 10 0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource tittleColor2}" Margin="5"/>
+                <TextBox x:Name="txtBusqueda"
+                             FontSize="14"
+                             Height="24"
+                             Width="400"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"
+                             Margin="5"
+                             TextChanged="txtBusqueda_TextChanged"/>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            
+            <DataGrid x:Name="listBoxCotizaciones" AutoGenerateColumns="False" Margin="10 0 10 10" 
+          Background="{StaticResource tittleColor5}" SelectionChanged="listBoxCotizaciones_SelectionChanged"
+           IsReadOnly="True" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
+
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="{StaticResource BlankColor2 }" />
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Producto" Binding="{Binding NombreProducto}" Width="*"/>
+                    <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*"/>
+                    <DataGridTextColumn Header="Precio Unitario" Binding="{Binding PrecioUnit}" Width="*"/>
+                    <DataGridTextColumn Header="Tamaño" Binding="{Binding Tamaño}" Width="*"/>
+                    <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria.NombreCategoria}" Width="*"/>
+                    <DataGridTextColumn Header="Proveedor" Binding="{Binding Proveedor.NombreProv}" Width="*"/>
+                </DataGrid.Columns>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="SeparatorVisibility" Value="Visible"/>
+                        <Setter Property="Background" Value="{StaticResource tittleColor1}"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="FontFamily" Value="Alegreya"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Padding" Value="15 0 15 0"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2" Margin="10 0 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                    <Label Content="Nombre:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                    <TextBox x:Name="txtNombre" FontSize="14" Margin="20 0 0 0"
+                             Width="300"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                    <Label Content="Descripcion:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                    <TextBox x:Name="txtDescripcion" FontSize="14"
+                             Width="300"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                    <Label Content="Precio:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                    <TextBox x:Name="txtPrecio" FontSize="14" Margin="35 0 0 0"
+                             Width="300"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                    <Label Content="Tamaño:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                    <TextBox x:Name="txtTamaño" FontSize="14"
+                             Width="330"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                    <Label Content="Categoria:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                    <ComboBox x:Name="cmbCategoria" Width="320" DisplayMemberPath="NombreCategoria"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                    <Label Content="Proveedor:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                    <ComboBox x:Name="cmbProveedor" Width="320" DisplayMemberPath="NombreProv"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="center">
+                <Button Content="Limpiar"
+                            Click="btnlimpiar_Click"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+                <Button Content="Insertar"
+                            Click="btnAgregarCotizacion_Click"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+                <Button Content="Eliminar"
+                            Click="btnEliminar_Click"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+                <Button Content="Modificar"
+                            Click="btnModificar_Click"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+
+            </StackPanel>
         </Grid>
 
     

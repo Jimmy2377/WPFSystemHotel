@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.Entity_layer
 {
-    class Cotizacion
+    public class Cotizacion
     {
         public Cotizacion(int idCotizacion, string nombreProducto, string descripcion, double precioUnit, string tamaño, Categoria categoria, Proveedor proveedor)
         {
@@ -26,7 +26,5 @@ namespace Hotel.Entity_layer
         public string Tamaño { get; set; }
         public Categoria Categoria { get; set; }
         public Proveedor Proveedor { get; set; }
-
-
     }
 }
