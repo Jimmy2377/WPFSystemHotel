@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="Hotel.View_layer.ViewNewOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:Hotel.View_layer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
+                <Label Content="Dias de entrega:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                <TextBox x:Name="txtTiempoEntrega" FontSize="14" Margin="10 0 0 0"
+                             Width="100"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
+                <Label Content="Departamento:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                <ComboBox x:Name="cmbDepartamento" HorizontalAlignment="Left" Width="150" Height="20">
+                    <ComboBoxItem Content="Mantenimiento"/>
+                    <ComboBoxItem Content="Cocina"/>
+                    <ComboBoxItem Content="Ama de Llaves"/>
+                    <ComboBoxItem Content="Almacenes"/>
+                    <ComboBoxItem Content="Ventas"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
+                <Label Content="Tipo de compra:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                <ComboBox x:Name="cmbTipoCompra" HorizontalAlignment="Left" Width="150" Height="20">
+                    <ComboBoxItem Content="Directa"/>
+                    <ComboBoxItem Content="Diaria"/>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="1" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource tittleColor2}" Margin="5"/>
+                <TextBox x:Name="txtBuscarCotizacion"
+                             FontSize="14"
+                             Height="24"
+                             Width="400"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"
+                             Margin="5"
+                             TextChanged="txtBuscarCotizacion_TextChanged"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <DataGrid x:Name="dgCotizacionesDisponibles" AutoGenerateColumns="False" Margin="10 0 10 10" 
+          Background="{StaticResource tittleColor5}" SelectedItem="{Binding SelectedCotizacion}" SelectionMode="Single"
+           IsReadOnly="True" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
+
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="{StaticResource BlankColor2 }" />
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Header="ID Producto" Binding="{Binding IdProducto}" />-->
+                        <DataGridTextColumn Header="Producto" Binding="{Binding NombreProducto}" Width="*"/>
+                        <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*"/>
+                        <DataGridTextColumn Header="Precio Unitario" Binding="{Binding PrecioUnit}" Width="*"/>
+                        <DataGridTextColumn Header="Tamaño" Binding="{Binding Tamaño}" Width="*"/>
+                        <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria.NombreCategoria}" Width="*"/>
+                        <DataGridTextColumn Header="Proveedor" Binding="{Binding Proveedor.NombreProv}" Width="*"/>
+
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="SeparatorVisibility" Value="Visible"/>
+                            <Setter Property="Background" Value="{StaticResource tittleColor6}"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontFamily" Value="Alegreya Medium"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Padding" Value="15 0 15 0"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <DataGrid x:Name="dgCotizacionesElegidas" AutoGenerateColumns="False" Margin="10 0 10 10" 
+          Background="{StaticResource tittleColor5}" SelectedItem="{Binding SelectedCotizacion}"
+           IsReadOnly="True" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
+
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="{StaticResource BlankColor2 }" />
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        
+                        <DataGridTextColumn Header="Nombre Producto" Binding="{Binding Cotizacion.NombreProducto}" />
+                        <DataGridTextColumn Header="Precio Unitario" Binding="{Binding Cotizacion.PrecioUnit}" />
+                        <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" />
+                        <DataGridTemplateColumn Header="Quitar">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Quitar" Click="btnQuitarCotizacion_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="SeparatorVisibility" Value="Visible"/>
+                            <Setter Property="Background" Value="{StaticResource tittleColor6}"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontFamily" Value="Alegreya Medium"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Padding" Value="15 0 15 0"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnAgregarCotizacion"
+                    Content="Añadir"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Click="btnAgregarCotizacion_Click"
+                    Width="130"
+                    Height="40"
+                    Margin="10"
+                    Style="{StaticResource CustomButtonStyle}"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Label Content="MONTO TOTAL:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="17"/>
+                <TextBlock x:Name="txtMontoTotal" Foreground="{StaticResource tittleColor1}" HorizontalAlignment="Left" Width="200" Text="{Binding MontoTotal}" Margin="5"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Button x:Name="btnTerminarOrdenCompra"
+                    Content="Terminar Orden Compra"
+                    Grid.Column="0"
+                    HorizontalAlignment="center"
+                    Click="btnRegistrarOrdenCompra_Click"
+                    Width="180"
+                    Height="40"
+                    Margin="10"
+                    Style="{StaticResource CustomButtonStyle}"/>
+        </Grid>
+    </Grid>
+</UserControl>

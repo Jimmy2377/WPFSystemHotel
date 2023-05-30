@@ -142,7 +142,7 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                    <GradientStop Color="{DynamicResource GoldColor1}" Offset="0"/>
+                    <GradientStop Color="{DynamicResource degradadooro1}" Offset="0"/>
                     <GradientStop Color="{DynamicResource GoldColor3}" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>

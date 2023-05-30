@@ -139,7 +139,7 @@
                                FontFamily="Alegreya"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Usuario"
-                               Foreground="#d8c690"
+                               Foreground="{StaticResource tittleColor2}"
                                FontSize="17"
                                FontFamily="Alegreya"
                                Margin="0,35,0,0"/>
@@ -157,7 +157,7 @@
                     </TextBox>
 
                     <TextBlock Text="Contraseña"
-                               Foreground="#d8c690"
+                               Foreground="{StaticResource tittleColor2}"
                                FontSize="17"
                                FontFamily="Alegreya"
                                Margin="0,35,0,0"/>
@@ -194,10 +194,10 @@
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#1c1c1c"/>
-                                <Setter Property="Foreground" Value="#cbb26a"/>
+                                <Setter Property="Foreground" Value="{StaticResource tittleColor2}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#cbb26a"/>
+                                        <Setter Property="Background" Value="{StaticResource tittleColor6}"/>
                                         <Setter Property="Foreground" Value="#1c1c1c"/>
                                     </Trigger>
                                 </Style.Triggers>

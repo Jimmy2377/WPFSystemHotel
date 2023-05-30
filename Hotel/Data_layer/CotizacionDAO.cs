@@ -7,6 +7,7 @@ using System.Windows;
 using Hotel.Entity_layer;
 using MySql.Data.MySqlClient;
 
+
 namespace Hotel.Data_layer
 {
     class CotizacionDAO
@@ -56,7 +57,7 @@ namespace Hotel.Data_layer
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al obtener los proveedores: " + ex.Message);
+                Console.WriteLine("Error al obtener los Cotizacion: " + ex.Message);
             }
 
             return cotizaciones;
@@ -83,7 +84,7 @@ namespace Hotel.Data_layer
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al insertar el proveedor: " + ex.Message);
+                Console.WriteLine("Error al insertar el Cotizacion: " + ex.Message);
                 MessageBox.Show("Cotizacion No agregado", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

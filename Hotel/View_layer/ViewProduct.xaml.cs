@@ -15,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
+
 
 namespace Hotel.View_layer
 {
@@ -84,10 +87,20 @@ namespace Hotel.View_layer
                 txtTamaño.Text = cotizacionSeleccionada.Tamaño;
 
                 // Seleccionar proveedor y categoría en los ComboBox
-                cmbProveedor.SelectedItem = cotizacionSeleccionada.Proveedor;
-                cmbCategoria.SelectedItem = cotizacionSeleccionada.Categoria;
+                cmbCategoria.SelectedItem = GetCategoriaById(cotizacionSeleccionada.Categoria.ID_Categoria);
+                cmbProveedor.SelectedItem = GetProveedorById(cotizacionSeleccionada.Proveedor.ID_Proveedor);
+
 
             }
+        }
+        private Categoria GetCategoriaById(int idCategoria)
+        {
+            return cmbCategoria.Items.OfType<Categoria>().FirstOrDefault(c => c.ID_Categoria == idCategoria);
+        }
+
+        private Proveedor GetProveedorById(int idProveedor)
+        {
+            return cmbProveedor.Items.OfType<Proveedor>().FirstOrDefault(p => p.ID_Proveedor == idProveedor);
         }
         private void btnlimpiar_Click(object sender, RoutedEventArgs e)
         {
@@ -103,6 +116,7 @@ namespace Hotel.View_layer
             cmbCategoria.SelectedItem = null;
             cmbProveedor.SelectedItem = null;
         }
+        
         private void btnAgregarCotizacion_Click(object sender, RoutedEventArgs e)
         {
             // Obtener los valores de los controles de entrada
@@ -112,8 +126,6 @@ namespace Hotel.View_layer
             string tamano = txtTamaño.Text;
             Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
             Proveedor proveedor = (Proveedor)cmbProveedor.SelectedItem;
-
-            
 
             Cotizacion cotizacion = new Cotizacion(0, nombreProducto, descripcion, precioUnitario, tamano, categoria, proveedor);
             cotizacionDAO.InsertCotizacion(cotizacion);

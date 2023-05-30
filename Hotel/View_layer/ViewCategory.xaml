@@ -10,7 +10,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="190"/>
+            <RowDefinition Height="250"/>
             <RowDefinition Height="90"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -45,6 +45,8 @@
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -52,6 +54,7 @@
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                <Setter Property="FontSize" Value="14"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -63,9 +66,9 @@
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="SeparatorVisibility" Value="Visible"/>
-                        <Setter Property="Background" Value="{StaticResource tittleColor1}"/>
+                        <Setter Property="Background" Value="{StaticResource tittleColor6}"/>
                         <Setter Property="Height" Value="30"/>
-                        <Setter Property="FontFamily" Value="Alegreya"/>
+                        <Setter Property="FontFamily" Value="Alegreya Medium"/>
                         <Setter Property="FontSize" Value="15"/>
                         <Setter Property="Padding" Value="15 0 15 0"/>
                     </Style>

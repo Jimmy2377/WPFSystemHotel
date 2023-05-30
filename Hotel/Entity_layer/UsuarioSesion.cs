@@ -10,7 +10,6 @@ namespace Hotel.Entity_layer
     {
         public static int IDuser { get; set; }
         public static string Nameuser { get; set; }
-
         public static string Lastnameuser { get; set; }
     }
 }

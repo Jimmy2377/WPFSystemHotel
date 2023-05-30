@@ -118,7 +118,7 @@
                                  Click="btncontrolquote_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CommentDollar" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Cotizaciones" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Cotización" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 

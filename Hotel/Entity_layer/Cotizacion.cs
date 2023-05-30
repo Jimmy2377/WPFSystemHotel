@@ -17,6 +17,8 @@ namespace Hotel.Entity_layer
             Tamaño = tamaño;
             Categoria = categoria;
             Proveedor = proveedor;
+
+            Cantidad = 0; // Se inicializa en 0 y se actualizará cuando se seleccione la cotización en la orden de compra
         }
 
         public int IdCotizacion { get; set; }
@@ -26,5 +28,8 @@ namespace Hotel.Entity_layer
         public string Tamaño { get; set; }
         public Categoria Categoria { get; set; }
         public Proveedor Proveedor { get; set; }
+
+        public int Cantidad { get; set; }
+
     }
 }

@@ -6,7 +6,8 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Hotel.View_layer"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="btncontrolproduct_Click">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -46,7 +47,7 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
                 <!--Botones complementarios-->
-                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolproduct_Click">
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolproduct_Click" IsChecked="True">
                     <RadioButton.Style>
                         <Style TargetType="RadioButton">
                             <Setter Property="Template">

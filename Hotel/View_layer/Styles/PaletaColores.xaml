@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="tittleColor3" Color="#d8c690"/>
     <SolidColorBrush x:Key="tittleColor4" Color="#1a1a1a"/>
     <SolidColorBrush x:Key="tittleColor5" Color="#ffffff"/>
+    <SolidColorBrush x:Key="tittleColor6" Color="#FFFDAE30"/>
 
 
     <Color x:Key="DegradadoGold1">#ff9e8c14</Color>
