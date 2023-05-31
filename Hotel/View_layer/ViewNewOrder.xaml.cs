@@ -3,6 +3,7 @@ using Hotel.Entity_layer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,15 @@ namespace Hotel.View_layer
     public partial class ViewNewOrder : UserControl
     {
         private List<Cotizacion> cotizacionesDisponibles;
-        private List<Cotizacion> cotizacionesSeleccionadas;
+        private ObservableCollection<Cotizacion> cotizacionesSeleccionadas;
 
         public ViewNewOrder()
         {
             InitializeComponent();
 
             cotizacionesDisponibles = new List<Cotizacion>();
-            cotizacionesSeleccionadas = new List<Cotizacion>();
-
+            cotizacionesSeleccionadas = new ObservableCollection<Cotizacion>();
+            
             CargarCotizacionesDisponibles();
         }
 
@@ -60,6 +61,11 @@ namespace Hotel.View_layer
             }
         }
 
+        private void ActualizarTablaCotizacionesSeleccionadas()
+        {
+            dgCotizacionesElegidas.ItemsSource = cotizacionesSeleccionadas;
+        }
+
         private int MostrarVentanaModalCantidad()
         {
             VentanaModalCantidad ventanaModal = new VentanaModalCantidad();
@@ -72,12 +78,6 @@ namespace Hotel.View_layer
 
             return 0;
         }
-
-        private void ActualizarTablaCotizacionesSeleccionadas()
-        {
-            dgCotizacionesElegidas.ItemsSource = cotizacionesSeleccionadas;
-        }
-
         private void btnQuitarCotizacion_Click(object sender, RoutedEventArgs e)
         {
             Cotizacion cotizacionSeleccionada = (Cotizacion)dgCotizacionesElegidas.SelectedItem;
@@ -100,17 +100,35 @@ namespace Hotel.View_layer
         {
             if (ValidarCampos())
             {
-                OrdenCompra ordenCompra = new OrdenCompra(1, DateTime.Now, Convert.ToInt32(txtTiempoEntrega.Text), cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad), "Recibido", cmbDepartamento.SelectedItem.ToString(), cmbTipoCompra.SelectedItem.ToString(), ObtenerIDEmpleado());
+                
+                // Crear una instancia de la clase OrdenCompra
+                
+                DateTime fecha = DateTime.Now;
+                int tiempoEntrega = Convert.ToInt32(txtTiempoEntrega.Text);
+                double montoTotal = Convert.ToDouble(cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad));
+                string estado = "Recibido";
+                string departamento = cmbDepartamento.SelectedItem.ToString();
+                string tipoCompra = cmbTipoCompra.SelectedItem.ToString();
+                int idEmpleado = 1;
 
+                OrdenCompra ordenCompra = new OrdenCompra(0, fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
 
-                OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
-                List<DetalleCompra> detallesCompra = cotizacionesSeleccionadas.Select(cotizacion => new DetalleCompra(ordenCompra.ID_OrdenCompra, cotizacion.IdCotizacion, cotizacion.Cantidad)).ToList();
-ordenCompraDAO.InsertOrdenCompra(ordenCompra, detallesCompra);
+                // Obtener los detalles de compra
+    List<DetalleCompra> detallesCompra = cotizacionesSeleccionadas.Select(cotizacion => new DetalleCompra(ordenCompra.ID_OrdenCompra, cotizacion.IdCotizacion, cotizacion.Cantidad)).ToList();
 
+    // Llamar al método InsertOrdenCompra de la clase OrdenCompraDAO
+    OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
+    int resultado = ordenCompraDAO.InsertOrdenCompra(ordenCompra, detallesCompra);
 
-                MessageBox.Show("La orden de compra se ha registrado exitosamente.");
-
-                LimpiarCampos();
+    if (resultado > 0)
+    {
+        MessageBox.Show("La orden de compra se registró correctamente.", "Registro Exitoso");
+        LimpiarCampos();
+    }
+    else
+    {
+        MessageBox.Show("Error al registrar la orden de compra.", "Error");
+    }
             }
             else
             {

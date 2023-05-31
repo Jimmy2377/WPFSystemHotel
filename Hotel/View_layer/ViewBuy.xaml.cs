@@ -24,5 +24,11 @@ namespace Hotel.View_layer
         {
             InitializeComponent();
         }
+
+        private void btncontrolneworder_Click(object sender, RoutedEventArgs e)
+        {
+            ViewNewOrder viewneworder = new ViewNewOrder();
+            contentControl.Content = viewneworder;
+        }
     }
 }

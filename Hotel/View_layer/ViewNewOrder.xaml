@@ -120,9 +120,8 @@
                 </DataGrid>
             </Grid>
             <Grid Grid.Column="1">
-                <DataGrid x:Name="dgCotizacionesElegidas" AutoGenerateColumns="False" Margin="10 0 10 10" 
-          Background="{StaticResource tittleColor5}" SelectedItem="{Binding SelectedCotizacion}"
-           IsReadOnly="True" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
+                <DataGrid x:Name="dgCotizacionesElegidas" ItemsSource="{Binding cotizacionesSeleccionadas}" AutoGenerateColumns="False" Margin="10 0 10 10" 
+          Background="{StaticResource tittleColor5}" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
 
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="{StaticResource BlankColor2 }" />
@@ -147,8 +146,8 @@
 
                     <DataGrid.Columns>
                         
-                        <DataGridTextColumn Header="Nombre Producto" Binding="{Binding Cotizacion.NombreProducto}" />
-                        <DataGridTextColumn Header="Precio Unitario" Binding="{Binding Cotizacion.PrecioUnit}" />
+                        <DataGridTextColumn Header="Nombre Producto" Binding="{Binding NombreProducto}" />
+                        <DataGridTextColumn Header="Precio Unitario" Binding="{Binding PrecioUnit}" />
                         <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" />
                         <DataGridTemplateColumn Header="Quitar">
                             <DataGridTemplateColumn.CellTemplate>
