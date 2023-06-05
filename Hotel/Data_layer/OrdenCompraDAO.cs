@@ -20,66 +20,56 @@ namespace Hotel.Data_layer
                 connection = new ConnectionToMysql();
             }
 
-            public int InsertOrdenCompra(OrdenCompra ordenCompra, List<DetalleCompra> detallesCompra)
+        public int InsertOrdenCompra(OrdenCompra ordenCompra)
+        {
+            string query = "INSERT INTO ordencompra (Fecha, TiempoEntrega, MontoTotal, Estado, Departamento, TipoCompra, Empleado_ID_Empleado) VALUES (@Fecha, @TiempoEntrega, @MontoTotal, @Estado, @Departamento, @TipoCompra, @ID_Empleado)";
+
+            using (MySqlConnection con = connection.GetConnection())
             {
-                int ordenCompraId = 0;
-                MySqlTransaction transaction = null;
+                con.Open();
 
-                try
+                using (MySqlCommand command = new MySqlCommand(query, con))
                 {
-                    using (MySqlConnection con = connection.GetConnection())
+                    command.Parameters.AddWithValue("@Fecha", ordenCompra.Fecha);
+                    command.Parameters.AddWithValue("@TiempoEntrega", ordenCompra.TiempoEntrega);
+                    command.Parameters.AddWithValue("@MontoTotal", ordenCompra.MontoTotal);
+                    command.Parameters.AddWithValue("@Estado", ordenCompra.Estado);
+                    command.Parameters.AddWithValue("@Departamento", ordenCompra.Departamento);
+                    command.Parameters.AddWithValue("@TipoCompra", ordenCompra.TipoCompra);
+                    command.Parameters.AddWithValue("@ID_Empleado", ordenCompra.ID_Empleado);
+
+                    command.ExecuteNonQuery();
+
+                    // Obtener el ID de la orden de compra insertada
+                    int idOrdenCompra = Convert.ToInt32(command.LastInsertedId);
+
+                    return idOrdenCompra;
+                }
+            }
+        }
+
+        public void InsertDetallesCompra(List<DetalleCompra> detallesCompra)
+        {
+            string query = "INSERT INTO detallecompra (ID_OrdenCompra, ID_Producto, Cantidad) VALUES (@ID_OrdenCompra, @ID_Producto, @Cantidad)";
+
+            using (MySqlConnection con = connection.GetConnection())
+            {
+                con.Open();
+
+                foreach (DetalleCompra detalle in detallesCompra)
+                {
+                    using (MySqlCommand command = new MySqlCommand(query, con))
                     {
-                        con.Open();
-
-                        // Inicia la transacción
-                        transaction = con.BeginTransaction();
-
-                        // Inserta la Orden de Compra
-                        string ordenCompraQuery = "INSERT INTO ordencompra (Fecha, TiempoEntrega, MontoTotal, Estado, Departamento, TipoCompra, ID_Empleado) " +
-                            "VALUES (@Fecha, @TiempoEntrega, @MontoTotal, @Estado, @Departamento, @TipoCompra, @ID_Empleado)";
-                        MySqlCommand ordenCompraCmd = new MySqlCommand(ordenCompraQuery, con, transaction);
-                        ordenCompraCmd.Parameters.AddWithValue("@Fecha", ordenCompra.Fecha);
-                        ordenCompraCmd.Parameters.AddWithValue("@TiempoEntrega", ordenCompra.TiempoEntrega);
-                        ordenCompraCmd.Parameters.AddWithValue("@MontoTotal", ordenCompra.MontoTotal);
-                        ordenCompraCmd.Parameters.AddWithValue("@Estado", ordenCompra.Estado);
-                        ordenCompraCmd.Parameters.AddWithValue("@Departamento", ordenCompra.Departamento);
-                        ordenCompraCmd.Parameters.AddWithValue("@TipoCompra", ordenCompra.TipoCompra);
-                        ordenCompraCmd.Parameters.AddWithValue("@ID_Empleado", ordenCompra.ID_Empleado);
-                        ordenCompraCmd.ExecuteNonQuery();
-
-                        // Obtiene el ID de la Orden de Compra insertada
-                        ordenCompraId = (int)ordenCompraCmd.LastInsertedId;
-
-                        // Inserta los detalles de la compra
-                        string detalleCompraQuery = "INSERT INTO detallecompra (ID_OrdenCompra, ID_Cotizacion, Cantidad) VALUES (@ID_OrdenCompra, @ID_Cotizacion, @Cantidad)";
-                        MySqlCommand detalleCompraCmd = new MySqlCommand(detalleCompraQuery, con, transaction);
-                        detalleCompraCmd.Parameters.AddWithValue("@ID_OrdenCompra", ordenCompraId);
-
-                        foreach (DetalleCompra detalle in detallesCompra)
-                        {
-                            detalleCompraCmd.Parameters.Clear();
-                            detalleCompraCmd.Parameters.AddWithValue("@ID_Cotizacion", detalle.ID_Producto);
-                            detalleCompraCmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
-                            detalleCompraCmd.ExecuteNonQuery();
-                        }
-
-                        // Confirma la transacción
-                        transaction.Commit();
+                        command.Parameters.AddWithValue("@ID_OrdenCompra", detalle.ID_OrdenCompra);
+                        command.Parameters.AddWithValue("@ID_Producto", detalle.ID_Producto);
+                        command.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                        command.ExecuteNonQuery();
                     }
                 }
-                catch (Exception ex)
-                {
-                    // En caso de error, se realiza un rollback de la transacción
-                    if (transaction != null)
-                        transaction.Rollback();
-
-                    Console.WriteLine("Error al insertar la Orden de Compra: " + ex.Message);
-                }
-
-                return ordenCompraId;
             }
+        }
 
-            public List<OrdenCompra> GetAllOrdenCompras()
+        public List<OrdenCompra> GetAllOrdenCompras()
             {
                 List<OrdenCompra> ordenCompras = new List<OrdenCompra>();
 
@@ -103,7 +93,7 @@ namespace Hotel.Data_layer
                                 string tipoCompra = reader["TipoCompra"].ToString();
                                 int idEmpleado = Convert.ToInt32(reader["ID_Empleado"]);
 
-                            OrdenCompra ordenCompra = new OrdenCompra(idOrdenCompra, fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
+                            OrdenCompra ordenCompra = new OrdenCompra(fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
                                 
                                 ordenCompras.Add(ordenCompra);
                             }

@@ -8,9 +8,9 @@ namespace Hotel.Entity_layer
 {
     public class OrdenCompra
     {
-        public OrdenCompra(int iD_OrdenCompra, DateTime fecha, int tiempoEntrega, double montoTotal, string estado, string departamento, string tipoCompra, int idEmpleado)
+        public OrdenCompra(DateTime fecha, int tiempoEntrega, double montoTotal, string estado, string departamento, string tipoCompra, int idEmpleado)
         {
-            ID_OrdenCompra = iD_OrdenCompra;
+            
             Fecha = fecha;
             TiempoEntrega = tiempoEntrega;
             MontoTotal = montoTotal;

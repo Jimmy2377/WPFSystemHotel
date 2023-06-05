@@ -17,11 +17,7 @@ using Hotel.Entity_layer;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para MenuPrincipal.xaml
-    /// </summary>
-    /// 
-
+   
     
     public partial class MenuPrincipal : Window
     {

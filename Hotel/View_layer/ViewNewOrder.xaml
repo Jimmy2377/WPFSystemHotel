@@ -31,7 +31,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
                 <Label Content="Departamento:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
-                <ComboBox x:Name="cmbDepartamento" HorizontalAlignment="Left" Width="150" Height="20">
+                <ComboBox x:Name="cmbDepartamento" HorizontalAlignment="Left" Width="150" Height="20" SelectedValuePath="Content">
                     <ComboBoxItem Content="Mantenimiento"/>
                     <ComboBoxItem Content="Cocina"/>
                     <ComboBoxItem Content="Ama de Llaves"/>
@@ -41,7 +41,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
                 <Label Content="Tipo de compra:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
-                <ComboBox x:Name="cmbTipoCompra" HorizontalAlignment="Left" Width="150" Height="20">
+                <ComboBox x:Name="cmbTipoCompra" HorizontalAlignment="Left" Width="150" Height="20" SelectedValuePath="Content">
                     <ComboBoxItem Content="Directa"/>
                     <ComboBoxItem Content="Diaria"/>
                 </ComboBox>

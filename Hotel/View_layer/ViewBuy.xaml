@@ -74,7 +74,7 @@
                     </RadioButton.Style>
                 </RadioButton>
 
-                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0">
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolvieworder_Click">
                     <RadioButton.Style>
                         <Style TargetType="RadioButton">
                             <Setter Property="Template">

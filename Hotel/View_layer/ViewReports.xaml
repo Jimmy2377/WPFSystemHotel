@@ -20,32 +20,39 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center">
+                                    Orientation="Horizontal">
+                <StackPanel.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource degradadooro1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource degradadooro5}" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
                 <fa:IconImage Icon="FileSignature"
                                           Height="24"
                                           Width="24"
-                                          Foreground="{StaticResource tittleColor1}"
+                                          Foreground="{StaticResource tittleColor4}"
                                           Margin="35,0,10,0"/>
-                <TextBlock Text="Reporte de Compras"
-                                       Foreground="{StaticResource tittleColor1}"
-                                       FontSize="16"
-                                       FontFamily="Alegreya Medium"
+                <TextBlock Text="Reportes"
+                                       Foreground="{StaticResource tittleColor4}"
+                                       FontSize="17"
+                                       FontFamily="Alegreya Bold"
                                        VerticalAlignment="Center"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
-                                    FlowDirection="RightToLeft"
+                                    FlowDirection="LeftToRight"
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
                 <!--Botones complementarios-->
 
             </StackPanel>
         </Grid>
+
         <Grid Grid.Row="1">
             <Image Source="/View_layer/Images/MarcaDeAgua2.png"/>
         </Grid>
+
     </Grid>
 </UserControl>

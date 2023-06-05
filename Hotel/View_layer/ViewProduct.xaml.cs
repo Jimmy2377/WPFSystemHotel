@@ -21,9 +21,6 @@ using Microsoft.Win32;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ViewProduct.xaml
-    /// </summary>
     public partial class ViewProduct : UserControl
     {
         private CotizacionDAO cotizacionDAO;

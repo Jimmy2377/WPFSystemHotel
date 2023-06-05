@@ -98,43 +98,48 @@ namespace Hotel.View_layer
 
         private void btnRegistrarOrdenCompra_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidarCampos())
+            try
             {
-                
-                // Crear una instancia de la clase OrdenCompra
-                
-                DateTime fecha = DateTime.Now;
-                int tiempoEntrega = Convert.ToInt32(txtTiempoEntrega.Text);
-                double montoTotal = Convert.ToDouble(cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad));
-                string estado = "Recibido";
-                string departamento = cmbDepartamento.SelectedItem.ToString();
-                string tipoCompra = cmbTipoCompra.SelectedItem.ToString();
-                int idEmpleado = 1;
+                // Crear una instancia de OrdenCompraDAO
+                OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
 
-                OrdenCompra ordenCompra = new OrdenCompra(0, fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
+                // Crear una nueva OrdenCompra
+                OrdenCompra ordenCompra = new OrdenCompra(
+                    DateTime.Now,
+                    Convert.ToInt32(txtTiempoEntrega.Text),
+                    cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad),
+                    "Recibido",
+                    cmbDepartamento.SelectedValue.ToString(),
+                    cmbTipoCompra.SelectedValue.ToString(),
+                    1
+                );
 
-                // Obtener los detalles de compra
-    List<DetalleCompra> detallesCompra = cotizacionesSeleccionadas.Select(cotizacion => new DetalleCompra(ordenCompra.ID_OrdenCompra, cotizacion.IdCotizacion, cotizacion.Cantidad)).ToList();
+                // Llamar al método InsertOrdenCompra y pasar los argumentos necesarios
+                int iD_OrdenCompra = ordenCompraDAO.InsertOrdenCompra(ordenCompra);
 
-    // Llamar al método InsertOrdenCompra de la clase OrdenCompraDAO
-    OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
-    int resultado = ordenCompraDAO.InsertOrdenCompra(ordenCompra, detallesCompra);
+                // Crear una lista de detalles de compra
+                List<DetalleCompra> detallesCompra = cotizacionesSeleccionadas
+                    .Select(cotizacion => new DetalleCompra(ordenCompra.ID_OrdenCompra, cotizacion.IdCotizacion, cotizacion.Cantidad))
+                    .ToList();
 
-    if (resultado > 0)
-    {
-        MessageBox.Show("La orden de compra se registró correctamente.", "Registro Exitoso");
-        LimpiarCampos();
-    }
-    else
-    {
-        MessageBox.Show("Error al registrar la orden de compra.", "Error");
-    }
+                // Insertar los detalles de compra en la base de datos
+                ordenCompraDAO.InsertDetallesCompra(detallesCompra);
+
+                // Mostrar mensaje de éxito
+                MessageBox.Show("Orden de compra registrada correctamente.");
+
+                // Limpiar la lista de cotizaciones seleccionadas y actualizar la interfaz
+                cotizacionesSeleccionadas.Clear();
+                ActualizarTablaCotizacionesSeleccionadas();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, complete todos los campos antes de registrar la orden de compra.");
+                // Mostrar mensaje de error
+                MessageBox.Show("Error al registrar la orden de compra: " + ex.Message);
             }
         }
+
+
 
         private bool ValidarCampos()
         {

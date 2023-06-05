@@ -58,8 +58,8 @@
                         <Ellipse Style="{StaticResource CustomEllipseStyle}"/>
                         <fa:IconImage Icon="MoneyBillTransfer" Margin="0 0 20 45" Width="70" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         <StackPanel Margin="20 0 0 20" VerticalAlignment="Bottom">
-                            <TextBlock Text="Gasto Mensual" Foreground="DarkSlateGray" FontSize="17" FontFamily="Alegreya Medium"/>
-                            <TextBlock Text="8000 Bs" Foreground="DarkSlateGray" FontSize="28" FontWeight="SemiBold"/>
+                            <TextBlock Text="Gasto Mensual" Foreground="white" FontSize="17" FontFamily="Alegreya Medium"/>
+                            <TextBlock x:Name="txtGastos" Text="8000 Bs" Foreground="White" FontSize="28" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -69,8 +69,8 @@
                         <Ellipse Style="{StaticResource CustomEllipseStyle}"/>
                         <fa:IconImage Icon="CartFlatbed" Margin="0 0 20 45" Width="70" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         <StackPanel Margin="20 0 0 20" VerticalAlignment="Bottom">
-                            <TextBlock Text="Ordenes Pendientes" Foreground="DarkSlateGray" FontSize="17" FontFamily="Alegreya Medium"/>
-                            <TextBlock Text="200" Foreground="DarkSlateGray" FontSize="28" FontWeight="SemiBold"/>
+                            <TextBlock Text="Ordenes Pendientes" Foreground="White" FontSize="17" FontFamily="Alegreya Medium"/>
+                            <TextBlock x:Name="txtPendientes" Text="200" Foreground="White" FontSize="28" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -80,8 +80,8 @@
                         <Ellipse Style="{StaticResource CustomEllipseStyle}"/>
                         <fa:IconImage Icon="TruckFast" Margin="0 0 20 45" Width="70" Foreground="#ffffff" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         <StackPanel Margin="20 0 0 20" VerticalAlignment="Bottom">
-                            <TextBlock Text="Compras Diarias" Foreground="DarkSlateGray" FontSize="17" FontFamily="Alegreya Medium"/>
-                            <TextBlock Text="3" Foreground="DarkSlateGray" FontSize="28" FontWeight="SemiBold"/>
+                            <TextBlock Text="Compras Diarias" Foreground="White" FontSize="17" FontFamily="Alegreya Medium"/>
+                            <TextBlock x:Name="txtDiario" Text="3" Foreground="White" FontSize="28" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Grid>
                 </Border>
