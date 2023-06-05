@@ -8,9 +8,8 @@ namespace Hotel.Entity_layer
 {
     public class DetalleCompra
     {
-        public DetalleCompra(int iD_OrdenCompra, int iD_Producto, int cantidad)
+        public DetalleCompra(int iD_Producto, int cantidad)
         {
-            ID_OrdenCompra = iD_OrdenCompra;
             ID_Producto = iD_Producto;
             Cantidad = cantidad;
         }

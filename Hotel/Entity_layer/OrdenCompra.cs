@@ -10,7 +10,6 @@ namespace Hotel.Entity_layer
     {
         public OrdenCompra(DateTime fecha, int tiempoEntrega, double montoTotal, string estado, string departamento, string tipoCompra, int idEmpleado)
         {
-            
             Fecha = fecha;
             TiempoEntrega = tiempoEntrega;
             MontoTotal = montoTotal;
@@ -28,5 +27,6 @@ namespace Hotel.Entity_layer
         public string Departamento { get; set; }
         public string TipoCompra { get; set; }
         public int ID_Empleado { get; set; }
+        public List<DetalleCompra> DetallesCompra { get; set; }
     }
 }

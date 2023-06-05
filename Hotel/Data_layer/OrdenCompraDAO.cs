@@ -20,52 +20,62 @@ namespace Hotel.Data_layer
                 connection = new ConnectionToMysql();
             }
 
-        public int InsertOrdenCompra(OrdenCompra ordenCompra)
+        public void InsertOrdenCompra(OrdenCompra ordenCompra)
         {
-            string query = "INSERT INTO ordencompra (Fecha, TiempoEntrega, MontoTotal, Estado, Departamento, TipoCompra, Empleado_ID_Empleado) VALUES (@Fecha, @TiempoEntrega, @MontoTotal, @Estado, @Departamento, @TipoCompra, @ID_Empleado)";
-
-            using (MySqlConnection con = connection.GetConnection())
+            try
             {
-                con.Open();
-
-                using (MySqlCommand command = new MySqlCommand(query, con))
+                using (MySqlConnection con = connection.GetConnection())
                 {
-                    command.Parameters.AddWithValue("@Fecha", ordenCompra.Fecha);
-                    command.Parameters.AddWithValue("@TiempoEntrega", ordenCompra.TiempoEntrega);
-                    command.Parameters.AddWithValue("@MontoTotal", ordenCompra.MontoTotal);
-                    command.Parameters.AddWithValue("@Estado", ordenCompra.Estado);
-                    command.Parameters.AddWithValue("@Departamento", ordenCompra.Departamento);
-                    command.Parameters.AddWithValue("@TipoCompra", ordenCompra.TipoCompra);
-                    command.Parameters.AddWithValue("@ID_Empleado", ordenCompra.ID_Empleado);
+                    con.Open();
+                    string query = "INSERT INTO ordencompra (Fecha, TiempoEntrega, MontoTotal, Estado, Departamento, TipoCompra, Empleado_ID_Empleado) " +
+                                   "VALUES (@Fecha, @TiempoEntrega, @MontoTotal, @Estado, @Departamento, @TipoCompra, @ID_Empleado)";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Fecha", ordenCompra.Fecha);
+                    cmd.Parameters.AddWithValue("@TiempoEntrega", ordenCompra.TiempoEntrega);
+                    cmd.Parameters.AddWithValue("@MontoTotal", ordenCompra.MontoTotal);
+                    cmd.Parameters.AddWithValue("@Estado", ordenCompra.Estado);
+                    cmd.Parameters.AddWithValue("@Departamento", ordenCompra.Departamento);
+                    cmd.Parameters.AddWithValue("@TipoCompra", ordenCompra.TipoCompra);
+                    cmd.Parameters.AddWithValue("@ID_Empleado", ordenCompra.ID_Empleado);
+                    cmd.ExecuteNonQuery();
 
-                    command.ExecuteNonQuery();
+                    // Obtener el último ID insertado
+                    ordenCompra.ID_OrdenCompra = Convert.ToInt32(cmd.LastInsertedId);
 
-                    // Obtener el ID de la orden de compra insertada
-                    int idOrdenCompra = Convert.ToInt32(command.LastInsertedId);
-
-                    return idOrdenCompra;
+                    // Insertar los detalles de compra
+                    foreach (DetalleCompra detalle in ordenCompra.DetallesCompra)
+                    {
+                        InsertDetalleCompra(detalle, ordenCompra.ID_OrdenCompra);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al insertar la Orden de Compra: " + ex.Message);
+                MessageBox.Show("Error al insertar la Orden de Compra." + ex.Message);
             }
         }
 
-        public void InsertDetallesCompra(List<DetalleCompra> detallesCompra)
+        private void InsertDetalleCompra(DetalleCompra detalle, int idOrdenCompra)
         {
-            string query = "INSERT INTO detallecompra (ID_OrdenCompra, ID_Producto, Cantidad) VALUES (@ID_OrdenCompra, @ID_Producto, @Cantidad)";
-
-            using (MySqlConnection con = connection.GetConnection())
+            try
             {
-                con.Open();
-
-                foreach (DetalleCompra detalle in detallesCompra)
+                using (MySqlConnection con = connection.GetConnection())
                 {
-                    using (MySqlCommand command = new MySqlCommand(query, con))
-                    {
-                        command.Parameters.AddWithValue("@ID_OrdenCompra", detalle.ID_OrdenCompra);
-                        command.Parameters.AddWithValue("@ID_Producto", detalle.ID_Producto);
-                        command.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
-                        command.ExecuteNonQuery();
-                    }
+                    con.Open();
+                    string query = "INSERT INTO detallecompra (ID_OrdenCompra, ID_Producto, Cantidad) " +
+                                   "VALUES (@ID_OrdenCompra, @ID_Producto, @Cantidad)";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
+                    cmd.Parameters.AddWithValue("@ID_Producto", detalle.ID_Producto);
+                    cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                    cmd.ExecuteNonQuery();
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al insertar el Detalle de Compra: " + ex.Message);
+                MessageBox.Show("Error al insertar el Detalle de Compra." + ex.Message);
             }
         }
 

@@ -101,7 +101,7 @@ namespace Hotel.View_layer
             try
             {
                 // Crear una instancia de OrdenCompraDAO
-                OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
+                //OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
 
                 // Crear una nueva OrdenCompra
                 OrdenCompra ordenCompra = new OrdenCompra(
@@ -114,23 +114,55 @@ namespace Hotel.View_layer
                     1
                 );
 
-                // Llamar al método InsertOrdenCompra y pasar los argumentos necesarios
-                int iD_OrdenCompra = ordenCompraDAO.InsertOrdenCompra(ordenCompra);
+                // Crear objetos DetalleCompra para cada producto en el carrito
+                List<DetalleCompra> detallesCompra = new List<DetalleCompra>();
 
-                // Crear una lista de detalles de compra
-                List<DetalleCompra> detallesCompra = cotizacionesSeleccionadas
-                    .Select(cotizacion => new DetalleCompra(ordenCompra.ID_OrdenCompra, cotizacion.IdCotizacion, cotizacion.Cantidad))
-                    .ToList();
+                foreach (Cotizacion cotizacion in cotizacionesSeleccionadas)
+                {
+                    DetalleCompra detalleCompra = new DetalleCompra
+                    (
+                        cotizacion.IdCotizacion,
+                        cotizacion.Cantidad //obtener la cantidad elegida del producto
+                    );
 
-                // Insertar los detalles de compra en la base de datos
-                ordenCompraDAO.InsertDetallesCompra(detallesCompra);
+                    detallesCompra.Add(detalleCompra);
+                }
 
-                // Mostrar mensaje de éxito
-                MessageBox.Show("Orden de compra registrada correctamente.");
+                // Asignar los detalles de compra a la orden de compra
+                ordenCompra.DetallesCompra = detallesCompra;
 
-                // Limpiar la lista de cotizaciones seleccionadas y actualizar la interfaz
+                // Insertar la orden de compra en la base de datos
+                OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
+                ordenCompraDAO.InsertOrdenCompra(ordenCompra);
+
+                MessageBox.Show("Orden de Compra creada exitosamente.");
+
+                // Limpiar los campos y reiniciar el carrito
+                LimpiarCampos();
                 cotizacionesSeleccionadas.Clear();
                 ActualizarTablaCotizacionesSeleccionadas();
+                CalcularMontoTotal();
+
+
+
+
+                //// Llamar al método InsertOrdenCompra y pasar los argumentos necesarios
+                //int iD_OrdenCompra = ordenCompraDAO.InsertOrdenCompra(ordenCompra);
+
+                //// Crear una lista de detalles de compra
+                //List<DetalleCompra> detallesCompra = cotizacionesSeleccionadas
+                //    .Select(cotizacion => new DetalleCompra(ordenCompra.ID_OrdenCompra, cotizacion.IdCotizacion, cotizacion.Cantidad))
+                //    .ToList();
+
+                //// Insertar los detalles de compra en la base de datos
+                //ordenCompraDAO.InsertDetallesCompra(detallesCompra);
+
+                //// Mostrar mensaje de éxito
+                //MessageBox.Show("Orden de compra registrada correctamente.");
+
+                //// Limpiar la lista de cotizaciones seleccionadas y actualizar la interfaz
+                //cotizacionesSeleccionadas.Clear();
+                //ActualizarTablaCotizacionesSeleccionadas();
             }
             catch (Exception ex)
             {
