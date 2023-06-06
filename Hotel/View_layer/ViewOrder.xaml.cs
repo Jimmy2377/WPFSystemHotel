@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hotel.Data_layer;
+using Hotel.Entity_layer;
 
 namespace Hotel.View_layer
 {
@@ -20,9 +22,34 @@ namespace Hotel.View_layer
     /// </summary>
     public partial class ViewOrder : UserControl
     {
+        private OrdenCompraDAO ordencompraDAO;
         public ViewOrder()
         {
             InitializeComponent();
+            ordencompraDAO = new OrdenCompraDAO();
+            LoadOrdenesCompra();
+        }
+        private void LoadOrdenesCompra()
+        {
+            List<OrdenCompra> ordenescompra = ordencompraDAO.GetAllOrdenCompras();
+            listBoxOrdenes.ItemsSource = ordenescompra;
+            listBoxOrdenes.DisplayMemberPath = "Ordenes";
+        }
+        private void txtBusqueda_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string filtro = txtBusqueda.Text.ToLower();
+
+            // Obtén todos los ordenes y filtra según el texto ingresado
+            List<OrdenCompra> ordenesFiltrados = ordencompraDAO.GetAllOrdenCompras().Where(ordencompra =>
+
+                ordencompra.Fecha.ToString().Contains(filtro) ||
+                ordencompra.Estado.ToLower().Contains(filtro) ||
+                ordencompra.Departamento.ToLower().Contains(filtro) ||
+                ordencompra.TipoCompra.ToLower().Contains(filtro) 
+            ).ToList();
+
+            // Actualiza la lista de ordenes mostrada en el ListBox
+            listBoxOrdenes.ItemsSource = ordenesFiltrados;
         }
     }
 }

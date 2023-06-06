@@ -5,21 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.View_layer"
         mc:Ignorable="d"
-        Title="VentanaModalCantidad" Height="300" Width="500">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="VentanaModalCantidad" Height="200" Width="300">
 
-        <TextBlock Text="Ingrese la cantidad:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Border CornerRadius="5"
+            BorderThickness="5">
 
-        <TextBox x:Name="txtCantidad" Grid.Row="1" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.112"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.221"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.205"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.165"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.627"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.538"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.482"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.378"/>
+                <GradientStop Color="{StaticResource degradadooro3}" Offset="0.763"/>
+                <GradientStop Color="{StaticResource degradadooro4}" Offset="0.803"/>
+                <GradientStop Color="{StaticResource degradadooro1}" Offset="0.631"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.663"/>
+                <GradientStop Color="{StaticResource degradadooro4}" Offset="0.092"/>
+                <GradientStop Color="{StaticResource degradadooro5}" Offset="0.916"/>
+                <GradientStop Color="{StaticResource degradadooro2}" Offset="0.863"/>
+                <GradientStop Color="{StaticResource degradadooro6}" Offset="0.948"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                <GradientStop Color="{StaticResource BlankColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource BlankColor2}" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
-            <Button Content="Aceptar" Width="80" Margin="5" Click="btnAceptar_Click"/>
-            <Button Content="Cancelar" Width="80" Margin="5" Click="btnCancelar_Click"/>
-        </StackPanel>
-    </Grid>
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Ingrese la cantidad requerida:" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource tittleColor1}" Margin="10" FontFamily="Alegreya Medium"/>
+
+            <TextBox x:Name="txtCantidad" Grid.Row="1" Width="170" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" FontSize="13"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="10">
+                <Button Content="Aceptar" Width="80" Margin="5" Click="btnAceptar_Click" Background="{StaticResource tittleColor6}"/>
+                <Button Content="Cancelar" Width="80" Margin="5" Click="btnCancelar_Click" Background="{StaticResource tittleColor6}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

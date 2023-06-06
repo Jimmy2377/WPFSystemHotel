@@ -101,7 +101,7 @@ namespace Hotel.Data_layer
                                 string estado = reader["Estado"].ToString();
                                 string departamento = reader["Departamento"].ToString();
                                 string tipoCompra = reader["TipoCompra"].ToString();
-                                int idEmpleado = Convert.ToInt32(reader["ID_Empleado"]);
+                                int idEmpleado = Convert.ToInt32(reader["Empleado_ID_Empleado"]);
 
                             OrdenCompra ordenCompra = new OrdenCompra(fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
                                 
@@ -113,7 +113,8 @@ namespace Hotel.Data_layer
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error al obtener las Órdenes de Compra: " + ex.Message);
-                }
+                MessageBox.Show("Error al obtener las Órdenes de Compra: " + ex.Message);
+            }
 
                 return ordenCompras;
             }
