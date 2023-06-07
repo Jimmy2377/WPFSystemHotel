@@ -33,7 +33,7 @@ namespace Hotel.View_layer
         {
             List<OrdenCompra> ordenescompra = ordencompraDAO.GetAllOrdenCompras();
             listBoxOrdenes.ItemsSource = ordenescompra;
-            listBoxOrdenes.DisplayMemberPath = "Ordenes";
+            listBoxOrdenes.DisplayMemberPath = "Estado";
         }
         private void txtBusqueda_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -51,5 +51,39 @@ namespace Hotel.View_layer
             // Actualiza la lista de ordenes mostrada en el ListBox
             listBoxOrdenes.ItemsSource = ordenesFiltrados;
         }
+        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBoxOrdenes.SelectedItem != null)
+            {
+                OrdenCompra ordenSeleccionada = listBoxOrdenes.SelectedItem as OrdenCompra;
+
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de Cancelar la Orden Compra?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    ordencompraDAO.EliminarOrdenCompra(ordenSeleccionada.ID_OrdenCompra);
+
+                    // Actualizar la lista de proveedores
+                    LoadOrdenesCompra();
+                }
+            }
+        }
+
+        private void VerDetalleCompra_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (listBoxOrdenes.SelectedItem != null)
+            {
+                OrdenCompra ordenCompraSeleccionada = listBoxOrdenes.SelectedItem as OrdenCompra;
+
+                    // Crear una instancia de la ventana modal para ver el detalle de compra
+                    ModalDetalleCompra ventanaDetalle = new ModalDetalleCompra(ordenCompraSeleccionada);
+
+                    // Mostrar la ventana modal
+                    ventanaDetalle.ShowDialog();
+            }
+            
+        }
+
     }
 }

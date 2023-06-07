@@ -87,13 +87,13 @@
                             Margin="10"
                             Style="{StaticResource CustomButtonStyle}"/>
                 <Button Content="Ver Detalle Compra"
-                            
+                            Click="VerDetalleCompra_Click"
                             Width="130"
                             Height="40"
                             Margin="10"
                             Style="{StaticResource CustomButtonStyle}"/>
                 <Button Content="Eliminar"
-                            
+                            Click="Eliminar_Click"
                             Width="130"
                             Height="40"
                             Margin="10"

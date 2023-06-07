@@ -105,6 +105,7 @@ namespace Hotel.View_layer
 
                 // Crear una nueva OrdenCompra
                 OrdenCompra ordenCompra = new OrdenCompra(
+                    0,
                     DateTime.Now,
                     Convert.ToInt32(txtTiempoEntrega.Text),
                     cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad),
@@ -143,26 +144,6 @@ namespace Hotel.View_layer
                 ActualizarTablaCotizacionesSeleccionadas();
                 CalcularMontoTotal();
 
-
-
-
-                //// Llamar al método InsertOrdenCompra y pasar los argumentos necesarios
-                //int iD_OrdenCompra = ordenCompraDAO.InsertOrdenCompra(ordenCompra);
-
-                //// Crear una lista de detalles de compra
-                //List<DetalleCompra> detallesCompra = cotizacionesSeleccionadas
-                //    .Select(cotizacion => new DetalleCompra(ordenCompra.ID_OrdenCompra, cotizacion.IdCotizacion, cotizacion.Cantidad))
-                //    .ToList();
-
-                //// Insertar los detalles de compra en la base de datos
-                //ordenCompraDAO.InsertDetallesCompra(detallesCompra);
-
-                //// Mostrar mensaje de éxito
-                //MessageBox.Show("Orden de compra registrada correctamente.");
-
-                //// Limpiar la lista de cotizaciones seleccionadas y actualizar la interfaz
-                //cotizacionesSeleccionadas.Clear();
-                //ActualizarTablaCotizacionesSeleccionadas();
             }
             catch (Exception ex)
             {
@@ -170,8 +151,6 @@ namespace Hotel.View_layer
                 MessageBox.Show("Error al registrar la orden de compra: " + ex.Message);
             }
         }
-
-
 
         private bool ValidarCampos()
         {

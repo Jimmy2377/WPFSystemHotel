@@ -61,6 +61,7 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
+                    
                     <DataGridTextColumn Header="Producto" Binding="{Binding NombreProducto}" Width="*"/>
                     <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" Width="*"/>
                     <DataGridTextColumn Header="Precio Unitario" Binding="{Binding PrecioUnit}" Width="*"/>

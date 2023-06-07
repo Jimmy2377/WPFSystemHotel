@@ -103,7 +103,7 @@ namespace Hotel.Data_layer
                                 string tipoCompra = reader["TipoCompra"].ToString();
                                 int idEmpleado = Convert.ToInt32(reader["Empleado_ID_Empleado"]);
 
-                            OrdenCompra ordenCompra = new OrdenCompra(fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
+                            OrdenCompra ordenCompra = new OrdenCompra(idOrdenCompra,fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
                                 
                                 ordenCompras.Add(ordenCompra);
                             }
@@ -118,6 +118,70 @@ namespace Hotel.Data_layer
 
                 return ordenCompras;
             }
-        
+
+        public void EliminarOrdenCompra(int idOrdenCompra)
+        {
+            try
+            {
+                using (MySqlConnection con = connection.GetConnection())
+                {
+                    con.Open();
+                    string deleteDetalleQuery = "DELETE FROM detallecompra WHERE ID_OrdenCompra = @ID_OrdenCompra";
+                    MySqlCommand deleteDetalleCmd = new MySqlCommand(deleteDetalleQuery, con);
+                    deleteDetalleCmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
+                    deleteDetalleCmd.ExecuteNonQuery();
+
+                    string query = "DELETE FROM ordencompra WHERE ID_OrdenCompra = @ID_OrdenCompra";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Orden Compra Cancelada");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar la Orden de Compra: " + ex.Message);
+                MessageBox.Show("Error al eliminar la Orden de Compra:" + ex.Message);
+                throw;
+            }
+        }
+
+        public List<DetalleCompra> ObtenerDetallesCompra(int idOrdenCompra)
+        {
+            List<DetalleCompra> detallesCompra = new List<DetalleCompra>();
+
+            try
+            {
+                using (MySqlConnection con = connection.GetConnection())
+                {
+                    con.Open();
+                    string query = "SELECT * FROM detallecompra WHERE ID_OrdenCompra = @ID_OrdenCompra";
+                    //SELECT d.ID_OrdenCompra, d.ID_Producto, p.NombreProducto, d.Cantidad FROM detallecompra d INNER JOIN producto p ON d.ID_Producto = p.ID_Producto WHERE ID_OrdenCompra = @ID_OrdenCompra
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int idProducto = Convert.ToInt32(reader["ID_Producto"]);
+                            int cantidad = Convert.ToInt32(reader["Cantidad"]);
+                            
+
+                            // Crear instancia de DetalleCompra y agregar a la lista
+                            DetalleCompra detalle = new DetalleCompra(idProducto, cantidad);
+                            detallesCompra.Add(detalle);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener los detalles de compra: " + ex.Message);
+            }
+
+            return detallesCompra;
+        }
+
     }
 }
