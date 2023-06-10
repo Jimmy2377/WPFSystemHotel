@@ -14,24 +14,24 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hotel.Data_layer;
 using Hotel.Entity_layer;
+using Hotel.Business_layer;
+using Hotel.Bussines_Layer;
+using static Hotel.Entity_layer.OrdenCompra;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ViewOrder.xaml
-    /// </summary>
     public partial class ViewOrder : UserControl
     {
-        private OrdenCompraDAO ordencompraDAO;
+        private OrdenCompraBLL ordenCompraBLL;
         public ViewOrder()
         {
             InitializeComponent();
-            ordencompraDAO = new OrdenCompraDAO();
+            ordenCompraBLL = new OrdenCompraBLL();
             LoadOrdenesCompra();
         }
         private void LoadOrdenesCompra()
         {
-            List<OrdenCompra> ordenescompra = ordencompraDAO.GetAllOrdenCompras();
+            List<OrdenCompra> ordenescompra = ordenCompraBLL.GetAllCompras();
             listBoxOrdenes.ItemsSource = ordenescompra;
             listBoxOrdenes.DisplayMemberPath = "Estado";
         }
@@ -40,10 +40,10 @@ namespace Hotel.View_layer
             string filtro = txtBusqueda.Text.ToLower();
 
             // Obtén todos los ordenes y filtra según el texto ingresado
-            List<OrdenCompra> ordenesFiltrados = ordencompraDAO.GetAllOrdenCompras().Where(ordencompra =>
+            List<OrdenCompra> ordenesFiltrados = ordenCompraBLL.GetAllCompras().Where(ordencompra =>
 
                 ordencompra.Fecha.ToString().Contains(filtro) ||
-                ordencompra.Estado.ToLower().Contains(filtro) ||
+                ordencompra.Estado.ToString().ToLower().Contains(filtro) ||
                 ordencompra.Departamento.ToLower().Contains(filtro) ||
                 ordencompra.TipoCompra.ToLower().Contains(filtro) 
             ).ToList();
@@ -61,14 +61,14 @@ namespace Hotel.View_layer
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    ordencompraDAO.EliminarOrdenCompra(ordenSeleccionada.ID_OrdenCompra);
+                    ordenCompraBLL.EliminarOrdenCompra(ordenSeleccionada.ID_OrdenCompra);
 
                     // Actualizar la lista de proveedores
                     LoadOrdenesCompra();
                 }
             }
         }
-
+        
         private void VerDetalleCompra_Click(object sender, RoutedEventArgs e)
         {
 
@@ -84,6 +84,19 @@ namespace Hotel.View_layer
             }
             
         }
+        private void CambiarEstadoButton_Click(object sender, EventArgs e)
+        {
+            // Obtener la orden de compra seleccionada
+            OrdenCompra ordenCompraSeleccionada = listBoxOrdenes.SelectedItem as OrdenCompra;
 
+            if (ordenCompraSeleccionada != null)
+            {
+                // Cambiar el estado de la orden de compra
+                ordenCompraBLL.CambiarEstadoOrdenCompra(ordenCompraSeleccionada);
+
+                // Actualizar la lista de órdenes de compra en la ventana
+                LoadOrdenesCompra();
+            }
+        }
     }
 }

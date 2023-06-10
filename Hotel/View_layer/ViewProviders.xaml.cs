@@ -1,7 +1,4 @@
-﻿using Hotel.Data_layer;
-using Hotel.Entity_layer;
-using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,26 +13,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hotel.Bussines_Layer;
+using Hotel.Entity_layer;
+using Hotel.Negocio;
+using MySql.Data.MySqlClient;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ViewProviders.xaml
-    /// </summary>
     public partial class ViewProviders : UserControl
     {
-        private ProveedorDAO proveedorDAO;
+        private ProveedorManager proveedorManager;
 
         public ViewProviders()
         {
             InitializeComponent();
-            proveedorDAO = new ProveedorDAO();
+            proveedorManager = new ProveedorManager();
             LoadProveedores();
         }
 
         private void LoadProveedores()
         {
-            List<Proveedor> proveedores = proveedorDAO.GetAllProveedores();
+            List<Proveedor> proveedores = proveedorManager.GetAllProveedores();
             listBoxProveedores.ItemsSource = proveedores;
         }
 
@@ -47,14 +45,23 @@ namespace Hotel.View_layer
             string contactos = txtContactos.Text;
 
             Proveedor proveedor = new Proveedor(0, nombre, nit, direccion, contactos);
-            proveedorDAO.InsertProveedor(proveedor);
 
+            try
+            {
+                proveedorManager.InsertProveedor(proveedor);
 
-            // Actualiza la lista de proveedores
-            LoadProveedores();
+                // Actualiza la lista de proveedores
+                LoadProveedores();
 
-            // Limpia los campos de texto
-            ClearFields();
+                // Limpia los campos de texto
+                ClearFields();
+
+                MessageBox.Show("Proveedor agregado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar el proveedor: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -67,7 +74,7 @@ namespace Hotel.View_layer
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    proveedorDAO.EliminarProveedor(proveedorSeleccionado.ID_Proveedor);
+                    proveedorManager.EliminarProveedor(proveedorSeleccionado.ID_Proveedor);
 
                     // Actualizar la lista de proveedores
                     LoadProveedores();
@@ -87,8 +94,7 @@ namespace Hotel.View_layer
                 proveedorSeleccionado.NIT = txtNit.Text;
                 proveedorSeleccionado.Direccion = txtDireccion.Text;
                 proveedorSeleccionado.Contactos = txtContactos.Text;
-
-                proveedorDAO.ModificarProveedor(proveedorSeleccionado);
+                proveedorManager.ModificarProveedor(proveedorSeleccionado);
 
                 // Actualizar la lista de proveedores
                 LoadProveedores();
@@ -126,7 +132,7 @@ namespace Hotel.View_layer
             string filtro = txtBusqueda.Text.ToLower();
 
             // Obtén todos los proveedores y filtra según el texto ingresado
-            List<Proveedor> proveedoresFiltrados = proveedorDAO.GetAllProveedores().Where(proveedor =>
+            List<Proveedor> proveedoresFiltrados = proveedorManager.GetAllProveedores().Where(proveedor =>
             
                 proveedor.NombreProv.ToLower().Contains(filtro) ||
                 proveedor.NIT.ToLower().Contains(filtro) ||

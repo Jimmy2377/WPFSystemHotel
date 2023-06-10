@@ -1,6 +1,4 @@
-﻿using Hotel.Data_layer;
-using Hotel.Entity_layer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,24 +13,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hotel.Business_layer;
+using Hotel.Entity_layer;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ViewCategory.xaml
-    /// </summary>
     public partial class ViewCategory : UserControl
     {
-        private CategoriaDAO categoriaDAO;
+        private CategoriaBLL categoriaBLL;
         public ViewCategory()
         {
             InitializeComponent();
-            categoriaDAO = new CategoriaDAO();
+            categoriaBLL = new CategoriaBLL();
             LoadCategorias();
         }
         private void LoadCategorias()
         {
-            List<Categoria> categorias = categoriaDAO.GetAllCategorias();
+            List<Categoria> categorias = categoriaBLL.GetAllCategorias();
             listBoxCategorias.ItemsSource = categorias;
         }
         private void listBoxCategorias_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,7 +48,7 @@ namespace Hotel.View_layer
             string filtro = txtBusqueda.Text.ToLower();
 
             // Obtén todos los proveedores y filtra según el texto ingresado
-            List<Categoria> categoriasFiltrados = categoriaDAO.GetAllCategorias().Where(categoria =>
+            List<Categoria> categoriasFiltrados = categoriaBLL.GetAllCategorias().Where(categoria =>
 
                 categoria.NombreCategoria.ToLower().Contains(filtro)
             ).ToList();
@@ -65,7 +62,7 @@ namespace Hotel.View_layer
             string nombre = txtNombre.Text;
             
             Categoria categoria = new Categoria(0, nombre);
-            categoriaDAO.InsertCategoria(categoria);
+            categoriaBLL.InsertCategoria(categoria);
 
 
             // Actualiza la lista de proveedores
@@ -85,7 +82,7 @@ namespace Hotel.View_layer
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    categoriaDAO.EliminarCategoria(categoriaSeleccionado.ID_Categoria);
+                    categoriaBLL.EliminarCategoria(categoriaSeleccionado.ID_Categoria);
 
                     // Actualizar la lista de categorias
                     LoadCategorias();
@@ -103,7 +100,7 @@ namespace Hotel.View_layer
                 // Obtener los datos modificados desde la interfaz de usuario
                 categoriaSeleccionado.NombreCategoria = txtNombre.Text;
                 
-                categoriaDAO.ModificarCategoria(categoriaSeleccionado);
+                categoriaBLL.ModificarCategoria(categoriaSeleccionado);
 
                 // Actualizar la lista de proveedores
                 LoadCategorias();

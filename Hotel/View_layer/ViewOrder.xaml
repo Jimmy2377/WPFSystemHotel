@@ -81,7 +81,7 @@
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="center">
                 <Button Content="Proseguir Orden"
-                            
+                            Click="CambiarEstadoButton_Click"
                             Width="130"
                             Height="40"
                             Margin="10"

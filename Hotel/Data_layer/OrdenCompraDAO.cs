@@ -7,6 +7,7 @@ using Hotel.Entity_layer;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Windows;
+using static Hotel.Entity_layer.OrdenCompra;
 
 namespace Hotel.Data_layer
 {
@@ -88,7 +89,7 @@ namespace Hotel.Data_layer
                     using (MySqlConnection con = connection.GetConnection())
                     {
                         con.Open();
-                        string query = "SELECT * FROM ordencompra";
+                        string query = "SELECT * FROM ordencompra WHERE Estado <> 'Almacen'";
                         MySqlCommand cmd = new MySqlCommand(query, con);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -98,7 +99,7 @@ namespace Hotel.Data_layer
                                 DateTime fecha = Convert.ToDateTime(reader["Fecha"]);
                                 int tiempoEntrega = Convert.ToInt32(reader["TiempoEntrega"]);
                                 double montoTotal = Convert.ToDouble(reader["MontoTotal"]);
-                                string estado = reader["Estado"].ToString();
+                                EstadoOrdenCompra estado = (EstadoOrdenCompra)Enum.Parse(typeof(EstadoOrdenCompra), reader["Estado"].ToString());
                                 string departamento = reader["Departamento"].ToString();
                                 string tipoCompra = reader["TipoCompra"].ToString();
                                 int idEmpleado = Convert.ToInt32(reader["Empleado_ID_Empleado"]);
@@ -181,6 +182,29 @@ namespace Hotel.Data_layer
             }
 
             return detallesCompra;
+        }
+        public void ModificarOrdenCompra(OrdenCompra ordenCompra)
+        {
+                try
+                {
+                    using (MySqlConnection con = connection.GetConnection())
+                    {
+                    con.Open();
+
+                    // Actualizar el estado de la orden de compra
+                    string query = "UPDATE ordencompra SET Estado = @Estado WHERE ID_OrdenCompra = @ID_OrdenCompra";
+                        MySqlCommand cmd = new MySqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@Estado", ordenCompra.Estado.ToString());
+                        cmd.Parameters.AddWithValue("@ID_OrdenCompra", ordenCompra.ID_OrdenCompra);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al modificar la Orden de Compra: " + ex.Message);
+                // Manejo de excepciones
+            }
+            
         }
 
     }

@@ -1,11 +1,11 @@
-﻿using Hotel.Entity_layer;
-using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Hotel.Entity_layer;
+using MySql.Data.MySqlClient;
 
 namespace Hotel.Data_layer
 {
@@ -96,7 +96,6 @@ namespace Hotel.Data_layer
                 Console.WriteLine("Error al eliminar el proveedor: " + ex.Message);
             }
         }
-
 
         public void ModificarProveedor(Proveedor proveedor)
         {

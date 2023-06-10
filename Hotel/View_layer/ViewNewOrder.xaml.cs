@@ -1,6 +1,4 @@
-﻿using Hotel.Data_layer;
-using Hotel.Entity_layer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hotel.Bussines_Layer;
+using Hotel.Data_layer;
+using Hotel.Entity_layer;
+using static Hotel.Entity_layer.OrdenCompra;
 
 namespace Hotel.View_layer
 {
@@ -24,22 +26,21 @@ namespace Hotel.View_layer
     {
         private List<Cotizacion> cotizacionesDisponibles;
         private ObservableCollection<Cotizacion> cotizacionesSeleccionadas;
-
+        private OrdenCompraBLL ordenCompraBLL;
         public ViewNewOrder()
         {
             InitializeComponent();
 
             cotizacionesDisponibles = new List<Cotizacion>();
             cotizacionesSeleccionadas = new ObservableCollection<Cotizacion>();
-            
+            ordenCompraBLL = new OrdenCompraBLL();
             CargarCotizacionesDisponibles();
         }
 
         private void CargarCotizacionesDisponibles()
         {
-            CotizacionDAO cotizacionDAO = new CotizacionDAO();
-            cotizacionesDisponibles = cotizacionDAO.GetAllCotizaciones();
-
+            CotizacionBLL cotizacionBLL = new CotizacionBLL();
+            cotizacionesDisponibles = cotizacionBLL.GetAllCotizaciones();
             dgCotizacionesDisponibles.ItemsSource = cotizacionesDisponibles;
         }
 
@@ -96,12 +97,15 @@ namespace Hotel.View_layer
             txtMontoTotal.Text = montoTotal.ToString("C");
         }
 
-        private void btnRegistrarOrdenCompra_Click(object sender, RoutedEventArgs e)
+        private void btnRegistrarOrdenCompra_Click(object sender, RoutedEventArgs e)//Registrar la orden de compra completa
         {
-            try
-            {
-                // Crear una instancia de OrdenCompraDAO
-                //OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
+            
+                // Validar los campos
+                if (!ValidarCampos())
+                {
+                    MessageBox.Show("Por favor, complete todos los campos requeridos.");
+                    return;
+                }
 
                 // Crear una nueva OrdenCompra
                 OrdenCompra ordenCompra = new OrdenCompra(
@@ -109,10 +113,10 @@ namespace Hotel.View_layer
                     DateTime.Now,
                     Convert.ToInt32(txtTiempoEntrega.Text),
                     cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad),
-                    "Recibido",
+                    EstadoOrdenCompra.Recibido,
                     cmbDepartamento.SelectedValue.ToString(),
                     cmbTipoCompra.SelectedValue.ToString(),
-                    1
+                    ObtenerIDEmpleado()
                 );
 
                 // Crear objetos DetalleCompra para cada producto en el carrito
@@ -132,24 +136,15 @@ namespace Hotel.View_layer
                 // Asignar los detalles de compra a la orden de compra
                 ordenCompra.DetallesCompra = detallesCompra;
 
-                // Insertar la orden de compra en la base de datos
-                OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
-                ordenCompraDAO.InsertOrdenCompra(ordenCompra);
-
-                MessageBox.Show("Orden de Compra creada exitosamente.");
+                // Interactuar con la clase de negocio 
+                
+                ordenCompraBLL.InsertOrdenCompra(ordenCompra);
 
                 // Limpiar los campos y reiniciar el carrito
                 LimpiarCampos();
                 cotizacionesSeleccionadas.Clear();
                 ActualizarTablaCotizacionesSeleccionadas();
                 CalcularMontoTotal();
-
-            }
-            catch (Exception ex)
-            {
-                // Mostrar mensaje de error
-                MessageBox.Show("Error al registrar la orden de compra: " + ex.Message);
-            }
         }
 
         private bool ValidarCampos()

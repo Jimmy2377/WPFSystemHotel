@@ -1,6 +1,4 @@
-﻿using Hotel.Data_layer;
-using Hotel.Entity_layer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,38 +15,42 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
-
+using Hotel.Bussines_Layer;
+using Hotel.Data_layer;
+using Hotel.Entity_layer;
+using Hotel.Business_layer;
+using Hotel.Negocio;
 
 namespace Hotel.View_layer
 {
     public partial class ViewProduct : UserControl
     {
-        private CotizacionDAO cotizacionDAO;
+        private CotizacionBLL cotizacionBLL;
         public ViewProduct()
         {
             InitializeComponent();
-            cotizacionDAO = new CotizacionDAO();
+            cotizacionBLL = new CotizacionBLL();
             LoadCotizaciones();
             CargarCategorias();
             CargarProveedores();
         }
         private void LoadCotizaciones()
         {
-            List<Cotizacion> cotizaciones = cotizacionDAO.GetAllCotizaciones();
+            List<Cotizacion> cotizaciones = cotizacionBLL.GetAllCotizaciones();
             listBoxCotizaciones.ItemsSource = cotizaciones;
             listBoxCotizaciones.DisplayMemberPath = "NombreProducto";
         }
         private void CargarCategorias()
         {
-            CategoriaDAO categoriaDAO = new CategoriaDAO();
-            List<Categoria> categorias = categoriaDAO.GetAllCategorias();
+            CategoriaBLL categoriaBLL = new CategoriaBLL();
+            List<Categoria> categorias = categoriaBLL.GetAllCategorias();
             cmbCategoria.ItemsSource = categorias;
         }
 
         private void CargarProveedores()
         {
-            ProveedorDAO proveedorDAO = new ProveedorDAO();
-            List<Proveedor> proveedores = proveedorDAO.GetAllProveedores();
+            ProveedorManager proveedorManager = new ProveedorManager();
+            List<Proveedor> proveedores = proveedorManager.GetAllProveedores();
             cmbProveedor.ItemsSource = proveedores;
         }
 
@@ -57,7 +59,7 @@ namespace Hotel.View_layer
             string filtro = txtBusqueda.Text.ToLower();
 
             // Obtén todos los proveedores y filtra según el texto ingresado
-            List<Cotizacion> cotizacionesFiltrados = cotizacionDAO.GetAllCotizaciones().Where(cotizacion =>
+            List<Cotizacion> cotizacionesFiltrados = cotizacionBLL.GetAllCotizaciones().Where(cotizacion =>
 
                 cotizacion.NombreProducto.ToLower().Contains(filtro) ||
                 cotizacion.Descripcion.ToLower().Contains(filtro) ||
@@ -125,7 +127,7 @@ namespace Hotel.View_layer
             Proveedor proveedor = (Proveedor)cmbProveedor.SelectedItem;
 
             Cotizacion cotizacion = new Cotizacion(0, nombreProducto, descripcion, precioUnitario, tamano, categoria, proveedor);
-            cotizacionDAO.InsertCotizacion(cotizacion);
+            cotizacionBLL.InsertCotizacion(cotizacion);
             // Limpiar los controles de entrada después de la inserción exitosa
             ClearFields();
 
@@ -143,7 +145,7 @@ namespace Hotel.View_layer
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    cotizacionDAO.EliminarCotizacion(cotizacionSeleccionado.IdCotizacion);
+                    cotizacionBLL.EliminarCotizacion(cotizacionSeleccionado.IdCotizacion);
 
                     // Actualizar la lista de proveedores
                     LoadCotizaciones();
@@ -166,7 +168,7 @@ namespace Hotel.View_layer
                 cotizacionSeleccionada.Categoria = (Categoria)cmbCategoria.SelectedItem;
                 cotizacionSeleccionada.Proveedor = (Proveedor)cmbProveedor.SelectedItem;
 
-                cotizacionDAO.ModificarCotizacion(cotizacionSeleccionada);
+                cotizacionBLL.ModificarCotizacion(cotizacionSeleccionada);
 
                 // Actualizar la lista de proveedores
                 LoadCotizaciones();
