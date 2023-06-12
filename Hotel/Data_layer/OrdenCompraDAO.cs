@@ -156,8 +156,7 @@ namespace Hotel.Data_layer
                 using (MySqlConnection con = connection.GetConnection())
                 {
                     con.Open();
-                    string query = "SELECT * FROM detallecompra WHERE ID_OrdenCompra = @ID_OrdenCompra";
-                    //SELECT d.ID_OrdenCompra, d.ID_Producto, p.NombreProducto, d.Cantidad FROM detallecompra d INNER JOIN producto p ON d.ID_Producto = p.ID_Producto WHERE ID_OrdenCompra = @ID_OrdenCompra
+                    string query = "SELECT d.ID_Producto, d.Cantidad, p.NombreProducto FROM detallecompra d INNER JOIN producto p ON d.ID_Producto = p.ID_Producto WHERE ID_OrdenCompra = @ID_OrdenCompra";
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
 
@@ -167,10 +166,10 @@ namespace Hotel.Data_layer
                         {
                             int idProducto = Convert.ToInt32(reader["ID_Producto"]);
                             int cantidad = Convert.ToInt32(reader["Cantidad"]);
-                            
+                            string nombreProducto = reader["NombreProducto"].ToString();
 
                             // Crear instancia de DetalleCompra y agregar a la lista
-                            DetalleCompra detalle = new DetalleCompra(idProducto, cantidad);
+                            DetalleCompra detalle = new DetalleCompra(idProducto, cantidad, nombreProducto);
                             detallesCompra.Add(detalle);
                         }
                     }
@@ -183,6 +182,7 @@ namespace Hotel.Data_layer
 
             return detallesCompra;
         }
+
         public void ModificarOrdenCompra(OrdenCompra ordenCompra)
         {
                 try

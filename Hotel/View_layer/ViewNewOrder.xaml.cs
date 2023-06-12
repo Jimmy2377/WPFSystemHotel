@@ -106,7 +106,10 @@ namespace Hotel.View_layer
                     MessageBox.Show("Por favor, complete todos los campos requeridos.");
                     return;
                 }
-
+            // Mostrar mensaje de confirmación
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro/a de terminar la orden de compra?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
                 // Crear una nueva OrdenCompra
                 OrdenCompra ordenCompra = new OrdenCompra(
                     0,
@@ -127,7 +130,8 @@ namespace Hotel.View_layer
                     DetalleCompra detalleCompra = new DetalleCompra
                     (
                         cotizacion.IdCotizacion,
-                        cotizacion.Cantidad //obtener la cantidad elegida del producto
+                        cotizacion.Cantidad, //obtener la cantidad elegida del producto
+                        null
                     );
 
                     detallesCompra.Add(detalleCompra);
@@ -137,7 +141,7 @@ namespace Hotel.View_layer
                 ordenCompra.DetallesCompra = detallesCompra;
 
                 // Interactuar con la clase de negocio 
-                
+
                 ordenCompraBLL.InsertOrdenCompra(ordenCompra);
 
                 // Limpiar los campos y reiniciar el carrito
@@ -145,6 +149,7 @@ namespace Hotel.View_layer
                 cotizacionesSeleccionadas.Clear();
                 ActualizarTablaCotizacionesSeleccionadas();
                 CalcularMontoTotal();
+            }
         }
 
         private bool ValidarCampos()

@@ -1,4 +1,5 @@
 ﻿using Hotel.Bussines_Layer;
+using Hotel.Entity_layer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para Login.xaml
-    /// </summary>
     public partial class Login : Window
     {
         public Login()
@@ -40,36 +38,55 @@ namespace Hotel.View_layer
             App.Current.Shutdown();
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e)
+        private void btnIngresar_Click(object sender, RoutedEventArgs e)
         {
-            if (txtuser.Text != "")
+            string username = txtuser.Text;
+            string password = txtpass.Password;
+
+            if (string.IsNullOrWhiteSpace(username))
             {
-                if (txtpass.Password != "")
-                {
-                    WorkerModel user = new WorkerModel();
-                    var validLogin = user.LoginUser(txtuser.Text, txtpass.Password);
-                    if(validLogin == true)
-                    {
-                        MenuPrincipal mainmenu = new MenuPrincipal();
-                        mainmenu.Show();
-                        mainmenu.Closed += Logout;
-                        this.Hide();
-                    }
-                    else
-                    {
-                        msgErrorUser("Nombre o usuario incorrecto, vuelve a intentar");
-                        txtpass.Clear();
-                        txtuser.Focus();
-                    }
-                }
-                else msgErrorUser("Ingrese su contraseña");
+                ShowErrorMessage("Ingrese su nombre de usuario");
+                return;
             }
-            else msgErrorUser("Ingrese su nombre de usuario");
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                ShowErrorMessage("Ingrese su contraseña");
+                return;
+            }
+
+            WorkerModel workerModel = new WorkerModel();
+            bool validLogin = workerModel.LoginUser(username, password);
+
+            if (validLogin)
+            {
+                if (UsuarioSesion.TipoUsuario == TipoUsuario.Administrador)
+                {
+                    MenuPrincipal mainmenu = new MenuPrincipal();
+                    mainmenu.Show();
+                    mainmenu.Closed += Logout;
+                    Hide();
+                }
+                else if (UsuarioSesion.TipoUsuario == TipoUsuario.Usuario)
+                {
+                    MenuUsuario otraVentana = new MenuUsuario();
+                    otraVentana.Show();
+                    otraVentana.Closed += Logout;
+                    Hide();
+                }
+            }
+            else
+            {
+                ShowErrorMessage("Nombre de usuario o contraseña incorrectos, vuelva a intentar");
+                txtpass.Clear();
+                txtuser.Focus();
+            }
         }
-        private void msgErrorUser(string msg)
+
+        private void ShowErrorMessage(string message)
         {
-            lblErrorUser.Content = " "+ msg;
-            lblErrorUser.Visibility = Visibility;
+            lblErrorUser.Content = " " + message;
+            lblErrorUser.Visibility = Visibility.Visible;
         }
 
         private void Logout(object sender, EventArgs e)
@@ -77,7 +94,7 @@ namespace Hotel.View_layer
             txtpass.Clear();
             txtuser.Clear();
             lblErrorUser.Visibility = Visibility.Collapsed;
-            this.Show();
+            Show();
             txtuser.Focus();
         }
 

@@ -31,6 +31,16 @@ namespace Hotel.Data_layer
                             UsuarioSesion.IDuser = reader.GetInt32(0);
                             UsuarioSesion.Nameuser = reader.GetString(1);
                             UsuarioSesion.Lastnameuser = reader.GetString(2);
+                            int tipoUsuario = reader.GetInt32(11);
+
+                            if (tipoUsuario == 1)
+                            {
+                                UsuarioSesion.TipoUsuario = TipoUsuario.Administrador;
+                            }
+                            else
+                            {
+                                UsuarioSesion.TipoUsuario = TipoUsuario.Usuario;
+                            }
                         }
                         return true;
                     }

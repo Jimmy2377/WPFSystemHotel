@@ -90,6 +90,10 @@ namespace Hotel.Bussines_Layer
             }
         }
 
+        public List<DetalleCompra> ObtenerDetallesCompra(int idOrdenCompra)
+        {
+            return ordenCompraDAO.ObtenerDetallesCompra(idOrdenCompra);
+        }
 
     }
 }

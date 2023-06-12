@@ -11,28 +11,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hotel.Bussines_Layer;
 using Hotel.Data_layer;
 using Hotel.Entity_layer;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ModalDetalleCompra.xaml
-    /// </summary>
     public partial class ModalDetalleCompra : Window
     {
-        private OrdenCompraDAO ordencompraDAO;
+        private OrdenCompraBLL ordenCompraBLL;
         public ModalDetalleCompra(OrdenCompra ordenCompra)
         {
             InitializeComponent();
-            ordencompraDAO = new OrdenCompraDAO();
+            ordenCompraBLL = new OrdenCompraBLL();
             CargarDetalleCompra(ordenCompra);
         }
 
         private void CargarDetalleCompra(OrdenCompra ordenCompra)
         {
-            // Obtener los detalles de compra de la orden de compra
-            List<DetalleCompra> detallesCompra = ordencompraDAO.ObtenerDetallesCompra(ordenCompra.ID_OrdenCompra);
+            // Obtener los detalles de compra de la orden de compra utilizando la capa de negocio
+            List<DetalleCompra> detallesCompra = ordenCompraBLL.ObtenerDetallesCompra(ordenCompra.ID_OrdenCompra);
 
             // Asignar la lista de detalles de compra como origen de datos del DataGrid
             tablaDetalleCompra.ItemsSource = detallesCompra;
