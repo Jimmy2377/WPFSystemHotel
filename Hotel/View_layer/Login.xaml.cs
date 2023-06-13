@@ -97,6 +97,11 @@ namespace Hotel.View_layer
             Show();
             txtuser.Focus();
         }
+        private void SingUP_Click(object sender, EventArgs e)
+        {
+            SignUP ventanaRegistro = new SignUP();
+            ventanaRegistro.ShowDialog();
+        }
 
     }
 }

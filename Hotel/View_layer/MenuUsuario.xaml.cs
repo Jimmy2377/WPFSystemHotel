@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
+using Hotel.Entity_layer;
 
 namespace Hotel.View_layer
 {
@@ -22,6 +25,51 @@ namespace Hotel.View_layer
         public MenuUsuario()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            cargardatosusuario();
+        }
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void PanelDeControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowInteropHelper helper = new WindowInteropHelper(this);
+            SendMessage(helper.Handle, 161, 2, 0);
+        }
+        private void PanelDeControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+        }
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal;
+        }
+        //funciones de los botones del menu
+
+        //Boton de cerrar session
+        private void btnLogout_click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("¿Estás seguro de que quieres cerrar la sesión?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+
+        private void cargardatosusuario()
+        {
+            txtNombreUsuario.Text = UsuarioSesion.Nameuser;
+            txtApellidoUsuario.Text = UsuarioSesion.Lastnameuser;
         }
     }
 }

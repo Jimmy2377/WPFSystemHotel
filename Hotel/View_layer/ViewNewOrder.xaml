@@ -37,6 +37,8 @@
                     <ComboBoxItem Content="Ama de Llaves"/>
                     <ComboBoxItem Content="Almacenes"/>
                     <ComboBoxItem Content="Ventas"/>
+                    <ComboBoxItem Content="Recepcion"/>
+                    <ComboBoxItem Content="Compras"/>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
