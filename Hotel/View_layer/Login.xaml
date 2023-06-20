@@ -250,11 +250,14 @@
                         </Button>
                     </StackPanel>
 
-                    <TextBlock Text="¿Olvidaste tu contraseña?"
+                    <TextBlock Text="Olvidaste tu Contraseña?"
                                Foreground="{StaticResource tittleColor5}"
                                FontSize="15"
-                               FontFamily="Alegreya Sans Thin"
+                               TextDecorations="Underline"
+                               FontFamily="Alegreya Medium"
                                HorizontalAlignment="Center"
+                               Cursor="Hand"
+                               MouseDown="OlvidoContraseña_MouseDown"
                                Margin="0,10,0,0"/>
 
                 </StackPanel>

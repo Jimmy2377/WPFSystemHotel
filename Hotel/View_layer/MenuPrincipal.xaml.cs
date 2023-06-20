@@ -17,8 +17,6 @@ using Hotel.Entity_layer;
 
 namespace Hotel.View_layer
 {
-   
-    
     public partial class MenuPrincipal : Window
     {
         
@@ -57,7 +55,7 @@ namespace Hotel.View_layer
             else this.WindowState = WindowState.Normal;
         }
         
-        //funciones de los botones del menu
+        //funciones de los botones del menu Administrador
 
         private void btncontrolbuy_Click(object sender, RoutedEventArgs e)
         {
@@ -90,7 +88,16 @@ namespace Hotel.View_layer
         {
             DataContext = new ViewVouchers();
         }
+        private void btncontrolusers_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewUsers();
+        }
 
+        //funciones de los botones del menu Usuario
+        private void btncontrolhomeUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewHomeUsuario();
+        }
         //Boton de cerrar session
         private void btnLogout_click(object sender, RoutedEventArgs e)
         {
@@ -99,13 +106,33 @@ namespace Hotel.View_layer
                 this.Close();
             }
         }
-
-      
         private void cargardatosusuario()
         {
             txtNombreUsuario.Text = UsuarioSesion.Nameuser;
             txtApellidoUsuario.Text = UsuarioSesion.Lastnameuser;
         }
+        public void CargarBotonesAdministrador()
+        {
+            DataContext = new ViewHome();
+            btnHomeAdmi.Visibility = Visibility.Visible;
+            btnOrdenCompraAdmi.Visibility = Visibility.Visible;
+            btnCotizacion.Visibility = Visibility.Visible;
+            btnProveedores.Visibility = Visibility.Visible;
+            btnReportes.Visibility = Visibility.Visible;
+            btnVales.Visibility = Visibility.Visible;
+            btnDevolucion.Visibility = Visibility.Visible;
+            btnGestionUsuarios.Visibility = Visibility.Visible;
+        }
 
+        public void CargarBotonesUsuario()
+        {
+            DataContext = new ViewHomeUsuario();
+            btnHomeUsuario.Visibility = Visibility.Visible;
+            btnOrdenUsuario.Visibility = Visibility.Visible;
+            btnGestionarOrden.Visibility = Visibility.Visible;
+            btnCatalogo.Visibility = Visibility.Visible;
+            btnSolicitud.Visibility = Visibility.Visible;
+            btnPropuestas.Visibility = Visibility.Visible;
+        }
     }
 }

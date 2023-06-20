@@ -38,9 +38,9 @@ namespace Hotel.View_layer
             // Obtener los valores de los controles de entrada
             string nombre = txtNombre.Text;
             string apellidos = txtApellido.Text;
-            string ci = txtCI.Text;
+            int ci = int.Parse(txtCI.Text);
             string direccion = txtDireccion.Text;
-            string celular = txtCelular.Text;
+            int celular = int.Parse(txtCelular.Text);
             string correo = txtCorreo.Text;
             string nombreUsuario = txtNombreUsuario.Text;
             string claveUsuario = txtClaveUsuario.Password;
@@ -83,17 +83,18 @@ namespace Hotel.View_layer
             }
 
             // Verificar si solo se permiten números en el CI y celular
-            if (!EsSoloNumeros(ci) || !EsSoloNumeros(celular))
+            if (!EsSoloNumeros(ci.ToString()) || !EsSoloNumeros(celular.ToString()))
             {
                 MessageBox.Show("El CI y el celular solo deben contener números.");
                 return;
             }
 
             // Obtener los valores de los controles de entrada
-            UsuarioSesion usuarioSesion = new UsuarioSesion(nombre, apellidos, ci, direccion, celular, correo, nombreUsuario, claveEncriptada, pregunta, respuesta,2, departamento);
+            UsuarioSesion usuarioSesion = new UsuarioSesion(0, nombre, apellidos, ci, direccion, celular, correo, nombreUsuario, claveEncriptada, pregunta, respuesta,2, departamento, 0, "");
             workerModel.RegistrarUsuario(usuarioSesion);
             // Limpiar los controles de entrada después de la inserción exitosa
             LimpiarCampos();
+            Close();
         }
         private bool EsSoloLetras(string cadena)
         {

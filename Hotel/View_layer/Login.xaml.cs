@@ -2,6 +2,7 @@
 using Hotel.Entity_layer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace Hotel.View_layer
@@ -60,24 +62,24 @@ namespace Hotel.View_layer
 
             if (validLogin)
             {
-                if (UsuarioSesion.TipoUsuario == TipoUsuario.Administrador)
+                MenuPrincipal mainmenu = new MenuPrincipal();
+                // Obtener el tipo de usuario
+                TipoUsuario tipoUsuario = UsuarioSesion.TipoUsuario;
+                if (tipoUsuario == TipoUsuario.Administrador)
                 {
-                    MenuPrincipal mainmenu = new MenuPrincipal();
-                    mainmenu.Show();
-                    mainmenu.Closed += Logout;
-                    Hide();
+                    mainmenu.CargarBotonesAdministrador();
                 }
-                else if (UsuarioSesion.TipoUsuario == TipoUsuario.Usuario)
+                else if (tipoUsuario == TipoUsuario.Usuario)
                 {
-                    MenuUsuario otraVentana = new MenuUsuario();
-                    otraVentana.Show();
-                    otraVentana.Closed += Logout;
-                    Hide();
+                    mainmenu.CargarBotonesUsuario();
                 }
+                mainmenu.Show();
+                mainmenu.Closed += Logout;
+                Hide();
             }
             else
             {
-                ShowErrorMessage("Nombre de usuario o contraseña incorrectos, vuelva a intentar");
+                ShowErrorMessage("Nombre de usuario o contraseña incorrectos \n vuelva a intentar");
                 txtpass.Clear();
                 txtuser.Focus();
             }
@@ -102,6 +104,30 @@ namespace Hotel.View_layer
             SignUP ventanaRegistro = new SignUP();
             ventanaRegistro.ShowDialog();
         }
+        private void OlvidoContraseña_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            string NombreUsuario = txtuser.Text;
+            if (string.IsNullOrWhiteSpace(NombreUsuario))
+            {
+                ShowErrorMessage("Ingrese su nombre de usuario");
+                return;
+            }
+            WorkerModel workerModel = new WorkerModel();
+            bool validUsuario = workerModel.VerifityUser(NombreUsuario);
 
+            if (validUsuario)
+            {
+                ViewRecuperacion Recuperacion = new ViewRecuperacion();
+                Recuperacion.lblPregunta.Content = UsuarioSesion.Question;
+                Recuperacion.ShowDialog();
+                ShowErrorMessage("");
+            }
+            else
+            {
+                ShowErrorMessage("Nombre de Usuario no Existe");
+                txtpass.Clear();
+                txtuser.Focus();
+            } 
+        }
     }
 }

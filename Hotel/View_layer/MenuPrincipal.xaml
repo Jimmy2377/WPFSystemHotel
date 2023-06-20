@@ -11,8 +11,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True"
-        Loaded="btncontrolhome_Click">
+        AllowsTransparency="True">
 
     <!--<Window.Resources>
         <DataTemplate x:Name="ViewQuote"
@@ -64,7 +63,7 @@
 
                 <StackPanel>
                     <StackPanel Orientation="Horizontal"
-                            Height="160"
+                            Height="170"
                             Margin="0,35,0,20"
                                 HorizontalAlignment="Center">
                         <Image Source="/View_layer/Images/vector5degradado.png"/>
@@ -95,78 +94,163 @@
 
                     </StackPanel>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}"
-                                 Click="btncontrolhome_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" Height="445">
+                        <StackPanel>
+                            <!--botones administrador-->
+                            <RadioButton x:Name="btnHomeAdmi"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolhome_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}"
-                                 Click="btncontrolbuy_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="CartShopping" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Orden Compra" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                            <RadioButton x:Name="btnOrdenCompraAdmi"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolbuy_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="CartShopping" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Orden Compra" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}"
-                                 Click="btncontrolquote_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="CommentDollar" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Cotización" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                            <RadioButton x:Name="btnCotizacion"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolquote_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="CommentDollar" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Cotización" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}"
-                                 Click="btncontrolproviders_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Dolly" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Proveedores" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                            <RadioButton x:Name="btnProveedores"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolproviders_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="Dolly" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Proveedores" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}"
-                                 Click="btncontrolreport_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="FileSignature" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Reporte Gastos" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                            <RadioButton x:Name="btnReportes"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolreport_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="FileSignature" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Reporte Gastos" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}"
-                                 Click="btncontrolvouchers_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="MoneyCheck" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Vales de compra" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                            <RadioButton x:Name="btnVales"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolvouchers_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="MoneyCheck" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Vales de compra" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource tittleColor1}"
-                                 Click="btnDevoluciones_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="ThumbsDown" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Devoluciones" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                            <RadioButton x:Name="btnDevolucion"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btnDevoluciones_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="ThumbsDown" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Devoluciones" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                            <RadioButton x:Name="btnGestionUsuarios"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Visibility="Collapsed"
+                                         Click="btncontrolusers_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="UserFriends" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Gestion Usuarios" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <!--Botones Usuario-->
+                            <RadioButton x:Name="btnHomeUsuario"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="btnOrdenUsuario"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="CartShopping" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Orden Compra" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="btnGestionarOrden"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="CheckToSlot" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Gestionar Ordenes" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="btnCatalogo"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="TableList" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Catalogo Productos" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="btnSolicitud"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="Wpforms" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Nueva solicitud" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="btnPropuestas"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="Comment" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Propuestas" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <!--boton Cerrar Session-->
+                            <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource tittleColor1}"
                                  Click="btnLogout_click">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="PowerOff" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Cerrar Sesion" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                                <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="PowerOff" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Cerrar Sesion" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
 
+                        </StackPanel>
+                    </ScrollViewer>
                 </StackPanel>
 
             </Border>

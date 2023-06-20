@@ -19,6 +19,23 @@ namespace Hotel.Bussines_Layer
             string encryptedPassword = EncryptPassword(pass);
             return userPerson.Login(user, encryptedPassword);
         }
+        public bool VerifityUser(string NombreUsuario)
+        {
+            
+            if (userPerson.SearchUsuario(NombreUsuario))
+            {
+                string pregunta = userPerson.GetPregunta(NombreUsuario);
+                UsuarioSesion.Question = pregunta;
+                return true;
+            }
+            return false;
+        }
+        public bool VerifyUserAndResetPassword(string ci, string respuesta, string nuevaContraseña)
+        {
+            // Encriptar la contraseña ingresada
+            string encryptedPassword = EncryptPassword(nuevaContraseña);
+            return userPerson.VerifyUserAndResetPassword(ci, respuesta, encryptedPassword);
+        }
         private string EncryptPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -47,6 +64,11 @@ namespace Hotel.Bussines_Layer
                 Console.WriteLine("Error al insertar el Cotizacion: " + ex.Message);
                 MessageBox.Show("Usuario No agregado", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        public List<UsuarioSesion> ObtenerTodosEmpleados()
+        {
+            return userPerson.ObtenerTodosEmpleados();
         }
     }
 }
