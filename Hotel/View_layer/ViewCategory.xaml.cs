@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Hotel.Business_layer;
+using Hotel.Bussines_Layer;
 using Hotel.Entity_layer;
 
 namespace Hotel.View_layer

@@ -39,6 +39,7 @@ namespace Hotel.Entity_layer
         public static string Lastnameuser { get; set; }
         public static string Question { get; set; }
         public static TipoUsuario TipoUsuario { get; set; }
+        public static string Departament { get; set; }
 
         public int ID_Empleado { get; set; }
         public string NombreEmpleado { get; set; }
@@ -55,5 +56,6 @@ namespace Hotel.Entity_layer
         public string Departamento { get; set; }
         public int IntentosFallidos { get; set; }
         public string EstadoCuenta { get; set; }
+
     }
 }

@@ -55,8 +55,6 @@ namespace Hotel.Bussines_Layer
 
         public void CambiarEstadoOrdenCompra(OrdenCompra ordenCompra)
         {
-            // Realizar las validaciones y lógica de negocio necesarias antes de cambiar el estado
-
             string mensajeConfirmacion = "Orden Procesada con Exito";
             string mensajeEstado = "";
 

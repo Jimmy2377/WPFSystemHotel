@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static Hotel.Entity_layer.Cotizacion;
 
 namespace Hotel.Bussines_Layer
 {
     public class CotizacionBLL
     {
         private CotizacionDAO cotizacionDAO;
-
         public CotizacionBLL()
         {
             cotizacionDAO = new CotizacionDAO();
@@ -22,7 +22,10 @@ namespace Hotel.Bussines_Layer
         {
             return cotizacionDAO.GetAllCotizaciones();
         }
-
+        public List<Cotizacion> GetAllCotizacionesCondicionadas(string condicional)
+        {
+            return cotizacionDAO.GetAllCotizacionesCondicionada(condicional);
+        }
         public void InsertCotizacion(Cotizacion cotizacion)
         {
             try
@@ -63,6 +66,40 @@ namespace Hotel.Bussines_Layer
                 Console.WriteLine("Error al modificar el Cotizacion: " + ex.Message);
             }
         }
+        public bool CambiarEstadoCotizacion(Cotizacion cotizacion)
+        {
+            // Verificar el estado actual de la cotización
+            EstadoCotizacion estadoActual = cotizacion.Estado;
+
+            // Determinar el siguiente estado
+            EstadoCotizacion siguienteEstado = estadoActual == EstadoCotizacion.Pendiente ? EstadoCotizacion.Aprobado : EstadoCotizacion.Pendiente;
+
+            // Solicitar confirmación para cambiar de estado
+            MessageBoxResult confirmacion = MessageBox.Show($"¿Estás seguro de cambiar el estado de la cotización de {estadoActual} a {siguienteEstado}?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (confirmacion == MessageBoxResult.Yes)
+            {
+                // Realizar la modificación en la base de datos
+                bool resultado = cotizacionDAO.CambiarEstadoCotizacion(cotizacion, siguienteEstado, ObtenerIDEmpleado());
+
+                if (resultado)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Error al cambiar el estado de la cotización en la base de datos.");
+                    return false;
+                }
+            }
+
+            return false;
+        }
+        private int ObtenerIDEmpleado()
+        {
+            int idEmpleado = UsuarioSesion.IDuser;
+            return idEmpleado;
+        }
+
 
     }
 }

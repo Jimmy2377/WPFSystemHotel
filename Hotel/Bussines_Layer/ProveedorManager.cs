@@ -2,7 +2,7 @@
 using Hotel.Entity_layer;
 using System.Collections.Generic;
 
-namespace Hotel.Negocio
+namespace Hotel.Bussines_Layer
 {
     public class ProveedorManager
     {

@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hotel.Data_layer;
 using Hotel.Entity_layer;
-using Hotel.Business_layer;
 using Hotel.Bussines_Layer;
 using static Hotel.Entity_layer.OrdenCompra;
 

@@ -192,6 +192,7 @@
                             <RadioButton x:Name="btnOrdenUsuario"
                                          Style="{StaticResource menuButton}"
                                          Tag="{StaticResource tittleColor1}"
+                                         Click="Ordenar"
                                          Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="CartShopping" Style="{StaticResource menuButtonIcon}"/>
@@ -232,6 +233,7 @@
                             <RadioButton x:Name="btnPropuestas"
                                          Style="{StaticResource menuButton}"
                                          Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolpropuestas"
                                          Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Comment" Style="{StaticResource menuButtonIcon}"/>

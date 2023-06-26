@@ -98,6 +98,14 @@ namespace Hotel.View_layer
         {
             DataContext = new ViewHomeUsuario();
         }
+        private void btncontrolpropuestas(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewProductUser();
+        }
+        private void Ordenar(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewNewOrder();
+        }
         //Boton de cerrar session
         private void btnLogout_click(object sender, RoutedEventArgs e)
         {

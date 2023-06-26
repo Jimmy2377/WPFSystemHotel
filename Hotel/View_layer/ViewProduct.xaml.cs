@@ -18,8 +18,6 @@ using Microsoft.Win32;
 using Hotel.Bussines_Layer;
 using Hotel.Data_layer;
 using Hotel.Entity_layer;
-using Hotel.Business_layer;
-using Hotel.Negocio;
 
 namespace Hotel.View_layer
 {
@@ -125,8 +123,8 @@ namespace Hotel.View_layer
             string tamano = txtTamaño.Text;
             Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
             Proveedor proveedor = (Proveedor)cmbProveedor.SelectedItem;
-
-            Cotizacion cotizacion = new Cotizacion(0, nombreProducto, descripcion, precioUnitario, tamano, categoria, proveedor);
+            
+            Cotizacion cotizacion = new Cotizacion(0, nombreProducto, descripcion, precioUnitario, tamano, categoria, proveedor, Cotizacion.EstadoCotizacion.Pendiente);
             cotizacionBLL.InsertCotizacion(cotizacion);
             // Limpiar los controles de entrada después de la inserción exitosa
             ClearFields();

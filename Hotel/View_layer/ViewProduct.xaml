@@ -68,6 +68,7 @@
                     <DataGridTextColumn Header="Tamaño" Binding="{Binding Tamaño}" Width="*"/>
                     <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria.NombreCategoria}" Width="*"/>
                     <DataGridTextColumn Header="Proveedor" Binding="{Binding Proveedor.NombreProv}" Width="*"/>
+                    <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*"/>
 
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>

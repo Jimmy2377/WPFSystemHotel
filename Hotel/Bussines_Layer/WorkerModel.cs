@@ -70,5 +70,31 @@ namespace Hotel.Bussines_Layer
         {
             return userPerson.ObtenerTodosEmpleados();
         }
+        public bool CambiarEstadoCuenta(UsuarioSesion empleado)
+        {
+            string departamentoActual = empleado.EstadoCuenta;
+            string nuevoDepartamento = "";
+            int numerointentos = 0;
+
+            // Cambiar el departamento al valor opuesto
+            if (departamentoActual == "Acceso")
+            {
+                nuevoDepartamento = "Bloqueado";
+                numerointentos = 3;
+            }
+            else if (departamentoActual == "Bloqueado")
+            {
+                nuevoDepartamento = "Acceso";
+                numerointentos = 0;
+            }
+            MessageBoxResult result = MessageBox.Show($"¿Estás seguro de cambiar el estado de cuenta del empleado a '{nuevoDepartamento}'?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                return userPerson.CambiarAccesoBD(empleado.ID_Empleado, nuevoDepartamento, numerointentos);
+            }
+            return false;
+        }
+
     }
 }

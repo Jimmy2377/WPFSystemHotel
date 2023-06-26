@@ -38,6 +38,7 @@ namespace Hotel.Data_layer
                     cmd.Parameters.AddWithValue("@Departamento", ordenCompra.Departamento);
                     cmd.Parameters.AddWithValue("@TipoCompra", ordenCompra.TipoCompra);
                     cmd.Parameters.AddWithValue("@ID_Empleado", ordenCompra.ID_Empleado);
+
                     cmd.ExecuteNonQuery();
 
                     // Obtener el último ID insertado
@@ -199,11 +200,11 @@ namespace Hotel.Data_layer
                         cmd.ExecuteNonQuery();
                     }
                 }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al modificar la Orden de Compra: " + ex.Message);
-                // Manejo de excepciones
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al modificar la Orden de Compra: " + ex.Message);
+                    // Manejo de excepciones
+                }
             
         }
 

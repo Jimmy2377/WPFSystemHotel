@@ -39,8 +39,9 @@ namespace Hotel.View_layer
 
         private void CargarCotizacionesDisponibles()
         {
+            string condicion = "'Aprobado' AND AprobadoPor = '8'";
             CotizacionBLL cotizacionBLL = new CotizacionBLL();
-            cotizacionesDisponibles = cotizacionBLL.GetAllCotizaciones();
+            cotizacionesDisponibles = cotizacionBLL.GetAllCotizacionesCondicionadas(condicion);
             dgCotizacionesDisponibles.ItemsSource = cotizacionesDisponibles;
         }
 
@@ -117,7 +118,7 @@ namespace Hotel.View_layer
                     Convert.ToInt32(txtTiempoEntrega.Text),
                     cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad),
                     EstadoOrdenCompra.Recibido,
-                    cmbDepartamento.SelectedValue.ToString(),
+                    ObtenerDepartamento(),
                     cmbTipoCompra.SelectedValue.ToString(),
                     ObtenerIDEmpleado()
                 );
@@ -155,7 +156,6 @@ namespace Hotel.View_layer
         private bool ValidarCampos()
         {
             if (string.IsNullOrEmpty(txtTiempoEntrega.Text) ||
-                cmbDepartamento.SelectedItem == null ||
                 cmbTipoCompra.SelectedItem == null ||
                 cotizacionesSeleccionadas.Count == 0)
             {
@@ -170,11 +170,15 @@ namespace Hotel.View_layer
             int idEmpleado = UsuarioSesion.IDuser;
             return idEmpleado;
         }
+        private string ObtenerDepartamento()
+        {
+            string Departamento = UsuarioSesion.Departament;
+            return Departamento;
+        }
 
         private void LimpiarCampos()
         {
             txtTiempoEntrega.Clear();
-            cmbDepartamento.SelectedItem = null;
             cmbTipoCompra.SelectedItem = null;
             cotizacionesSeleccionadas.Clear();
 

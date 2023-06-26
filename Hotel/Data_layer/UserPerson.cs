@@ -7,8 +7,6 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using Hotel.Entity_layer;
 using System.Windows;
-using static Hotel.Entity_layer.OrdenCompra;
-using static Mysqlx.Crud.Order.Types;
 
 namespace Hotel.Data_layer
 {
@@ -64,6 +62,7 @@ namespace Hotel.Data_layer
                             UsuarioSesion.IDuser = reader.GetInt32(0);
                             UsuarioSesion.Nameuser = reader.GetString(1);
                             UsuarioSesion.Lastnameuser = reader.GetString(2);
+                            UsuarioSesion.Departament = reader.GetString(12);
                             int tipoUsuario = reader.GetInt32(11);
 
                             if (tipoUsuario == 1)
@@ -307,13 +306,38 @@ namespace Hotel.Data_layer
             }
             catch (Exception ex)
             {
-                // Manejo de errores
                 MessageBox.Show("Error al obtener los empleados: " + ex.Message);
             }
 
             return empleados;
         }
 
+        public bool CambiarAccesoBD(int idEmpleado, string nuevoEstado, int numerointentos)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+
+                    string query = "UPDATE empleado SET EstadoCuenta = @NuevoEstado, IntentosFallidos = @Numerointentos WHERE ID_Empleado = @ID";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NuevoEstado", nuevoEstado);
+                    command.Parameters.AddWithValue("@ID", idEmpleado);
+                    command.Parameters.AddWithValue("@Numerointentos", numerointentos);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar en la BD: " + ex.Message);
+                return false;
+            }
+        }
 
     }
 }

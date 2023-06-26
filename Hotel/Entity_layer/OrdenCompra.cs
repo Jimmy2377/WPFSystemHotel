@@ -26,6 +26,7 @@ namespace Hotel.Entity_layer
             EnCamino,
             Almacen
         }
+        
         public int ID_OrdenCompra { get; set; }
         public DateTime Fecha { get; set; }
         public int TiempoEntrega { get; set; }
@@ -35,5 +36,6 @@ namespace Hotel.Entity_layer
         public string TipoCompra { get; set; }
         public int ID_Empleado { get; set; }
         public List<DetalleCompra> DetallesCompra { get; set; }
+
     }
 }

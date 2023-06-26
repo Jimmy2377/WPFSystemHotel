@@ -15,7 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hotel.Bussines_Layer;
 using Hotel.Entity_layer;
-using Hotel.Negocio;
 using MySql.Data.MySqlClient;
 
 namespace Hotel.View_layer
