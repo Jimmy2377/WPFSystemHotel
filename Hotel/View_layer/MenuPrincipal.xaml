@@ -182,7 +182,8 @@
                             <RadioButton x:Name="btnHomeUsuario"
                                          Style="{StaticResource menuButton}"
                                          Tag="{StaticResource tittleColor1}"
-                                         Visibility="Collapsed">
+                                         Visibility="Collapsed"
+                                         Click="btncontrolhomeUsuario_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>

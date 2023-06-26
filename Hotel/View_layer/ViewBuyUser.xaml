@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Hotel.View_layer.ViewBuyUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:Hotel.View_layer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="btncontrolDirectaClick">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal">
+                <StackPanel.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource degradadooro1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource degradadooro5}" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <fa:IconImage Icon="CommentDollar"
+                                          Height="24"
+                                          Width="24"
+                                          Foreground="{StaticResource tittleColor4}"
+                                          Margin="35,0,10,0"/>
+                <TextBlock Text="Orden Compra"
+                                       Foreground="{StaticResource tittleColor4}"
+                                       FontSize="17"
+                                       FontFamily="Alegreya Bold"
+                                       VerticalAlignment="Center"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    FlowDirection="LeftToRight"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0">
+                <!--Botones complementarios-->
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolDirectaClick" IsChecked="True">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="RadioButton">
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <fa:IconImage Icon="Shopify" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
+                                                <TextBlock Text="Compra Directa" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
+                                            </StackPanel>
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="0,0,0,3">
+                                                <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource tittleColor1}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
+
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="RadioButton">
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <fa:IconImage Icon="DollyBox" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
+                                                <TextBlock Text="Compra diaria" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
+                                            </StackPanel>
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="0,0,0,3">
+                                                <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource tittleColor1}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
+
+
+            </StackPanel>
+        </Grid>
+
+        <ContentControl x:Name="contentControl" Grid.Row="1" Margin="0 10 0 10"/>
+
+    </Grid>
+</UserControl>

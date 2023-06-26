@@ -205,8 +205,6 @@ namespace Hotel.Data_layer
                     Console.WriteLine("Error al modificar la Orden de Compra: " + ex.Message);
                     // Manejo de excepciones
                 }
-            
         }
-
     }
 }

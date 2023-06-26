@@ -43,8 +43,8 @@ namespace Hotel.View_layer
 
                 ordencompra.Fecha.ToString().Contains(filtro) ||
                 ordencompra.Estado.ToString().ToLower().Contains(filtro) ||
-                ordencompra.Departamento.ToLower().Contains(filtro) ||
-                ordencompra.TipoCompra.ToLower().Contains(filtro) 
+                ordencompra.Departamento.ToLower().Contains(filtro)
+                
             ).ToList();
 
             // Actualiza la lista de ordenes mostrada en el ListBox

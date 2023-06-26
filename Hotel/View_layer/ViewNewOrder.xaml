@@ -18,7 +18,7 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
-                <Label Content="Dias de entrega:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                <Label Content="Dias Maximos de entrega:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
                 <TextBox x:Name="txtTiempoEntrega" FontSize="14" Margin="10 0 0 0"
                              Width="100"
                              Background="Transparent"
@@ -30,13 +30,6 @@
                              BorderThickness="0,0,0,2"/>
             </StackPanel>
             
-            <StackPanel Orientation="Horizontal" Margin="0 0 10 0" Height="25">
-                <Label Content="Tipo de compra:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
-                <ComboBox x:Name="cmbTipoCompra" HorizontalAlignment="Left" Width="150" Height="20" SelectedValuePath="Content">
-                    <ComboBoxItem Content="Directa"/>
-                    <ComboBoxItem Content="Diaria"/>
-                </ComboBox>
-            </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
@@ -143,7 +136,7 @@
                         <DataGridTemplateColumn Header="Quitar">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Quitar" Click="btnQuitarCotizacion_Click"/>
+                                    <Button Content="Quitar" Click="btnQuitarCotizacion_Click" Width="50"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

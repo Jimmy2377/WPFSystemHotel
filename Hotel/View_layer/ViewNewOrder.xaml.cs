@@ -119,7 +119,7 @@ namespace Hotel.View_layer
                     cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad),
                     EstadoOrdenCompra.Recibido,
                     ObtenerDepartamento(),
-                    cmbTipoCompra.SelectedValue.ToString(),
+                    "Directa",
                     ObtenerIDEmpleado()
                 );
 
@@ -156,7 +156,6 @@ namespace Hotel.View_layer
         private bool ValidarCampos()
         {
             if (string.IsNullOrEmpty(txtTiempoEntrega.Text) ||
-                cmbTipoCompra.SelectedItem == null ||
                 cotizacionesSeleccionadas.Count == 0)
             {
                 return false;
@@ -179,7 +178,6 @@ namespace Hotel.View_layer
         private void LimpiarCampos()
         {
             txtTiempoEntrega.Clear();
-            cmbTipoCompra.SelectedItem = null;
             cotizacionesSeleccionadas.Clear();
 
             ActualizarTablaCotizacionesSeleccionadas();

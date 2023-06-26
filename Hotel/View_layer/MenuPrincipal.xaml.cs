@@ -104,7 +104,7 @@ namespace Hotel.View_layer
         }
         private void Ordenar(object sender, RoutedEventArgs e)
         {
-            DataContext = new ViewNewOrder();
+            DataContext = new ViewBuyUser();
         }
         //Boton de cerrar session
         private void btnLogout_click(object sender, RoutedEventArgs e)
