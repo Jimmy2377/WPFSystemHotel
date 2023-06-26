@@ -104,8 +104,8 @@ namespace Hotel.Data_layer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener los Cotizacion: " + ex.Message);
-                Console.WriteLine("Error al obtener los Cotizacion: " + ex.Message);
+                MessageBox.Show("Error al obtener las Cotizacion: " + ex.Message);
+                Console.WriteLine("Error al obtener las Cotizacion: " + ex.Message);
             }
 
             return cotizaciones;
