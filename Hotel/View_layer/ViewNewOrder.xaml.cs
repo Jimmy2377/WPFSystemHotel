@@ -39,7 +39,7 @@ namespace Hotel.View_layer
 
         private void CargarCotizacionesDisponibles()
         {
-            string condicion = "'Aprobado' AND AprobadoPor = '8'";
+            string condicion = $"'Aprobado' AND AprobadoPor = " + ObtenerIDEmpleado();
             CotizacionBLL cotizacionBLL = new CotizacionBLL();
             cotizacionesDisponibles = cotizacionBLL.GetAllCotizacionesCondicionadas(condicion);
             dgCotizacionesDisponibles.ItemsSource = cotizacionesDisponibles;
