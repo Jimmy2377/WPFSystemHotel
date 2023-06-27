@@ -107,10 +107,16 @@ namespace Hotel.View_layer
                     MessageBox.Show("Por favor, complete todos los campos requeridos.");
                     return;
                 }
+            if (!EsSoloNumeros(txtTiempoEntrega.Text))
+            {
+                MessageBox.Show("Los dias solo en Numeros enteros Porfavor");
+                return;
+            }
             // Mostrar mensaje de confirmación
             MessageBoxResult result = MessageBox.Show("¿Estás seguro/a de terminar la orden de compra?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
+                string tipoCompra = (rbDirecta.IsChecked == true) ? "Directa" : "Programada";
                 // Crear una nueva OrdenCompra
                 OrdenCompra ordenCompra = new OrdenCompra(
                     0,
@@ -119,7 +125,7 @@ namespace Hotel.View_layer
                     cotizacionesSeleccionadas.Sum(c => c.PrecioUnit * c.Cantidad),
                     EstadoOrdenCompra.Recibido,
                     ObtenerDepartamento(),
-                    "Directa",
+                    tipoCompra,
                     ObtenerIDEmpleado()
                 );
 
@@ -163,7 +169,10 @@ namespace Hotel.View_layer
 
             return true;
         }
-
+        private bool EsSoloNumeros(string cadena)
+        {
+            return cadena.All(char.IsDigit);
+        }
         private int ObtenerIDEmpleado()
         {
             int idEmpleado = UsuarioSesion.IDuser;
@@ -193,6 +202,14 @@ namespace Hotel.View_layer
                 .ToList();
 
             dgCotizacionesDisponibles.ItemsSource = cotizacionesFiltradas;
+        }
+        private void msgDirecta(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Indica en cuantos dias maximos nesecitas la orden compra para poder darle prioridad");
+        }
+        private void msgProgramada(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("La compra programada, indica cada cuantos dias nesecitas la misma Orden de Compra");
         }
     }
 }

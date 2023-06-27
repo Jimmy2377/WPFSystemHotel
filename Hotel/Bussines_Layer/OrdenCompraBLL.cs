@@ -34,9 +34,9 @@ namespace Hotel.Bussines_Layer
             }
         }
 
-        public List<OrdenCompra> GetAllCompras()
+        public List<OrdenCompra> GetAllCompras(string condicional)
         {
-            return ordenCompraDAO.GetAllOrdenCompras();
+            return ordenCompraDAO.GetAllOrdenCompras(condicional);
         }
 
         public void EliminarOrdenCompra(int idOrdenCompra)
@@ -80,9 +80,45 @@ namespace Hotel.Bussines_Layer
             if (confirmacion == MessageBoxResult.Yes)
             {
                 ordenCompra.Estado = (EstadoOrdenCompra)((int)ordenCompra.Estado + 1); // Cambiar el estado al siguiente
-
+                ordenCompra.FechaEntrega = DateTime.Now;
                 // Actualizar el estado en la capa de Datos
                 ordenCompraDAO.ModificarOrdenCompra(ordenCompra);
+
+                MessageBox.Show(mensajeConfirmacion, "Cambio de Estado", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        public void CambiarEstadoOrdenCompraProgramada(OrdenCompra ordenCompra)
+        {
+            string mensajeConfirmacion = "Orden Procesada con Exito";
+            string mensajeEstado = "";
+
+            switch (ordenCompra.Estado)
+            {
+                case EstadoOrdenCompra.Recibido:
+                    mensajeEstado = "¿Estás seguro/a de Proceguir con la Orden Compra?";
+                    break;
+                case EstadoOrdenCompra.Almacen:
+                    // No se permite cambiar el estado más allá de "Almacén"
+                    return;
+            }
+
+            // Mostrar mensaje de confirmación y obtener la respuesta del usuario
+            MessageBoxResult confirmacion = MessageBox.Show(mensajeEstado, "Confirmar Cambio de Estado", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (confirmacion == MessageBoxResult.Yes)
+            {
+                // Crear una copia del objeto ordenCompra original
+                OrdenCompra ordenCompraCopia = ordenCompra.Clone();
+
+                ordenCompra.Estado = (EstadoOrdenCompra)((int)ordenCompra.Estado + 3); // Cambiar el estado enum
+                ordenCompra.FechaEntrega = DateTime.Now;
+                // Actualizar el estado en la capa de Datos
+                ordenCompraDAO.ModificarOrdenCompra(ordenCompra);
+
+                // Insertar una copia de la ordenCompra original con su estado anterior
+                ordenCompraCopia.Estado = EstadoOrdenCompra.Recibido; // Restaurar el estado anterior
+                ordenCompraCopia.Fecha = DateTime.Now;
+                ordenCompraDAO.InsertOrdenCompra(ordenCompraCopia);
 
                 MessageBox.Show(mensajeConfirmacion, "Cambio de Estado", MessageBoxButton.OK, MessageBoxImage.Information);
             }

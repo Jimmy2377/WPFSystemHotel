@@ -26,15 +26,15 @@ namespace Hotel.View_layer
             InitializeComponent();
         }
 
-        private void btncontrolneworder_Click(object sender, RoutedEventArgs e)
-        {
-            ViewNewOrder viewneworder = new ViewNewOrder();
-            contentControl.Content = viewneworder;
-        }
-        private void btncontrolvieworder_Click(object sender, RoutedEventArgs e)
+        private void btncontrolDirect_Click(object sender, RoutedEventArgs e)
         {
             ViewOrder vieworder = new ViewOrder();
             contentControl.Content = vieworder;
+        }
+        private void btncontrolProgram_Click(object sender, RoutedEventArgs e)
+        {
+            ViewOrderProgram vieworderprogram = new ViewOrderProgram();
+            contentControl.Content = vieworderprogram;
         }
     }
 }

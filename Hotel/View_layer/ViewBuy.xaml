@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Hotel.View_layer"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="btncontrolneworder_Click">
+             Loaded="btncontrolDirect_Click">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -47,7 +47,7 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
                 <!--Botones complementarios-->
-                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolneworder_Click" IsChecked="True">
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolDirect_Click" IsChecked="True">
                     <RadioButton.Style>
                         <Style TargetType="RadioButton">
                             <Setter Property="Template">
@@ -55,8 +55,8 @@
                                     <ControlTemplate TargetType="RadioButton">
                                         <Grid>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <fa:IconImage Icon="Newspaper" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
-                                                <TextBlock Text="Nueva Orden Compra" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
+                                                <fa:IconImage Icon="Shopify" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
+                                                <TextBlock Text="Compras Directas" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
                                             </StackPanel>
                                             <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="0,0,0,3">
                                                 <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -74,7 +74,7 @@
                     </RadioButton.Style>
                 </RadioButton>
 
-                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolvieworder_Click">
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolProgram_Click">
                     <RadioButton.Style>
                         <Style TargetType="RadioButton">
                             <Setter Property="Template">
@@ -82,8 +82,8 @@
                                     <ControlTemplate TargetType="RadioButton">
                                         <Grid>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <fa:IconImage Icon="Pen" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
-                                                <TextBlock Text="Gestionar Pedidos" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
+                                                <fa:IconImage Icon="CalendarDay" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
+                                                <TextBlock Text="Compras Programadas" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
                                             </StackPanel>
                                             <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="0,0,0,3">
                                                 <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />

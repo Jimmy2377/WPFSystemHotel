@@ -81,7 +81,7 @@ namespace Hotel.Data_layer
             }
         }
 
-        public List<OrdenCompra> GetAllOrdenCompras()
+        public List<OrdenCompra> GetAllOrdenCompras(string condicional)
             {
                 List<OrdenCompra> ordenCompras = new List<OrdenCompra>();
 
@@ -90,7 +90,7 @@ namespace Hotel.Data_layer
                     using (MySqlConnection con = connection.GetConnection())
                     {
                         con.Open();
-                        string query = "SELECT * FROM ordencompra WHERE Estado <> 'Almacen'";
+                        string query = "SELECT * FROM ordencompra " + condicional;
                         MySqlCommand cmd = new MySqlCommand(query, con);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -193,17 +193,17 @@ namespace Hotel.Data_layer
                     con.Open();
 
                     // Actualizar el estado de la orden de compra
-                    string query = "UPDATE ordencompra SET Estado = @Estado WHERE ID_OrdenCompra = @ID_OrdenCompra";
+                    string query = "UPDATE ordencompra SET Estado = @Estado, FechaTerminada = @FechaEstado WHERE ID_OrdenCompra = @ID_OrdenCompra";
                         MySqlCommand cmd = new MySqlCommand(query, con);
                         cmd.Parameters.AddWithValue("@Estado", ordenCompra.Estado.ToString());
+                        cmd.Parameters.AddWithValue("@FechaEstado", ordenCompra.FechaEntrega);
                         cmd.Parameters.AddWithValue("@ID_OrdenCompra", ordenCompra.ID_OrdenCompra);
                         cmd.ExecuteNonQuery();
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error al modificar la Orden de Compra: " + ex.Message);
-                    // Manejo de excepciones
+                    MessageBox.Show("Error al modificar la Orden de Compra: " + ex.Message);
                 }
         }
     }

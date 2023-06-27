@@ -12,17 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Hotel.Data_layer;
 using Hotel.Entity_layer;
 using Hotel.Bussines_Layer;
-using static Hotel.Entity_layer.OrdenCompra;
 
 namespace Hotel.View_layer
 {
-    public partial class ViewOrder : UserControl
+    public partial class ViewOrderProgram : UserControl
     {
         private OrdenCompraBLL ordenCompraBLL;
-        public ViewOrder()
+        public ViewOrderProgram()
         {
             InitializeComponent();
             ordenCompraBLL = new OrdenCompraBLL();
@@ -30,7 +28,7 @@ namespace Hotel.View_layer
         }
         private void LoadOrdenesCompra()
         {
-            List<OrdenCompra> ordenescompra = ordenCompraBLL.GetAllCompras("WHERE Estado <> 'Almacen' AND TipoCompra = 'Directa'");
+            List<OrdenCompra> ordenescompra = ordenCompraBLL.GetAllCompras("WHERE Estado <> 'Almacen' AND TipoCompra = 'Programada'");
             listBoxOrdenes.ItemsSource = ordenescompra;
             listBoxOrdenes.DisplayMemberPath = "Estado";
         }
@@ -39,12 +37,12 @@ namespace Hotel.View_layer
             string filtro = txtBusqueda.Text.ToLower();
 
             // Obtén todos los ordenes y filtra según el texto ingresado
-            List<OrdenCompra> ordenesFiltrados = ordenCompraBLL.GetAllCompras("WHERE Estado <> 'Almacen' AND TipoCompra = 'Directa'").Where(ordencompra =>
+            List<OrdenCompra> ordenesFiltrados = ordenCompraBLL.GetAllCompras("WHERE Estado <> 'Almacen' AND TipoCompra = 'Programada'").Where(ordencompra =>
 
                 ordencompra.Fecha.ToString().Contains(filtro) ||
                 ordencompra.Estado.ToString().ToLower().Contains(filtro) ||
                 ordencompra.Departamento.ToLower().Contains(filtro)
-                
+
             ).ToList();
 
             // Actualiza la lista de ordenes mostrada en el ListBox
@@ -67,7 +65,7 @@ namespace Hotel.View_layer
                 }
             }
         }
-        
+
         private void VerDetalleCompra_Click(object sender, RoutedEventArgs e)
         {
 
@@ -75,13 +73,13 @@ namespace Hotel.View_layer
             {
                 OrdenCompra ordenCompraSeleccionada = listBoxOrdenes.SelectedItem as OrdenCompra;
 
-                    // Crear una instancia de la ventana modal para ver el detalle de compra
-                    ModalDetalleCompra ventanaDetalle = new ModalDetalleCompra(ordenCompraSeleccionada);
+                // Crear una instancia de la ventana modal para ver el detalle de compra
+                ModalDetalleCompra ventanaDetalle = new ModalDetalleCompra(ordenCompraSeleccionada);
 
-                    // Mostrar la ventana modal
-                    ventanaDetalle.ShowDialog();
+                // Mostrar la ventana modal
+                ventanaDetalle.ShowDialog();
             }
-            
+
         }
         private void CambiarEstadoButton_Click(object sender, EventArgs e)
         {
@@ -91,7 +89,7 @@ namespace Hotel.View_layer
             if (ordenCompraSeleccionada != null)
             {
                 // Cambiar el estado de la orden de compra
-                ordenCompraBLL.CambiarEstadoOrdenCompra(ordenCompraSeleccionada);
+                ordenCompraBLL.CambiarEstadoOrdenCompraProgramada(ordenCompraSeleccionada);
 
                 // Actualizar la lista de órdenes de compra en la ventana
                 LoadOrdenesCompra();
