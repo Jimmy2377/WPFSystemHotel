@@ -61,7 +61,15 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*"/>
-                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*"/>
+                    <DataGridTextColumn Header="Fecha Recibida" Binding="{Binding Fecha}" Width="*"/>
+                    <DataGridTextColumn Header="Programado Cada" Width="*">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0} Días">
+                                <Binding Path="TiempoEntrega" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Siguiente Entrega" Binding="{Binding FechaEntregaCalculada}" Width="*"/>
                     <DataGridTextColumn Header="Departamento" Binding="{Binding Departamento}" Width="*"/>
                     <DataGridTextColumn Header="Tipo de compra" Binding="{Binding TipoCompra}" Width="*"/>
                     <DataGridTextColumn Header="MontoTotal" Binding="{Binding MontoTotal}" Width="*"/>

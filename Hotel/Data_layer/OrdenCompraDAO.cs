@@ -82,7 +82,7 @@ namespace Hotel.Data_layer
         }
 
         public List<OrdenCompra> GetAllOrdenCompras(string condicional)
-            {
+        {
                 List<OrdenCompra> ordenCompras = new List<OrdenCompra>();
 
                 try
@@ -116,10 +116,10 @@ namespace Hotel.Data_layer
                 {
                     Console.WriteLine("Error al obtener las Órdenes de Compra: " + ex.Message);
                 MessageBox.Show("Error al obtener las Órdenes de Compra: " + ex.Message);
-            }
+                }
 
                 return ordenCompras;
-            }
+        }
 
         public void EliminarOrdenCompra(int idOrdenCompra)
         {

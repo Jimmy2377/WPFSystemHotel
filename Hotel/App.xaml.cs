@@ -13,5 +13,6 @@ namespace Hotel
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

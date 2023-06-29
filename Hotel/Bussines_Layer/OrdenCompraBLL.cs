@@ -107,23 +107,36 @@ namespace Hotel.Bussines_Layer
 
             if (confirmacion == MessageBoxResult.Yes)
             {
-                // Crear una copia del objeto ordenCompra original
-                OrdenCompra ordenCompraCopia = ordenCompra.Clone();
-
                 ordenCompra.Estado = (EstadoOrdenCompra)((int)ordenCompra.Estado + 3); // Cambiar el estado enum
                 ordenCompra.FechaEntrega = DateTime.Now;
                 // Actualizar el estado en la capa de Datos
                 ordenCompraDAO.ModificarOrdenCompra(ordenCompra);
 
-                // Insertar una copia de la ordenCompra original con su estado anterior
-                ordenCompraCopia.Estado = EstadoOrdenCompra.Recibido; // Restaurar el estado anterior
-                ordenCompraCopia.Fecha = DateTime.Now;
-                ordenCompraDAO.InsertOrdenCompra(ordenCompraCopia);
-
                 MessageBox.Show(mensajeConfirmacion, "Cambio de Estado", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        public void CrearNuevaOrdenCompra(OrdenCompra ordenCompraOriginal)
+        {
+            // Crear una nueva instancia de OrdenCompra con la misma información
+            OrdenCompra nuevaOrdenCompra = new OrdenCompra(
+                0, // El ID será generado automáticamente por la base de datos
+                DateTime.Now, // Fecha actual
+                ordenCompraOriginal.TiempoEntrega,
+                ordenCompraOriginal.MontoTotal,
+                EstadoOrdenCompra.Recibido, // Estado diferente
+                ordenCompraOriginal.Departamento,
+                ordenCompraOriginal.TipoCompra,
+                ordenCompraOriginal.ID_Empleado
+            );
+            // Obtener los detalles de compra asociados a la orden de compra
+            List<DetalleCompra> detallesCompra = ordenCompraDAO.ObtenerDetallesCompra(ordenCompraOriginal.ID_OrdenCompra);
 
+            // Asignar los detalles de compra a la orden de compra
+            nuevaOrdenCompra.DetallesCompra = detallesCompra;
+
+            // Agregar la nueva orden de compra a la base de datos
+            ordenCompraDAO.InsertOrdenCompra(nuevaOrdenCompra);
+        }
         public List<DetalleCompra> ObtenerDetallesCompra(int idOrdenCompra)
         {
             return ordenCompraDAO.ObtenerDetallesCompra(idOrdenCompra);

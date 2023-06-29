@@ -26,6 +26,10 @@ namespace Hotel.Entity_layer
             EnCamino,
             Almacen
         }
+        public DateTime FechaEntregaCalculada 
+        {
+            get { return Fecha.AddDays(TiempoEntrega); }
+        }
         
         public int ID_OrdenCompra { get; set; }
         public DateTime Fecha { get; set; }
@@ -38,23 +42,5 @@ namespace Hotel.Entity_layer
         public DateTime FechaEntrega { get; set; }
         public List<DetalleCompra> DetallesCompra { get; set; }
 
-        public OrdenCompra Clone()
-        {
-            // Crear una nueva instancia de OrdenCompra
-            OrdenCompra copia = new OrdenCompra(ID_OrdenCompra, Fecha, TiempoEntrega, MontoTotal, Estado, Departamento, TipoCompra, ID_Empleado);
-
-            // Copiar la lista de detalles de compra
-            if (DetallesCompra != null)
-            {
-                copia.DetallesCompra = new List<DetalleCompra>();
-                foreach (var detalle in DetallesCompra)
-                {
-                    copia.DetallesCompra.Add(new DetalleCompra(detalle.ID_Producto, detalle.Cantidad, detalle.NombreProducto));
-                }
-            }
-
-            // Devolver la copia
-            return copia;
-        }
     }
 }

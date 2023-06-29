@@ -91,6 +91,9 @@ namespace Hotel.View_layer
                 // Cambiar el estado de la orden de compra
                 ordenCompraBLL.CambiarEstadoOrdenCompraProgramada(ordenCompraSeleccionada);
 
+                // Crear una nueva orden de compra con los mismos detalles
+                ordenCompraBLL.CrearNuevaOrdenCompra(ordenCompraSeleccionada);
+
                 // Actualizar la lista de órdenes de compra en la ventana
                 LoadOrdenesCompra();
             }

@@ -61,10 +61,11 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*"/>
-                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*"/>
+                    <DataGridTextColumn Header="Fecha Recibida" Binding="{Binding Fecha}" Width="*"/>
+                    <DataGridTextColumn Header="Fecha Max. Entrega" Binding="{Binding FechaEntregaCalculada}" Width="*"/>
                     <DataGridTextColumn Header="Departamento" Binding="{Binding Departamento}" Width="*"/>
                     <DataGridTextColumn Header="Tipo de compra" Binding="{Binding TipoCompra}" Width="*"/>
-                    <DataGridTextColumn Header="MontoTotal" Binding="{Binding MontoTotal}" Width="*"/>
+                    <DataGridTextColumn Header="Monto Total" Binding="{Binding MontoTotal}" Width="*"/>
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
