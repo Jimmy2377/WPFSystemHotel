@@ -204,20 +204,11 @@
                             <RadioButton x:Name="btnGestionarOrden"
                                          Style="{StaticResource menuButton}"
                                          Tag="{StaticResource tittleColor1}"
-                                         Visibility="Collapsed">
+                                         Visibility="Collapsed"
+                                         Click="GestionarPedidos_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="CheckToSlot" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Gestionar Ordenes" Style="{StaticResource menuButtonText}"/>
-                                </StackPanel>
-                            </RadioButton>
-
-                            <RadioButton x:Name="btnCatalogo"
-                                         Style="{StaticResource menuButton}"
-                                         Tag="{StaticResource tittleColor1}"
-                                         Visibility="Collapsed">
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:IconImage Icon="TableList" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Catalogo Productos" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 

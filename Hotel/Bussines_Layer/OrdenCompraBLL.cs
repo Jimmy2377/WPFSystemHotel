@@ -126,7 +126,8 @@ namespace Hotel.Bussines_Layer
                 EstadoOrdenCompra.Recibido, // Estado diferente
                 ordenCompraOriginal.Departamento,
                 ordenCompraOriginal.TipoCompra,
-                ordenCompraOriginal.ID_Empleado
+                ordenCompraOriginal.ID_Empleado,
+                null
             );
             // Obtener los detalles de compra asociados a la orden de compra
             List<DetalleCompra> detallesCompra = ordenCompraDAO.ObtenerDetallesCompra(ordenCompraOriginal.ID_OrdenCompra);

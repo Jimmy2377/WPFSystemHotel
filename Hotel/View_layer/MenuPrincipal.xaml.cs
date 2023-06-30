@@ -106,6 +106,10 @@ namespace Hotel.View_layer
         {
             DataContext = new ViewNewOrder();
         }
+        private void GestionarPedidos_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewOrderUsuario();
+        }
         //Boton de cerrar session
         private void btnLogout_click(object sender, RoutedEventArgs e)
         {
@@ -138,7 +142,6 @@ namespace Hotel.View_layer
             btnHomeUsuario.Visibility = Visibility.Visible;
             btnOrdenUsuario.Visibility = Visibility.Visible;
             btnGestionarOrden.Visibility = Visibility.Visible;
-            btnCatalogo.Visibility = Visibility.Visible;
             btnSolicitud.Visibility = Visibility.Visible;
             btnPropuestas.Visibility = Visibility.Visible;
         }

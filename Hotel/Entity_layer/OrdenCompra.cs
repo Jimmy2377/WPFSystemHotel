@@ -8,7 +8,7 @@ namespace Hotel.Entity_layer
 {
     public class OrdenCompra
     {
-        public OrdenCompra(int idOrdenCompra, DateTime fecha, int tiempoEntrega, double montoTotal, EstadoOrdenCompra estado, string departamento, string tipoCompra, int idEmpleado)
+        public OrdenCompra(int idOrdenCompra, DateTime fecha, int tiempoEntrega, double montoTotal, EstadoOrdenCompra estado, string departamento, string tipoCompra, int idEmpleado, DateTime? fechaEntrega)
         {
             ID_OrdenCompra = idOrdenCompra;
             Fecha = fecha;
@@ -18,6 +18,7 @@ namespace Hotel.Entity_layer
             Departamento = departamento;
             TipoCompra = tipoCompra;
             ID_Empleado = idEmpleado;
+            FechaEntrega = fechaEntrega;
         }
         public enum EstadoOrdenCompra
         {
@@ -39,7 +40,7 @@ namespace Hotel.Entity_layer
         public string Departamento { get; set; }
         public string TipoCompra { get; set; }
         public int ID_Empleado { get; set; }
-        public DateTime FechaEntrega { get; set; }
+        public DateTime? FechaEntrega { get; set; }
         public List<DetalleCompra> DetallesCompra { get; set; }
 
     }

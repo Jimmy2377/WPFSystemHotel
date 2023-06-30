@@ -104,8 +104,15 @@ namespace Hotel.Data_layer
                                 string departamento = reader["Departamento"].ToString();
                                 string tipoCompra = reader["TipoCompra"].ToString();
                                 int idEmpleado = Convert.ToInt32(reader["Empleado_ID_Empleado"]);
+                                
+                            DateTime? fechaEntrega = null; // Inicializar como nulo
 
-                            OrdenCompra ordenCompra = new OrdenCompra(idOrdenCompra,fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado);
+                            if (!reader.IsDBNull(reader.GetOrdinal("FechaTerminada")))
+                            {
+                                fechaEntrega = Convert.ToDateTime(reader["FechaTerminada"]);
+                            }
+
+                            OrdenCompra ordenCompra = new OrdenCompra(idOrdenCompra,fecha, tiempoEntrega, montoTotal, estado, departamento, tipoCompra, idEmpleado, fechaEntrega);
                                 
                                 ordenCompras.Add(ordenCompra);
                             }

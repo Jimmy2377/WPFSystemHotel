@@ -39,7 +39,7 @@ namespace Hotel.View_layer
 
         private void CargarCotizacionesDisponibles()
         {
-            string condicion = $"'Aprobado' AND AprobadoPor = " + ObtenerIDEmpleado();
+            string condicion = "'Aprobado' AND AprobadoPor = " + ObtenerIDEmpleado();
             CotizacionBLL cotizacionBLL = new CotizacionBLL();
             cotizacionesDisponibles = cotizacionBLL.GetAllCotizacionesCondicionadas(condicion);
             dgCotizacionesDisponibles.ItemsSource = cotizacionesDisponibles;
@@ -117,6 +117,7 @@ namespace Hotel.View_layer
             if (result == MessageBoxResult.Yes)
             {
                 string tipoCompra = (rbDirecta.IsChecked == true) ? "Directa" : "Programada";
+                
                 // Crear una nueva OrdenCompra
                 OrdenCompra ordenCompra = new OrdenCompra(
                     0,
@@ -126,7 +127,8 @@ namespace Hotel.View_layer
                     EstadoOrdenCompra.Recibido,
                     ObtenerDepartamento(),
                     tipoCompra,
-                    ObtenerIDEmpleado()
+                    ObtenerIDEmpleado(),
+                    null
                 );
 
                 // Crear objetos DetalleCompra para cada producto en el carrito

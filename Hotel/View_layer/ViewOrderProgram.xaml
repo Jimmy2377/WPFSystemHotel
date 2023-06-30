@@ -100,7 +100,7 @@
                             Height="40"
                             Margin="10"
                             Style="{StaticResource CustomButtonStyle}"/>
-                <Button Content="Eliminar"
+                <Button Content="Cancelar"
                             Click="Eliminar_Click"
                             Width="130"
                             Height="40"

@@ -4,23 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace Hotel.Data_layer
 {
     public class ConnectionToMysql
     {
-        private readonly string servidor = "btr3itqyjgkpayqsmsfx-mysql.services.clever-cloud.com";
-        private readonly string puerto = "3306";
-        private readonly string usuario = "uurra9sjisnoi7br";
-        private readonly string password = "8VviXT9zhB87DtwZSwFZ";
-        private readonly string nombreDB = "btr3itqyjgkpayqsmsfx";
-        private readonly string connectionString;
+        private readonly string connectionString; //almacenar la cadena de conexión a la base de datos.
 
         public ConnectionToMysql()
         {
-            connectionString = ($"server={servidor};port={puerto};user id={usuario};password={password};database={nombreDB};");
+            var appSettings = ConfigurationManager.AppSettings;//proporcionar acceso al archivo de configuración de la aplicación
+            connectionString = $"server={appSettings["Servidor"]};port={appSettings["Puerto"]};user id={appSettings["Usuario"]};password={appSettings["Password"]};database={appSettings["NombreDB"]};";
+
         }
 
         public MySqlConnection GetConnection()
