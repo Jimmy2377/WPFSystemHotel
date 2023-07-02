@@ -39,14 +39,14 @@ namespace Hotel.View_layer
             // Obtén todos los usuarios y filtra según el texto ingresado
             List<UsuarioSesion> usauriosFiltrados = workerModel.ObtenerTodosEmpleados().Where(usaurio =>
 
-                usaurio.NombreEmpleado.ToLower().Contains(filtro) ||
-                usaurio.Apellidos.ToLower().Contains(filtro) ||
-                usaurio.Direccion.ToLower().Contains(filtro) ||
-                usaurio.Correo.ToLower().Contains(filtro) ||
-                usaurio.Departamento.ToLower().Contains(filtro) ||
-                usaurio.EstadoCuenta.ToLower().Contains(filtro) ||
-                usaurio.Celular.ToString().ToLower().Contains(filtro) ||
-                usaurio.CI.ToString().ToLower().Contains(filtro)
+                usaurio.NombreEmpleado.ToString().ToLower().Contains(filtro) ||
+                usaurio.Apellidos.ToString().ToLower().Contains(filtro) ||
+                usaurio.Direccion.ToString().ToLower().Contains(filtro) ||
+                usaurio.Correo.ToString().ToLower().Contains(filtro) ||
+                usaurio.Departamento.ToString().ToLower().Contains(filtro) ||
+                usaurio.EstadoCuenta.ToString().ToLower().Contains(filtro) ||
+                usaurio.Celular.ToString().Contains(filtro) ||
+                usaurio.CI.ToString().Contains(filtro)
             ).ToList();
 
             // Actualiza la lista de usuarios mostrada en el ListBox

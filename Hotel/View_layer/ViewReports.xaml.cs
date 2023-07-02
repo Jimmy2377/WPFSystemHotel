@@ -12,17 +12,32 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hotel.Entity_layer;
+using Hotel.Bussines_Layer;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ViewReports.xaml
-    /// </summary>
     public partial class ViewReports : UserControl
     {
+        private OrdenCompraBLL ordenCompraBLL;
+        private GastosBLL gastosBLL;
         public ViewReports()
         {
             InitializeComponent();
+            ordenCompraBLL = new OrdenCompraBLL();
+            gastosBLL = new GastosBLL();
+            LoadOrdenesCompra();
+            LoadValesCompra();
+        }
+        public void LoadOrdenesCompra()
+        {
+            List<OrdenCompra> ordenescompra = ordenCompraBLL.GetAllCompras("WHERE Estado = 'Almacen'");
+            listBoxOrdenes.ItemsSource = ordenescompra;
+        }
+        public void LoadValesCompra()
+        {
+            List<ValeCompra> valescompra = gastosBLL.GetAllVales();
+            listBoxValesCompra.ItemsSource = valescompra;
         }
     }
 }

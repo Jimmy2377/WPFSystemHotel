@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ViewQuote.xaml
-    /// </summary>
     public partial class ViewQuote : UserControl
     {
         public ViewQuote()

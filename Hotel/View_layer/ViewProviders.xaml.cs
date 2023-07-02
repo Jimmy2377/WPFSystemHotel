@@ -38,6 +38,12 @@ namespace Hotel.View_layer
 
         private void btnAgregarProveedor_Click(object sender, RoutedEventArgs e)
         {
+            // Verificar que todos los campos estén llenos
+            if (!ValidarCampos())
+            {
+                MessageBox.Show("Por favor, complete todos los campos.");
+                return;
+            }
             string nombre = txtNombre.Text;
             string nit = txtNit.Text;
             string direccion = txtDireccion.Text;
@@ -107,10 +113,10 @@ namespace Hotel.View_layer
 
         private void ClearFields()
         {
-            txtNombre.Text = string.Empty;
-            txtNit.Text = string.Empty;
-            txtDireccion.Text = string.Empty;
-            txtContactos.Text =  string.Empty;
+            txtNombre.Clear();
+            txtNit.Clear();
+            txtDireccion.Clear();
+            txtContactos.Clear();
         }
 
         private void listBoxProveedores_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -142,6 +148,15 @@ namespace Hotel.View_layer
             // Actualiza la lista de proveedores mostrada en el ListBox
             listBoxProveedores.ItemsSource = proveedoresFiltrados;
         }
+        private bool ValidarCampos()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtNit.Text) ||
+                string.IsNullOrEmpty(txtDireccion.Text) || string.IsNullOrEmpty(txtContactos.Text))
+            {
+                return false;
+            }
 
+            return true;
+        }
     }
 }

@@ -10,12 +10,14 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="190"/>
+                <ColumnDefinition Width="230"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -32,26 +34,108 @@
                                           Width="24"
                                           Foreground="{StaticResource tittleColor4}"
                                           Margin="35,0,10,0"/>
-                <TextBlock Text="Reportes"
+                <TextBlock Text="Reporte de Gastos"
                                        Foreground="{StaticResource tittleColor4}"
                                        FontSize="17"
                                        FontFamily="Alegreya Bold"
                                        VerticalAlignment="Center"/>
 
             </StackPanel>
-
-            <StackPanel Grid.Column="1"
-                                    Orientation="Horizontal"
-                                    FlowDirection="LeftToRight"
-                                    VerticalAlignment="Center"
-                                    Margin="0,0,10,0">
-                <!--Botones complementarios-->
-
-            </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1">
-            <Image Source="/View_layer/Images/MarcaDeAgua2.png"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                    <DataGrid x:Name="listBoxOrdenes" AutoGenerateColumns="False" Margin="10 0 10 10" 
+                    Background="{StaticResource tittleColor5}"
+                    IsReadOnly="True" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
+
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="{StaticResource BlankColor2 }" />
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Fecha" Binding="{Binding FechaEntrega}" Width="*"/>
+                        <DataGridTextColumn Header="Departamento" Binding="{Binding Departamento}" Width="*"/>
+                        <DataGridTextColumn Header="Tipo de compra" Binding="{Binding TipoCompra}" Width="*"/>
+                        <DataGridTextColumn Header="Monto Total" Binding="{Binding MontoTotal}" Width="*"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="SeparatorVisibility" Value="Visible"/>
+                            <Setter Property="Background" Value="{StaticResource tittleColor6}"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontFamily" Value="Alegreya Medium"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Padding" Value="15 0 15 0"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <DataGrid x:Name="listBoxValesCompra" AutoGenerateColumns="False" Margin="10 0 10 10" 
+                    Background="{StaticResource tittleColor5}"
+                    IsReadOnly="True" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
+
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="{StaticResource BlankColor2 }" />
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}" />
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*"/>
+                        <DataGridTextColumn Header="Departamento" Binding="{Binding Descripcion}" Width="*"/>
+                        <DataGridTextColumn Header="Tipo de compra" Binding="{Binding Departamento}" Width="*"/>
+                        <DataGridTextColumn Header="Monto Total" Binding="{Binding Monto}" Width="*"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="SeparatorVisibility" Value="Visible"/>
+                            <Setter Property="Background" Value="{StaticResource tittleColor6}"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontFamily" Value="Alegreya Medium"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Padding" Value="15 0 15 0"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </Grid>
         </Grid>
 
     </Grid>

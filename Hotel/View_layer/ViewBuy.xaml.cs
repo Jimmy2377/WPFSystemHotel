@@ -36,5 +36,10 @@ namespace Hotel.View_layer
             ViewOrderProgram vieworderprogram = new ViewOrderProgram();
             contentControl.Content = vieworderprogram;
         }
+        private void btncontrolVales_Click(object sender, RoutedEventArgs e)
+        {
+            ViewVouchers viewvouchers = new ViewVouchers();
+            contentControl.Content = viewvouchers;
+        }
     }
 }

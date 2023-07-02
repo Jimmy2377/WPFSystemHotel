@@ -140,7 +140,8 @@ namespace Hotel.View_layer
                     (
                         cotizacion.IdCotizacion,
                         cotizacion.Cantidad, //obtener la cantidad elegida del producto
-                        null
+                        null,
+                        0
                     );
 
                     detallesCompra.Add(detalleCompra);
@@ -197,12 +198,23 @@ namespace Hotel.View_layer
 
         private void txtBuscarCotizacion_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string filtro = txtBuscarCotizacion.Text.Trim().ToLower();
+            CotizacionBLL cotizacionBLL = new CotizacionBLL();
 
-            List<Cotizacion> cotizacionesFiltradas = cotizacionesDisponibles
-                .Where(c => c.NombreProducto.ToLower().Contains(filtro))
-                .ToList();
+            string filtro = txtBuscarCotizacion.Text.ToLower();
+            string condicion = "'Aprobado' AND AprobadoPor = " + ObtenerIDEmpleado();
 
+            // Obtén todos los ordenes y filtra según el texto ingresado
+            List<Cotizacion> cotizacionesFiltradas = cotizacionBLL.GetAllCotizacionesCondicionadas(condicion).Where(cotizacion =>
+
+                cotizacion.NombreProducto.ToString().ToLower().Contains(filtro) ||
+                cotizacion.Descripcion.ToString().ToLower().Contains(filtro) ||
+                cotizacion.PrecioUnit.ToString().Contains(filtro) ||
+                cotizacion.Tamaño.ToString().ToLower().Contains(filtro) ||
+                cotizacion.Proveedor.ToString().ToLower().Contains(filtro) 
+
+            ).ToList();
+
+            // Actualiza la lista de ordenes mostrada en el ListBox
             dgCotizacionesDisponibles.ItemsSource = cotizacionesFiltradas;
         }
         private void msgDirecta(object sender, RoutedEventArgs e)

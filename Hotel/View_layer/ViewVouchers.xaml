@@ -3,56 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Hotel.View_layer"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="190"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column="0"
-                                    Orientation="Horizontal">
-                <StackPanel.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Color="{StaticResource degradadooro1}" Offset="0"/>
-                        <GradientStop Color="{StaticResource degradadooro5}" Offset="1"/>
-                    </LinearGradientBrush>
-                </StackPanel.Background>
-                <fa:IconImage Icon="FileInvoiceDollar"
-                                          Height="24"
-                                          Width="24"
-                                          Foreground="{StaticResource tittleColor4}"
-                                          Margin="35,0,10,0"/>
-                <TextBlock Text="Vale Compra"
-                                       Foreground="{StaticResource tittleColor4}"
-                                       FontSize="17"
-                                       FontFamily="Alegreya Bold"
-                                       VerticalAlignment="Center"/>
-
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!--<StackPanel>
+                <Label Content="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='La fecha actual es: {0:d}'}" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+            </StackPanel>-->
+            <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+                <Label Content="Motivo / Descripcion:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                <TextBox x:Name="txtDescripcion" FontSize="14" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxLines="50"
+                             Width="400"
+                             Height="40"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"/>
             </StackPanel>
-
-            <StackPanel Grid.Column="1"
-                                    Orientation="Horizontal"
-                                    FlowDirection="LeftToRight"
-                                    VerticalAlignment="Center"
-                                    Margin="0,0,10,0">
-                <!--Botones complementarios-->
-             
+            <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+                <Label Content="Monto Gastado:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14"/>
+                <TextBox x:Name="txtMonto" FontSize="14" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxLines="50"
+                             Width="400"
+                             Height="40"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"/>
             </StackPanel>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <Image Source="/View_layer/Images/MarcaDeAgua2.png"/>
-        </Grid>
-
+            <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+                <Label Content="Departamento:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14" Margin="0 0 0 10"/>
+                <ComboBox x:Name="cmbDepartamento" HorizontalAlignment="Left" Width="400" Height="30" SelectedValuePath="Content">
+                    <ComboBox.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="{StaticResource degradadooro3}"/>
+                            <GradientStop Color="{StaticResource degradadooro1}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ComboBox.Background>
+                    <ComboBoxItem Content="Mantenimiento"/>
+                    <ComboBoxItem Content="Cocina"/>
+                    <ComboBoxItem Content="Ama de Llaves"/>
+                    <ComboBoxItem Content="Almacenes"/>
+                    <ComboBoxItem Content="Ventas"/>
+                    <ComboBoxItem Content="Recepcion"/>
+                    <ComboBoxItem Content="Compras"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="center">
+                <Button Content="Registrar"
+                            Click="btnRegistrar_Click"
+                            Width="250"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

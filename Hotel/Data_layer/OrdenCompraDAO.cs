@@ -164,7 +164,7 @@ namespace Hotel.Data_layer
                 using (MySqlConnection con = connection.GetConnection())
                 {
                     con.Open();
-                    string query = "SELECT d.ID_Producto, d.Cantidad, p.NombreProducto FROM detallecompra d INNER JOIN producto p ON d.ID_Producto = p.ID_Producto WHERE ID_OrdenCompra = @ID_OrdenCompra";
+                    string query = "SELECT d.ID_Producto, d.Cantidad, p.NombreProducto , d.ID_OrdenCompra FROM detallecompra d INNER JOIN producto p ON d.ID_Producto = p.ID_Producto WHERE ID_OrdenCompra = @ID_OrdenCompra";
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
 
@@ -175,9 +175,10 @@ namespace Hotel.Data_layer
                             int idProducto = Convert.ToInt32(reader["ID_Producto"]);
                             int cantidad = Convert.ToInt32(reader["Cantidad"]);
                             string nombreProducto = reader["NombreProducto"].ToString();
+                            int idcompra = Convert.ToInt32(reader["ID_OrdenCompra"]);
 
                             // Crear instancia de DetalleCompra y agregar a la lista
-                            DetalleCompra detalle = new DetalleCompra(idProducto, cantidad, nombreProducto);
+                            DetalleCompra detalle = new DetalleCompra(idProducto, cantidad, nombreProducto, idcompra);
                             detallesCompra.Add(detalle);
                         }
                     }
@@ -185,7 +186,7 @@ namespace Hotel.Data_layer
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al obtener los detalles de compra: " + ex.Message);
+                MessageBox.Show("Error al obtener los detalles de compra: " + ex.Message);
             }
 
             return detallesCompra;
@@ -213,5 +214,73 @@ namespace Hotel.Data_layer
                     MessageBox.Show("Error al modificar la Orden de Compra: " + ex.Message);
                 }
         }
+        public void EliminarDetalleCompra(int idProducto, int idOrdenCompra)
+        {
+            try
+            {
+                using (MySqlConnection con = connection.GetConnection())
+                {
+                    con.Open();
+                    string query = "DELETE FROM detallecompra WHERE ID_Producto = @ID_Producto AND ID_OrdenCompra = @ID_OrdenCompra";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@ID_Producto", idProducto);
+                    cmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Producto eliminado del detalle de compra: ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el detalle de compra: " + ex.Message);
+                throw;
+            }
+        }
+        public void ActualizarMontoTotal(int idOrdenCompra)
+        {
+            try
+            {
+                using (MySqlConnection con = connection.GetConnection())
+                {
+                    con.Open();
+                    string query = "UPDATE ordencompra SET MontoTotal = (SELECT SUM(dc.Cantidad * p.PrecioUnit) FROM detallecompra dc INNER JOIN producto p ON dc.ID_Producto = p.ID_Producto WHERE dc.ID_OrdenCompra = @ID_OrdenCompra) WHERE ID_OrdenCompra = @ID_OrdenCompra";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@ID_OrdenCompra", idOrdenCompra);
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Monto total actualizado: ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el monto total de la orden de compra: " + ex.Message);
+                throw;
+            }
+        }
+        public void GuardarDevolucion(Devolucion devolucion)
+        {
+            try
+            {
+                using (MySqlConnection con = connection.GetConnection())
+                {
+                    con.Open();
+
+                    string query = "INSERT INTO devoluciones (Motivo, DetalleCompra_ID_OrdenCompra, DetalleCompra_ID_Producto) " +
+                                   "VALUES (@Motivo, @ID_OrdenCompra, @ID_Producto)";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Motivo", devolucion.Motivo);
+                    cmd.Parameters.AddWithValue("@ID_OrdenCompra", devolucion.ID_OrdenCompra);
+                    cmd.Parameters.AddWithValue("@ID_Producto", devolucion.ID_Producto);
+
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Devolucion Guardada: ");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al guardar la devolución: " + ex.Message);
+                throw;
+            }
+        }
+
     }
 }

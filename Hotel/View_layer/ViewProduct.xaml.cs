@@ -18,6 +18,7 @@ using Microsoft.Win32;
 using Hotel.Bussines_Layer;
 using Hotel.Data_layer;
 using Hotel.Entity_layer;
+using System.Text.RegularExpressions;
 
 namespace Hotel.View_layer
 {
@@ -63,9 +64,10 @@ namespace Hotel.View_layer
                 cotizacion.Descripcion.ToLower().Contains(filtro) ||
                 cotizacion.Tamaño.ToLower().Contains(filtro) ||
                 cotizacion.PrecioUnit.ToString().Contains(filtro) ||
-                cotizacion.Proveedor.ToString().Contains(filtro) ||
-                cotizacion.Categoria.NombreCategoria.ToString().Contains(filtro)  
-                
+                cotizacion.Proveedor.NombreProv.ToString().ToLower().Contains(filtro) ||
+                cotizacion.Categoria.NombreCategoria.ToString().ToLower().Contains(filtro) ||
+                cotizacion.Estado.ToString().ToLower().Contains(filtro)
+
             ).ToList();
 
             // Actualiza la lista de proveedores mostrada en el ListBox
@@ -116,6 +118,12 @@ namespace Hotel.View_layer
         
         private void btnAgregarCotizacion_Click(object sender, RoutedEventArgs e)
         {
+            // Verificar que todos los campos estén llenos
+            if (!ValidarCampos())
+            {
+                MessageBox.Show("Por favor, complete todos los campos.");
+                return;
+            }
             // Obtener los valores de los controles de entrada
             string nombreProducto = txtNombre.Text;
             string descripcion = txtDescripcion.Text;
@@ -173,6 +181,23 @@ namespace Hotel.View_layer
                 ClearFields();
             }
         }
-
+        private bool ValidarCampos()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtDescripcion.Text) ||
+                string.IsNullOrEmpty(txtPrecio.Text) || string.IsNullOrEmpty(txtTamaño.Text) ||
+                cmbCategoria.SelectedItem == null || cmbProveedor.SelectedItem == null)
+            {
+                return false;
+            }
+            // Validar el formato del campo Monto
+            string montoText = txtPrecio.Text;
+            bool esFormatoValido = Regex.IsMatch(montoText, @"^\d+(\,\d+)?$");
+            if (!esFormatoValido)
+            {
+                MessageBox.Show("El campo Monto debe ser un número entero o decimal válido");
+                return false;
+            }
+            return true;
+        }
     }
 }

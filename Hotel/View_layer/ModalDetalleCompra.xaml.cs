@@ -19,10 +19,12 @@ namespace Hotel.View_layer
 {
     public partial class ModalDetalleCompra : Window
     {
+        private OrdenCompra ordenCompra;
         private OrdenCompraBLL ordenCompraBLL;
         public ModalDetalleCompra(OrdenCompra ordenCompra)
         {
             InitializeComponent();
+            this.ordenCompra = ordenCompra;
             ordenCompraBLL = new OrdenCompraBLL();
             CargarDetalleCompra(ordenCompra);
         }
@@ -35,11 +37,24 @@ namespace Hotel.View_layer
             // Asignar la lista de detalles de compra como origen de datos del DataGrid
             tablaDetalleCompra.ItemsSource = detallesCompra;
         }
-        
+        private void Devolver_Click(object sender, RoutedEventArgs e)
+        {
+            string motivo = txtMotivo.Text;
+            if (tablaDetalleCompra.SelectedItem != null)
+            {
+                DetalleCompra detalleSeleccionado = tablaDetalleCompra.SelectedItem as DetalleCompra;
+
+                // Llamar a la capa de negocio para realizar la devolución
+                ordenCompraBLL.DevolverProducto(detalleSeleccionado, motivo);
+
+                // Actualizar la interfaz
+                CargarDetalleCompra(ordenCompra);
+            }
+        }
 
         private void Cerrar_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Close();
         }
     }
 }

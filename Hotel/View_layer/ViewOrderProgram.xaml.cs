@@ -40,9 +40,9 @@ namespace Hotel.View_layer
             List<OrdenCompra> ordenesFiltrados = ordenCompraBLL.GetAllCompras("WHERE Estado <> 'Almacen' AND TipoCompra = 'Programada'").Where(ordencompra =>
 
                 ordencompra.Fecha.ToString().Contains(filtro) ||
-                ordencompra.Estado.ToString().ToLower().Contains(filtro) ||
-                ordencompra.Departamento.ToLower().Contains(filtro)
-
+                ordencompra.Departamento.ToString().ToLower().Contains(filtro) ||
+                ordencompra.MontoTotal.ToString().Contains(filtro) ||
+                ordencompra.FechaEntregaCalculada.ToString().Contains(filtro)
             ).ToList();
 
             // Actualiza la lista de ordenes mostrada en el ListBox

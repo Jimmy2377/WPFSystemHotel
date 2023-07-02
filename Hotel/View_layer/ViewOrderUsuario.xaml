@@ -10,12 +10,38 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="10 0 10 0">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal">
+                    <StackPanel.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="{StaticResource degradadooro1}" Offset="0"/>
+                            <GradientStop Color="{StaticResource degradadooro5}" Offset="1"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                    <fa:IconImage Icon="CheckToSlot"
+                                          Width="24"
+                                          Foreground="{StaticResource tittleColor4}"
+                                          Margin="35,0,10,0"/>
+                    <TextBlock Text="Gestionar Ordenes"
+                                       Foreground="{StaticResource tittleColor4}"
+                                       FontSize="17"
+                                       FontFamily="Alegreya Bold"
+                                       VerticalAlignment="Center"/>
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Margin="10 0 10 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource tittleColor2}" Margin="5"/>
                     <TextBox x:Name="txtBusqueda"
@@ -34,7 +60,7 @@
                              TextChanged="txtBusqueda_TextChanged"/>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <DataGrid x:Name="listBoxOrdenes" AutoGenerateColumns="False" Margin="10 0 10 10" 
           Background="{StaticResource tittleColor5}"
            IsReadOnly="True" VerticalGridLinesBrush="{StaticResource tittleColor1}" HorizontalGridLinesBrush="{StaticResource tittleColor1}" HeadersVisibility="Column">
@@ -80,7 +106,7 @@
                     </DataGrid.ColumnHeaderStyle>
                 </DataGrid>
             </Grid>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="center">
                     <Button Content="Ver Detalle Compra"
                             Click="VerDetalleCompra_Click"

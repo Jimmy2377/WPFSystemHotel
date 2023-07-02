@@ -35,6 +35,12 @@ namespace Hotel.View_layer
         }
         private void btnRegistrar_Click(object sender, RoutedEventArgs e)
         {
+            // Verificar que todos los campos estén llenos
+            if (!ValidarCampos())
+            {
+                MessageBox.Show("Por favor, complete todos los campos.");
+                return;
+            }
             // Obtener los valores de los controles de entrada
             string nombre = txtNombre.Text;
             string apellidos = txtApellido.Text;
@@ -68,13 +74,7 @@ namespace Hotel.View_layer
                 // Obtiene la contraseña encriptada
                 claveEncriptada = stringBuilder.ToString();
             }
-            // Verificar que todos los campos estén llenos
-            if (!ValidarCampos())
-            {
-                MessageBox.Show("Por favor, complete todos los campos.");
-                return;
-            }
-
+            
             // Verificar si solo se permiten letras en el nombre y apellidos
             if (!EsSoloLetras(nombre) || !EsSoloLetras(apellidos))
             {

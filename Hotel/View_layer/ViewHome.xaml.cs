@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para ViewHome.xaml
-    /// </summary>
     public partial class ViewHome : UserControl
     {
         public ViewHome()

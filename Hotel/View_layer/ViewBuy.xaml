@@ -73,7 +73,6 @@
                         </Style>
                     </RadioButton.Style>
                 </RadioButton>
-
                 <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolProgram_Click">
                     <RadioButton.Style>
                         <Style TargetType="RadioButton">
@@ -100,8 +99,32 @@
                         </Style>
                     </RadioButton.Style>
                 </RadioButton>
-
-
+                <RadioButton GroupName="MyRadioButtonGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" Height="40" Margin="15 0 15 0" Click="btncontrolVales_Click">
+                    <RadioButton.Style>
+                        <Style TargetType="RadioButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="RadioButton">
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <fa:IconImage Icon="FileInvoiceDollar" Margin="0,0,10,0" Foreground="{StaticResource tittleColor1}" Width="24"/>
+                                                <TextBlock Text="Vales de Compra" Foreground="{StaticResource tittleColor1}" FontSize="16" FontFamily="Alegreya Medium"/>
+                                            </StackPanel>
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" BorderThickness="0,0,0,3">
+                                                <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource tittleColor1}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
             </StackPanel>
         </Grid>
 

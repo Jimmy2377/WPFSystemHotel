@@ -41,9 +41,10 @@ namespace Hotel.View_layer
             List<OrdenCompra> ordenesFiltrados = ordenCompraBLL.GetAllCompras("WHERE Estado <> 'Almacen' AND TipoCompra = 'Directa'").Where(ordencompra =>
 
                 ordencompra.Fecha.ToString().Contains(filtro) ||
-                ordencompra.Estado.ToString().ToLower().Contains(filtro) ||
-                ordencompra.Departamento.ToLower().Contains(filtro)
-                
+                ordencompra.Estado.ToString().Contains(filtro) ||
+                ordencompra.Departamento.ToString().Contains(filtro) ||
+                ordencompra.MontoTotal.ToString().Contains(filtro)
+
             ).ToList();
 
             // Actualiza la lista de ordenes mostrada en el ListBox
@@ -79,8 +80,7 @@ namespace Hotel.View_layer
 
                     // Mostrar la ventana modal
                     ventanaDetalle.ShowDialog();
-            }
-            
+            } 
         }
         private void CambiarEstadoButton_Click(object sender, EventArgs e)
         {

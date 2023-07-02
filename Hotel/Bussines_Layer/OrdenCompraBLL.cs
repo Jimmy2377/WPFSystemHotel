@@ -142,6 +142,24 @@ namespace Hotel.Bussines_Layer
         {
             return ordenCompraDAO.ObtenerDetallesCompra(idOrdenCompra);
         }
+        public void DevolverProducto(DetalleCompra detalleCompra, string motivo)
+        {
+            // Crear una instancia de Devolucion con los datos necesarios
+            Devolucion devolucion = new Devolucion
+            {
+                Motivo = motivo,
+                ID_OrdenCompra = detalleCompra.ID_OrdenCompra,
+                ID_Producto = detalleCompra.ID_Producto
+            };
 
+            // Guardar la devolución en la tabla de devoluciones usando tu capa de datos
+            ordenCompraDAO.GuardarDevolucion(devolucion);
+
+            // Llamar a la capa de datos para eliminar el detalle de compra
+            ordenCompraDAO.EliminarDetalleCompra(detalleCompra.ID_Producto, detalleCompra.ID_OrdenCompra);
+
+            // Actualizar el monto total de la orden de compra
+            ordenCompraDAO.ActualizarMontoTotal(detalleCompra.ID_OrdenCompra);
+        }
     }
 }

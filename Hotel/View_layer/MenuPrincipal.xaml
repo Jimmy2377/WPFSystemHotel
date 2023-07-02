@@ -137,6 +137,16 @@
                                 </StackPanel>
                             </RadioButton>
 
+                            <RadioButton x:Name="btnSolicitudes"
+                                         Style="{StaticResource menuButton}"
+                                         Tag="{StaticResource tittleColor1}"
+                                         Click="btncontrolSolicitudes_Click" Visibility="Collapsed">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="Wpforms" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Solicitudes" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
                             <RadioButton x:Name="btnReportes"
                                          Style="{StaticResource menuButton}"
                                          Tag="{StaticResource tittleColor1}"
@@ -144,16 +154,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="FileSignature" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Reporte Gastos" Style="{StaticResource menuButtonText}"/>
-                                </StackPanel>
-                            </RadioButton>
-
-                            <RadioButton x:Name="btnVales"
-                                         Style="{StaticResource menuButton}"
-                                         Tag="{StaticResource tittleColor1}"
-                                         Click="btncontrolvouchers_Click" Visibility="Collapsed">
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:IconImage Icon="MoneyCheck" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Vales de compra" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 
@@ -215,7 +215,8 @@
                             <RadioButton x:Name="btnSolicitud"
                                          Style="{StaticResource menuButton}"
                                          Tag="{StaticResource tittleColor1}"
-                                         Visibility="Collapsed">
+                                         Visibility="Collapsed"
+                                         Click="Solicitar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Wpforms" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Nueva solicitud" Style="{StaticResource menuButtonText}"/>

@@ -78,15 +78,13 @@ namespace Hotel.View_layer
         {
             DataContext = new ViewProviders();
         }
-
+        private void btncontrolSolicitudes_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewRequest();
+        }
         private void btncontrolreport_Click(object sender, RoutedEventArgs e)
         {
             DataContext = new ViewReports();
-        }
-
-        private void btncontrolvouchers_Click(object sender, RoutedEventArgs e)
-        {
-            DataContext = new ViewVouchers();
         }
         private void btncontrolusers_Click(object sender, RoutedEventArgs e)
         {
@@ -110,6 +108,10 @@ namespace Hotel.View_layer
         {
             DataContext = new ViewOrderUsuario();
         }
+        private void Solicitar_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewNewRequest();
+        }
         //Boton de cerrar session
         private void btnLogout_click(object sender, RoutedEventArgs e)
         {
@@ -130,8 +132,8 @@ namespace Hotel.View_layer
             btnOrdenCompraAdmi.Visibility = Visibility.Visible;
             btnCotizacion.Visibility = Visibility.Visible;
             btnProveedores.Visibility = Visibility.Visible;
+            btnSolicitudes.Visibility = Visibility.Visible;
             btnReportes.Visibility = Visibility.Visible;
-            btnVales.Visibility = Visibility.Visible;
             btnDevolucion.Visibility = Visibility.Visible;
             btnGestionUsuarios.Visibility = Visibility.Visible;
         }

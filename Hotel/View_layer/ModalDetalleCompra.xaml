@@ -10,7 +10,7 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        Title="ModalDetalleCompra" Height="450" Width="400">
+        Title="ModalDetalleCompra" Height="550" Width="450">
     <Border CornerRadius="5"
             BorderThickness="5">
         <Border.BorderBrush>
@@ -44,6 +44,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
@@ -96,6 +97,7 @@
 
                 <DataGrid.Columns>
                     <!--<DataGridTextColumn Header="ID Producto" Binding="{Binding ID_Producto}" />-->
+                    <DataGridTextColumn Header="Orden Compra" Binding="{Binding ID_OrdenCompra}" Width="*"/>
                     <DataGridTextColumn Header="Producto" Binding="{Binding NombreProducto}" Width="*"/>
                     <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="*"/>
                 </DataGrid.Columns>
@@ -111,13 +113,33 @@
                 </DataGrid.ColumnHeaderStyle>
             </DataGrid>
 
-            <Button Content="Cerrar" Grid.Row="2"
+            <StackPanel x:Name="ElementosMotivo" Orientation="Horizontal" Margin="0 0 0 20" Grid.Row="2" HorizontalAlignment="Center" Visibility="Collapsed">
+                <Label x:Name="lblMotivo" Content="Motivo:" Foreground="{StaticResource tittleColor1}" FontFamily="Alegreya medium" FontSize="14" Margin="5"/>
+                <TextBox x:Name="txtMotivo" FontSize="14"
+                             Width="300"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Alegreya"                             
+                             Foreground="{StaticResource tittleColor2}"
+                             CaretBrush="{StaticResource tittleColor1}"
+                             BorderBrush="{StaticResource tittleColor1}"
+                             BorderThickness="0,0,0,2"                             
+                             VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3">
+                <Button Content="Cerrar" Grid.Row="2"
                             Click="Cerrar_Click"
                             Width="130"
                             Height="40"
                             Margin="10"
                             Style="{StaticResource CustomButtonStyle}"/>
-
+                <Button x:Name="btndevolver" Content="Devolver" Grid.Row="2" Visibility="Collapsed"
+                            Click="Devolver_Click"
+                            Width="130"
+                            Height="40"
+                            Margin="10"
+                            Style="{StaticResource CustomButtonStyle}"/>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>
