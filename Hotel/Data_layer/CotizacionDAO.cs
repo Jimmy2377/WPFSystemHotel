@@ -129,7 +129,6 @@ namespace Hotel.Data_layer
                     cmd.Parameters.AddWithValue("@Estado", cotizacion.Estado);
                     cmd.ExecuteNonQuery();
                 }
-                MessageBox.Show("Cotizacion agregado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -208,7 +207,7 @@ namespace Hotel.Data_layer
             catch (Exception ex)
             {
                 // Manejar el error de alguna manera adecuada
-                Console.WriteLine("Error al cambiar el estado de la cotización en la base de datos: " + ex.Message);
+                MessageBox.Show("Error al cambiar el estado de la cotización en la base de datos: " + ex.Message);
                 return false;
             }
         }

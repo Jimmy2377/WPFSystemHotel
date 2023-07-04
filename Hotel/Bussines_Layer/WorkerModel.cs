@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 
 namespace Hotel.Bussines_Layer
 {
-    class WorkerModel
+    public class WorkerModel
     {
         UserPerson userPerson = new UserPerson();
         public bool LoginUser(string user, string pass)
@@ -19,7 +19,7 @@ namespace Hotel.Bussines_Layer
             string encryptedPassword = EncryptPassword(pass);
             return userPerson.Login(user, encryptedPassword);
         }
-        public bool VerifityUser(string NombreUsuario)
+        public bool VerifityUser(string NombreUsuario)//Busca al usuario que intenta recuperar la contraseña y le hace la pregunta
         {
             
             if (userPerson.SearchUsuario(NombreUsuario))
@@ -30,13 +30,13 @@ namespace Hotel.Bussines_Layer
             }
             return false;
         }
-        public bool VerifyUserAndResetPassword(string ci, string respuesta, string nuevaContraseña)
+        public bool VerifyUserAndResetPassword(string ci, string respuesta, string nuevaContraseña)//Verifica Datos Para cambiar la comtraseña
         {
             // Encriptar la contraseña ingresada
             string encryptedPassword = EncryptPassword(nuevaContraseña);
             return userPerson.VerifyUserAndResetPassword(ci, respuesta, encryptedPassword);
         }
-        private string EncryptPassword(string password)
+        public string EncryptPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {

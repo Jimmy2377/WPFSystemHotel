@@ -96,13 +96,13 @@ namespace Hotel.View_layer
             LimpiarCampos();
             Close();
         }
-        private bool EsSoloLetras(string cadena)
+        public bool EsSoloLetras(string cadena)
         {
             return cadena.All(c => char.IsLetter(c) || c == ' ');
         }
 
         // Método para verificar si una cadena solo contiene números
-        private bool EsSoloNumeros(string cadena)
+        public bool EsSoloNumeros(string cadena)
         {
             return cadena.All(char.IsDigit);
         }

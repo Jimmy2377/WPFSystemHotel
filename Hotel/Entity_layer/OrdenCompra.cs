@@ -42,6 +42,5 @@ namespace Hotel.Entity_layer
         public int ID_Empleado { get; set; }
         public DateTime? FechaEntrega { get; set; }
         public List<DetalleCompra> DetallesCompra { get; set; }
-
     }
 }

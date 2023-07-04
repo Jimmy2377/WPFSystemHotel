@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Hotel.View_layer
 {
-    /// <summary>
-    /// Lógica de interacción para VentanaModalCantidad.xaml
-    /// </summary>
     public partial class VentanaModalCantidad : Window
     {
         public int Cantidad { get; private set; }

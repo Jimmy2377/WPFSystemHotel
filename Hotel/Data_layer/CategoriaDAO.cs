@@ -64,11 +64,10 @@ namespace Hotel.Data_layer
                     
                     cmd.ExecuteNonQuery();
                 }
-                MessageBox.Show("Categoria agregado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al insertar el Categoria: " + ex.Message);
+                MessageBox.Show("Error al insertar el Categoria: " + ex.Message);
             }
         }
 

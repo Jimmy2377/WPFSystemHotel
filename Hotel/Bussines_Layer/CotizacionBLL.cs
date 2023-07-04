@@ -36,7 +36,7 @@ namespace Hotel.Bussines_Layer
             catch (Exception ex)
             {
                 Console.WriteLine("Error al insertar el Cotizacion: " + ex.Message);
-                MessageBox.Show("Cotizacion No agregado", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Cotizacion No agregado: " + ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -87,7 +87,6 @@ namespace Hotel.Bussines_Layer
                 }
                 else
                 {
-                    MessageBox.Show("Error al cambiar el estado de la cotización en la base de datos.");
                     return false;
                 }
             }

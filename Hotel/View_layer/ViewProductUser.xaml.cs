@@ -68,12 +68,12 @@ namespace Hotel.View_layer
                     }
                     else
                     {
-                        MessageBox.Show("Aprobado con exito, Ahora aparecera en orden compra", "Cambio de Estado", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("No se pudo cambiar el estado", "Cambio de Estado", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
             }
             else
             {
-                MessageBox.Show("Aprobado con exito, Ahora aparecera en orden compra", "Cambio de Estado", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("Seleccione un Producto para aproparlo", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Stop);
             }
         }
 

@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using NLog;
 
 namespace Hotel.Bussines_Layer
 {
     public class CategoriaBLL
     {
         private CategoriaDAO categoriaDAO;
-
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();//Crea una instancia estática de la clase Logger 
         public CategoriaBLL()
         {
             categoriaDAO = new CategoriaDAO();
@@ -18,7 +19,7 @@ namespace Hotel.Bussines_Layer
 
         public List<Categoria> GetAllCategorias()
         {
-            return categoriaDAO.GetAllCategorias();  
+            return categoriaDAO.GetAllCategorias();
         }
 
         public void InsertCategoria(Categoria categoria)
@@ -26,12 +27,13 @@ namespace Hotel.Bussines_Layer
             try
             {
                 categoriaDAO.InsertCategoria(categoria);
+                logger.Info("Se Registro una nueva cateroria: " + categoria.NombreCategoria);
                 MessageBox.Show("Categoría agregada exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al insertar la categoría: " + ex.Message);
-                MessageBox.Show("Error al insertar la categoría", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Error("Error al insertar la categoría: " + ex.Message);
+                MessageBox.Show("Error al insertar la categoría" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -40,11 +42,12 @@ namespace Hotel.Bussines_Layer
             try
             {
                 categoriaDAO.EliminarCategoria(idCategoria);
+                logger.Info("Se Elimino una cateroria: ");
                 MessageBox.Show("Categoría eliminada exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al eliminar la categoría: " + ex.Message);
+                logger.Error("Error al Eliminar la categoría: " + ex.Message);
                 MessageBox.Show("Error al eliminar la categoría", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -54,11 +57,12 @@ namespace Hotel.Bussines_Layer
             try
             {
                 categoriaDAO.ModificarCategoria(categoria);
+                logger.Info("Se Modifico la categoria: " + categoria.NombreCategoria);
                 MessageBox.Show("Categoría modificada exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al modificar la categoría: " + ex.Message);
+                logger.Error("No se pudo eliminar la categoria: " + ex.Message);
                 MessageBox.Show("Error al modificar la categoría", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
